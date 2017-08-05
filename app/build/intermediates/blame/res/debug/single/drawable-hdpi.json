@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_stat_six_timers_bw2.png",
+        "source": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/drawable-hdpi/ic_stat_six_timers_bw2.png"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_action_save.png",
+        "source": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/drawable-hdpi/ic_action_save.png"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_launcher.png",
+        "source": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/drawable-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/drawable-hdpi/ic_action_settings.png",
+        "source": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/drawable-hdpi/ic_action_settings.png"
+    }
+]

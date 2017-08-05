@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-w500dp-v13/values-w500dp-v13.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 54,
+                    "endOffset": 105
+                },
+                "from": {
+                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-w500dp-v13/values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 279,
+                        "endColumn": 54,
+                        "endOffset": 329
+                    }
+                }
+            }
+        ]
+    }
+]

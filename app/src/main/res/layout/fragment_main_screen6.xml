@@ -1,0 +1,455 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- TODO: Update blank fragment layout -->
+
+     <LinearLayout
+         android:id="@+id/splitLinear"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent"
+         android:gravity="fill"
+         android:orientation="horizontal" >
+
+        <FrameLayout
+            android:id="@+id/leftFrame"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/leftLinear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+<!-- fire1  -->
+
+                <FrameLayout
+                    android:id="@+id/frame1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/fireMargin" >
+
+                    <LinearLayout
+                        android:id="@+id/linear1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <Chronometer
+                            android:id="@+id/chronometer1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center|fill"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/countdown_text_size"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/timeInfo1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:text="00:00"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <Button
+                                    android:id="@+id/button1start"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="startPlate1"
+                                    android:text="@string/Start" />
+
+                                <Button
+                                    android:id="@+id/button1set"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="setPlate1"
+                                    android:text="@string/Set" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+<!-- fire3  -->
+
+                <FrameLayout
+                    android:id="@+id/frame3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/fireMargin" >
+                    
+                    <LinearLayout
+                        android:id="@+id/linear3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <Chronometer
+                            android:id="@+id/chronometer3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center|fill"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Chronometer"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/countdown_text_size"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/timeInfo3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:text="00:00"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <Button
+                                    android:id="@+id/button3start"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/abc_ab_share_pack_mtrl_alpha"
+                                    android:onClick="startPlate3"
+                                    android:text="@string/Start" />
+
+                                <Button
+                                    android:id="@+id/button3set"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="setPlate3"
+                                    android:text="@string/Set" />
+							</LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+<!-- fire5  -->
+
+                <FrameLayout
+                    android:id="@+id/frame5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/fireMargin" >
+                            
+                    <LinearLayout
+                        android:id="@+id/linear5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <Chronometer
+                            android:id="@+id/chronometer5"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center|fill"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Chronometer"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/countdown_text_size"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/timeInfo5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:text="00:00"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <Button
+                                    android:id="@+id/button5start"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="startPlate5"
+                                    android:text="@string/Start" />
+
+                                <Button
+                                    android:id="@+id/button5set"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="setPlate5"
+                                    android:text="@string/Set" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout><!-- fire5 end element -->
+                
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/rightFrame"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/rightLinear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+<!-- fire2  -->
+
+                <FrameLayout
+                    android:id="@+id/frame2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/fireMargin" >
+                    
+                    <LinearLayout
+                        android:id="@+id/linear2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <Chronometer
+                            android:id="@+id/chronometer2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center|fill"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Chronometer"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/countdown_text_size"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/timeInfo2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:text="00:00"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <Button
+                                    android:id="@+id/button2start"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="startPlate2"
+                                    android:text="@string/Start" />
+
+                                <Button
+                                    android:id="@+id/button2set"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="setPlate2"
+                                    android:text="@string/Set" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+                    
+                </FrameLayout>
+<!-- fire4  -->
+
+                <FrameLayout
+                    android:id="@+id/frame4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/fireMargin" >
+                    
+                    <LinearLayout
+                        android:id="@+id/linear4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <Chronometer
+                            android:id="@+id/chronometer4"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center|fill"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Chronometer"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/countdown_text_size"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/timeInfo4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:text="00:00"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <Button
+                                    android:id="@+id/button4start"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="startPlate4"
+                                    android:text="@string/Start" />
+
+                                <Button
+                                    android:id="@+id/button4set"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="setPlate4"
+                                    android:text="@string/Set" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+                    
+                </FrameLayout>
+<!-- fire6  -->
+
+                <FrameLayout
+                    android:id="@+id/frame6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/fireMargin" >
+                    
+                    <LinearLayout
+                        android:id="@+id/linear6"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical" >
+
+                        <Chronometer
+                            android:id="@+id/chronometer6"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_gravity="center_vertical|center|fill"
+                            android:layout_weight="3"
+                            android:gravity="center"
+                            android:text="Chronometer"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/countdown_text_size"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/timeInfo6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical|center_horizontal"
+                            android:text="00:00"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom" >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <Button
+                                    android:id="@+id/button6start"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="startPlate6"
+                                    android:text="@string/Start" />
+
+                                <Button
+                                    android:id="@+id/button6set"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="fill_parent"
+                                    android:layout_weight="1"
+                                    android:onClick="setPlate6"
+                                    android:text="@string/Set" />
+
+                            </LinearLayout>
+
+                        </FrameLayout>
+
+                    </LinearLayout>
+                    
+                </FrameLayout>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>

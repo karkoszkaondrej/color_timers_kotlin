@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_slide_out_top.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_slide_out_top.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_grow_fade_in_from_bottom.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_grow_fade_in_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_slide_in_bottom.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_slide_in_bottom.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_slide_out_bottom.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_slide_in_top.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_slide_in_top.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_fade_out.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_fade_out.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_shrink_fade_out_from_bottom.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_shrink_fade_out_from_bottom.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/anim/abc_fade_in.xml",
+        "source": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/anim/abc_fade_in.xml"
+    }
+]

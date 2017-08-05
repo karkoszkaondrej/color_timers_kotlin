@@ -1,0 +1,258 @@
+package com.karkoszka.cookingtime.services;
+
+import java.io.IOException;
+
+import com.karkoszka.cookingtime.R;
+import com.karkoszka.cookingtime.activities.MainActivity;
+
+
+
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.Service;
+import android.content.Context;
+import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.RingtoneManager;
+import android.net.Uri;
+import android.os.IBinder;
+import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
+import android.util.Log;
+
+public class AlarmSoundService extends Service  implements AudioManager.OnAudioFocusChangeListener, 
+	MediaPlayer.OnErrorListener {
+	
+	public static String START_PLAY = "START_PLAY";
+	private static int classID = 258579; // just a number
+	private int plate = 0;
+	protected Uri uri;
+
+	private static MediaPlayer mMediaPlayer;
+	private AudioManager audioManager;
+	private boolean isPlaying = false;
+
+	
+	@Override
+	public IBinder onBind(Intent intent) {
+	        return null;
+	    }
+	
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		if (intent.getBooleanExtra(START_PLAY, false)) {
+			Log.d("AlarmSoundService: ", "Started");
+			uri = getAlarmUri();
+			plate = intent.getIntExtra(MainActivity.ALARM_OFF_PLATE_NO, 0);
+			cancelNotification(getApplicationContext());
+			if(!isPlaying)
+				initMediaPlayer(getApplicationContext(), uri);
+			else {
+				isPlaying = false;
+				if (mMediaPlayer != null) {
+					mMediaPlayer.reset();
+					initMediaPlayer(getApplicationContext(), uri);
+				} else {
+					initMediaPlayer(getApplicationContext(), uri);
+				}
+			}
+		    Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+		    intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		    intent2.putExtra(MainActivity.ALARM_OFF_PLATE_NO, plate);
+		    getApplicationContext().startActivity(intent2);	
+        }
+        return Service.START_STICKY;   
+	}
+	/**Initiates and plays sound.    
+	 */
+	public void initMediaPlayer(Context context, Uri uri) {
+	    	mMediaPlayer = new MediaPlayer();
+			
+		    mMediaPlayer.setOnErrorListener(this);
+		    
+		    
+		    try {
+		    	/*boolean customUri = false;
+		    	if (customUri)*/
+		    		mMediaPlayer.setDataSource(context, uri);
+		    	/*else
+		    		mMediaPlayer.create(context, R.raw.ct_alarm);*/
+				audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+				int result = audioManager.requestAudioFocus(this, AudioManager.STREAM_ALARM,
+					    AudioManager.AUDIOFOCUS_GAIN);
+
+				if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+					    // could not get audio focus.
+						Log.d("AlarmSoundService: " , "Audiofocus not gained");
+				}
+	            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
+	                mMediaPlayer.setAudioStreamType(AudioManager.STREAM_ALARM);
+	                mMediaPlayer.prepare();
+	            }
+	            play();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    }
+	private void play() {
+		if (!isPlaying) {			
+			isPlaying = true;
+			/*
+			Intent intent = new Intent(this, MainActivity.class);
+			intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+							Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+			PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+			*/
+			Notification notification = notificate(plate);
+		
+			mMediaPlayer.setLooping(true); 
+			mMediaPlayer.start();
+			Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+       	    v.vibrate(500);
+			startForeground(classID, notification);
+		}
+	}
+	/**
+     * Shows notification that starts MainActivity after play()'s last line
+     */
+    private Notification notificate(int plate) {
+    	NotificationCompat.Builder mBuilder =
+    	        new NotificationCompat.Builder(this)
+    	        .setSmallIcon(R.drawable.ic_launcher)
+    	        .setContentTitle("Cooking time")
+    	        .setContentText("Timer " + plate + " is done.")
+    	        .setAutoCancel(true);
+    	Intent resultIntent = new Intent(this, MainActivity.class);
+    	resultIntent.putExtra(MainActivity.ALARM_OFF_PLATE_NO, plate);
+    	resultIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+				Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    	//resultIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+    	// The stack builder object will contain an artificial back stack for the
+    	// started Activity.
+    	// This ensures that navigating backward from the Activity leads out of
+    	// your application to the Home screen.
+    	TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+    	// Adds the back stack for the Intent (but not the Intent itself)
+    	stackBuilder.addParentStack(MainActivity.class);
+    	// Adds the Intent that starts the Activity to the top of the stack
+    	stackBuilder.addNextIntent(resultIntent);
+    	PendingIntent resultPendingIntent =
+    	        stackBuilder.getPendingIntent(
+    	            0,
+    	            PendingIntent.FLAG_CANCEL_CURRENT
+    	        );
+    	mBuilder.setContentIntent(resultPendingIntent);
+    	return mBuilder.build();
+    }
+    /*
+     * Cancels Running Notification
+     */
+    private void cancelNotification(Context context) {
+    	NotificationManager mNotificationManager =
+        	    (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    	mNotificationManager.cancelAll();
+    }
+    /**
+	 * obtaines alarms or notications URI
+	 */
+	private Uri getAlarmUri() {
+		//TODO: Preferences
+        Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        if (alert != null) {
+            alert = Uri.parse("android.resource://com.karkoszka.cookingtime/" 
+            		+ R.raw.ct_alarm);
+            
+        } else {
+            alert = RingtoneManager
+                    .getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+        }
+        return alert;
+    }
+	@Override
+	public void onDestroy() {
+		Log.d("AlarmSoundService: " , "On destroy");
+		stop();
+	}	
+	
+	private void stop() {
+		if (isPlaying) {
+			isPlaying = false;
+			if (mMediaPlayer != null) {
+				mMediaPlayer.release();
+				mMediaPlayer = null;
+			}
+			audioManager.abandonAudioFocus(this);
+			stopForeground(true);
+		}
+	}
+	
+   
+
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        // ... react appropriately ...
+    	//TODO: test and prepare for more errors
+    	Log.d("AlarmSoundService: " , "Error");
+    	mMediaPlayer.reset();
+    	mMediaPlayer.start();
+    	return true;
+    }
+	//TODO: change audio focus appropriately
+	public void onAudioFocusChange(int focusChange) {
+		if (mMediaPlayer == null) {
+        	//Log.d("AlarmSoundService on focus Gain: " , "Media player null");
+        	initMediaPlayer(getApplicationContext(),uri);
+        }
+	    switch (focusChange) {
+	        case AudioManager.AUDIOFOCUS_GAIN:
+	        	Log.d("AlarmSoundService: " , "GAIN of focus");
+	            // resume playback
+	        	//TODO: URI
+	            if (mMediaPlayer == null) {
+//	            	Log.d("AlarmSoundService on focus Gain: " , "Media player null");
+	            	initMediaPlayer(getApplicationContext(),uri);
+	            }
+	            else if (!mMediaPlayer.isPlaying()) mMediaPlayer.start();
+	            mMediaPlayer.setVolume(1.0f, 1.0f);
+	            break;
+
+	        case AudioManager.AUDIOFOCUS_LOSS:
+	        	Log.d("AlarmSoundService: " , "LOSS of focus");
+	            // Lost focus for an unbounded amount of time: stop playback and release media player
+	        	
+	        	if (mMediaPlayer.isPlaying()) mMediaPlayer.stop();
+	            mMediaPlayer.release();
+	            mMediaPlayer = null;
+	            break;
+
+	        case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
+	        	Log.d("AlarmSoundService: " , "LOSS_TRANSIENT of focus");
+	            // Lost focus for a short time, but we have to stop
+	            // playback. We don't release the media player because playback
+	            // is likely to resume
+	            if (mMediaPlayer.isPlaying()) mMediaPlayer.pause();
+	            break;
+
+	        case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+	        	Log.d("AlarmSoundService: " , "LOSS_TRANSIENT_CAN_DUCK of focus");
+	            // Lost focus for a short time, but it's ok to keep playing
+	            // at an attenuated level
+	            if (mMediaPlayer.isPlaying()) mMediaPlayer.setVolume(0.1f, 0.1f);
+	            break;
+	    }
+	}
+}

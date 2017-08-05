@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 55,
+                    "endOffset": 106
+                },
+                "from": {
+                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-port/values.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 276,
+                        "endColumn": 55,
+                        "endOffset": 327
+                    }
+                }
+            }
+        ]
+    }
+]

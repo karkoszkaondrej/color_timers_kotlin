@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/menu/main.xml",
+        "source": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/menu/main.xml"
+    },
+    {
+        "merged": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/res/merged/debug/menu/set_time.xml",
+        "source": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/menu/set_time.xml"
+    }
+]

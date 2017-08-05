@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" 
+    xmlns:yourapp="http://schemas.android.com/apk/res-auto">
+<!-- Design ActionBar Main activity
+		?Mute
+		Settings -->
+    <item
+        android:id="@+id/action_settings"
+        yourapp:showAsAction="always"
+        android:icon="@drawable/ic_action_settings"
+        android:title="@string/action_settings"/>
+	
+</menu>
