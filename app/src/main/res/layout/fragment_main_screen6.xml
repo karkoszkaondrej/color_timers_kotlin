@@ -70,9 +70,11 @@
 
                                 <Button
                                     android:id="@+id/button1start"
+                                    style="@android:style/Widget.DeviceDefault.Button.Borderless"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate1"
                                     android:text="@string/Start" />
 
@@ -81,6 +83,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate1"
                                     android:text="@string/Set" />
 
@@ -140,7 +143,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
-                                    android:background="@drawable/abc_ab_share_pack_mtrl_alpha"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate3"
                                     android:text="@string/Start" />
 
@@ -149,6 +152,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate3"
                                     android:text="@string/Set" />
 							</LinearLayout>
@@ -207,6 +211,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate5"
                                     android:text="@string/Start" />
 
@@ -215,6 +220,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate5"
                                     android:text="@string/Set" />
 
@@ -292,6 +298,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate2"
                                     android:text="@string/Start" />
 
@@ -300,6 +307,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate2"
                                     android:text="@string/Set" />
 
@@ -360,6 +368,7 @@
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
                                     android:onClick="startPlate4"
+                                    android:background="@android:color/transparent"
                                     android:text="@string/Start" />
 
                                 <Button
@@ -368,6 +377,7 @@
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
                                     android:onClick="setPlate4"
+                                    android:background="@android:color/transparent"
                                     android:text="@string/Set" />
 
                             </LinearLayout>
@@ -426,6 +436,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate6"
                                     android:text="@string/Start" />
 
@@ -434,6 +445,7 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate6"
                                     android:text="@string/Set" />
 
