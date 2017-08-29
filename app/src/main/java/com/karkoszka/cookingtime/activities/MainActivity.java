@@ -90,7 +90,7 @@ public class MainActivity extends ActionBarActivity implements
         /*if alarm time changed in SetTimeActivity and chronometer running
          * time of alarms fire off is needed to control 
          */
-        //getIntent().hasExtra(CHANGED_PLATE_SETS) && 
+        //getIntent().hasExtra(CHANGED_PLATE_SETS) &&
         	//TODO: do for app closed before this case
         	/*
         	 * case when app already running
@@ -105,7 +105,7 @@ public class MainActivity extends ActionBarActivity implements
         {
 			Log.d("MA reconfiguring ", "plateR from ST: " + pl);
 			cancelAlarm(pl);
-			if(compareTime(pl)) {//alarm reconfigured 
+			if(plates[pl].compareTime()) {//alarm reconfigured
 				startAlarm(pl);
 				Log.d("MA reconfiguring", "Alarm reconfiguring " + pl);
 			} else {
@@ -226,23 +226,13 @@ public class MainActivity extends ActionBarActivity implements
     private void highlightAlarms() {
     	for(int i = 0;i < 6;i++) {
     		if(plates[i].getRuns() == Plate.STARTED) {
-    			if(!compareTime(i)) {
+    			if(!plates[i].compareTime()) {
     				plateAIT[i].setText("\\\\\\o  " + plateAIT[i].getText() + "  o///");
     			} 
     		}
     	}
     }
-    /**
-     * compares the actual time with time on chronometer and alarm time
-     * if alarm is passed out returns false
-     * @param plate plate id
-     */
-    private boolean compareTime(int plate) {
-    	long setoff = computeSetOff(plate);
-    	if(setoff > SystemClock.elapsedRealtime())
-    		return true;
-    	return false;
-    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -320,7 +310,7 @@ public class MainActivity extends ActionBarActivity implements
 	/**
 	 * Serve start buttons and chronometers according plates state
 	 */
-	private void clickStartButton(int plate) {//TODO: clean before change
+	private void clickStartButton(int plate) {
 		Chronometer chrono = this.chronos[plate];
 		Button button = this.startButtons[plate];
 		//starts chronometer, alarm, sets plates alarm off time
@@ -361,7 +351,7 @@ public class MainActivity extends ActionBarActivity implements
 	 * Starts alarms manager for the plate
 	 */
 	private void startAlarm(int plate) {
-		this.plates[plate].setSetOff(computeSetOff(plate));
+		this.plates[plate].setSetOff();
 		Intent intent = new Intent(this,CTBroadcastReceiver.class);
 		intent.putExtra(ALARM_OFF_PLATE_NO, plate);
 		pIntents[plate] = PendingIntent.getBroadcast(this.getApplicationContext(), ALARM_UNIQUE_PREFIX
@@ -375,16 +365,7 @@ public class MainActivity extends ActionBarActivity implements
 		loader.savePlate(plate, plates[plate].getBase(),plates[plate].getSetOff()
 				,plates[plate].getRuns());
 	}
-	/*
-	 * Computes set off time 
-	 */
-	private long computeSetOff(int plate) {
-		long setoff = plates[plate].getHours() * 3600000 
-				+ plates[plate].getMinutes() * 60000
-				+ plates[plate].getSeconds() * 1000;
-		setoff = plates[plate].getBase() + setoff;
-		return setoff;
-	}
+
 	/*
 	 * cancel running alarm
 	 */

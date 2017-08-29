@@ -1,5 +1,7 @@
 package com.karkoszka.cookingtime.common;
 
+import android.os.SystemClock;
+
 public class Plate {
 	//states for plate
 		public static final int READY = 0;
@@ -22,8 +24,8 @@ public class Plate {
 		return setOff;
 	}
 
-	public void setSetOff(long setOff) {
-		this.setOff = setOff;
+	public void setSetOff() {
+		this.setOff = computeSetOff();
 	}
 	
 	public String getLast() {
@@ -102,5 +104,25 @@ public class Plate {
 
 	public void setBase(long date) {
 		this.base = date;
+	}
+	/*
+	 * Computes set off time
+	 */
+	public long computeSetOff() {
+		long setoff = getHours() * 3600000
+				+ getMinutes() * 60000
+				+ getSeconds() * 1000;
+		setoff = getBase() + setoff;
+		return setoff;
+	}
+	/**
+	 * compares the actual time with time on chronometer and alarm time
+	 * if alarm is passed out returns false
+	 */
+	public boolean compareTime() {
+		long setoff = computeSetOff();
+		if(setoff > SystemClock.elapsedRealtime())
+			return true;
+		return false;
 	}
 }
