@@ -320,7 +320,7 @@ public class MainActivity extends ActionBarActivity implements
 	/**
 	 * Serve start buttons and chronometers according plates state
 	 */
-	private void clickStartButton(int plate) {
+	private void clickStartButton(int plate) {//TODO: clean before change
 		Chronometer chrono = this.chronos[plate];
 		Button button = this.startButtons[plate];
 		//starts chronometer, alarm, sets plates alarm off time
