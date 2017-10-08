@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw720dp-land-v13/values-sw720dp-land-v13.xml",
+        "outputFile": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw720dp-land-v13\\values-sw720dp-land-v13.xml",
         "map": [
             {
                 "to": {
@@ -11,13 +11,108 @@
                     "endOffset": 109
                 },
                 "from": {
-                    "file": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/values-sw720dp-land/dimens.xml",
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
                     "position": {
                         "startLine": 6,
                         "startColumn": 4,
-                        "startOffset": 205,
+                        "startOffset": 206,
                         "endColumn": 58,
-                        "endOffset": 259
+                        "endOffset": 260
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 114,
+                    "endColumn": 55,
+                    "endOffset": 165
+                },
+                "from": {
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 266,
+                        "endColumn": 55,
+                        "endOffset": 317
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 170,
+                    "endColumn": 42,
+                    "endOffset": 208
+                },
+                "from": {
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "position": {
+                        "startLine": 11,
+                        "startColumn": 4,
+                        "startOffset": 465,
+                        "endColumn": 42,
+                        "endOffset": 503
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 213,
+                    "endColumn": 50,
+                    "endOffset": 259
+                },
+                "from": {
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "position": {
+                        "startLine": 8,
+                        "startColumn": 4,
+                        "startOffset": 323,
+                        "endColumn": 50,
+                        "endOffset": 369
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 264,
+                    "endColumn": 41,
+                    "endOffset": 301
+                },
+                "from": {
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "position": {
+                        "startLine": 9,
+                        "startColumn": 4,
+                        "startOffset": 375,
+                        "endColumn": 41,
+                        "endOffset": 412
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 306,
+                    "endColumn": 45,
+                    "endOffset": 347
+                },
+                "from": {
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-sw720dp-land\\dimens.xml",
+                    "position": {
+                        "startLine": 10,
+                        "startColumn": 4,
+                        "startOffset": 418,
+                        "endColumn": 45,
+                        "endOffset": 459
                     }
                 }
             }

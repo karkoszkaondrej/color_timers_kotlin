@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <fragment 
-        android:name="com.karkoszka.cookingtime.fragments.SetTimeFragment"
+    <fragment
         android:id="@+id/set_time_fragment"
+        android:name="com.karkoszka.cookingtime.fragments.SetTimeFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

@@ -1,8 +1,9 @@
 package com.karkoszka.cookingtime.common;
 
 import android.os.SystemClock;
+import android.util.Log;
 
-public class Plate {
+public class Plate implements IPlate {
 	//states for plate
 		public static final int READY = 0;
 		public static final int STARTED = 1;
@@ -20,13 +21,7 @@ public class Plate {
 	private long setOff;
 	private String last;
 	
-	public long getSetOff() {
-		return setOff;
-	}
 
-	public void setSetOff() {
-		this.setOff = computeSetOff();
-	}
 	
 	public String getLast() {
 		return last;
@@ -97,7 +92,7 @@ public class Plate {
 	public void setRuns(int runs) {
 		this.runs = runs;
 	}
-
+//hodnota spusteni alarmu v System.CurrentTimeInMillis
 	public long getBase() {
 		return base;
 	}
@@ -105,24 +100,90 @@ public class Plate {
 	public void setBase(long date) {
 		this.base = date;
 	}
+
+	private void setSetOff(long setOff) {
+		this.setOff = setOff;
+	}
+
+	public long getSetOff() {
+		return setOff;
+	}
+
+	public long startFromNow() {
+		start();
+		setBase(System.currentTimeMillis());
+		setSetOff(getBase() + computeSetOff());
+		return getSetOff();
+	}
+    public long startFromBefore() {
+        start();
+        setSetOff(getBase() + computeSetOff());
+        return getSetOff();
+    }
 	/*
-	 * Computes set off time
+	 * Computes set off time from now
 	 */
 	public long computeSetOff() {
+		return getHours() * 3600000
+				+ getMinutes() * 60000
+				+ getSeconds() * 1000;
+	}
+	/*
+     * Computes setOff from
+	 */
+	public long computeSetOff(long base) {
 		long setoff = getHours() * 3600000
 				+ getMinutes() * 60000
 				+ getSeconds() * 1000;
-		setoff = getBase() + setoff;
+		Log.d("Plate setoff time in ms", "" + setoff);
+		setoff = base + setoff;
+		Log.d("Plate base and setoff", "" + setoff);
 		return setoff;
 	}
 	/**
 	 * compares the actual time with time on chronometer and alarm time
 	 * if alarm is passed out returns false
 	 */
-	public boolean compareTime() {
-		long setoff = computeSetOff();
-		if(setoff > SystemClock.elapsedRealtime())
+	public boolean checkIfFired() {//TODO: Prizpusobit nanovo CurrentTimeMillis
+		//long setoff = computeSetOff();
+		if(getSetOff() < System.currentTimeMillis())
 			return true;
 		return false;
+	}
+	//Must be in SystemClock.elapsedRealtime() format logic
+	public long getBaseForChronometer() {
+		return getBase() - (System.currentTimeMillis() - SystemClock.elapsedRealtime());
+	}
+
+	@Override
+	public void start() {
+        setRuns(Plate.STARTED);
+	}
+
+	@Override
+	public void stop() {
+		setRuns(Plate.STOPPED);
+	}
+
+	@Override
+	public void reset() {
+		setRuns(Plate.READY);
+	}
+
+	@Override
+	public void changeColor() {
+
+	}
+
+	public boolean ready() {
+		return this.getRuns() == Plate.READY;
+	}
+
+	public boolean started() {
+		return this.getRuns() == Plate.STARTED;
+	}
+
+	public boolean stopped() {
+		return this.getRuns() == Plate.STOPPED;
 	}
 }

@@ -41,6 +41,7 @@
     <color name="highlighted_text_material_light">#66009688</color>
     <color name="hint_foreground_material_dark">@color/bright_foreground_disabled_material_dark</color>
     <color name="hint_foreground_material_light">@color/bright_foreground_disabled_material_light</color>
+    <color name="holo_light_primary">#1aa5e3</color>
     <color name="lime">#00FF00</color>
     <color name="link_text_material_dark">@color/material_deep_teal_200</color>
     <color name="link_text_material_light">@color/material_deep_teal_500</color>
@@ -52,6 +53,10 @@
     <color name="material_deep_teal_500">#ff009688</color>
     <color name="navy">#000080</color>
     <color name="olive">#808000</color>
+    <color name="primaryColor">#b1ddd9</color>
+    <color name="primaryDarkColor">#81aba8</color>
+    <color name="primaryLightColor">#e4ffff</color>
+    <color name="primaryTextColor">#212121</color>
     <color name="primary_dark_material_dark">#ff000000</color>
     <color name="primary_dark_material_light">#ff757575</color>
     <color name="primary_material_dark">#ff212121</color>
@@ -64,6 +69,10 @@
     <color name="red">#FF0000</color>
     <color name="ripple_material_dark">#40ffffff</color>
     <color name="ripple_material_light">#40000000</color>
+    <color name="secondaryColor">#bbdefb</color>
+    <color name="secondaryDarkColor">#8aacc8</color>
+    <color name="secondaryLightColor">#eeffff</color>
+    <color name="secondaryTextColor">#212121</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
     <color name="secondary_text_default_material_light">#8a000000</color>
     <color name="secondary_text_disabled_material_dark">#36ffffff</color>
@@ -140,16 +149,18 @@
     <dimen name="abc_text_size_subtitle_material_toolbar">16dp</dimen>
     <dimen name="abc_text_size_title_material">20sp</dimen>
     <dimen name="abc_text_size_title_material_toolbar">20dp</dimen>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="countdown_text_size">35dp</dimen>
+    <dimen name="activity_horizontal_margin">16sp</dimen>
+    <dimen name="activity_vertical_margin">16sp</dimen>
+    <dimen name="button_size">18sp</dimen>
+    <dimen name="countdown_text_size">35sp</dimen>
     <item name="dialog_fixed_height_major" type="dimen">80%</item>
     <item name="dialog_fixed_height_minor" type="dimen">100%</item>
     <item name="dialog_fixed_width_major" type="dimen">320dp</item>
     <item name="dialog_fixed_width_minor" type="dimen">320dp</item>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <dimen name="fireMargin">2dp</dimen>
+    <dimen name="fireMargin">2sp</dimen>
+    <dimen name="info_text_size">18sp</dimen>
     <item name="action_bar_activity_content" type="id"/>
     <item name="action_bar_spinner" type="id"/>
     <item name="action_menu_divider" type="id"/>
@@ -190,6 +201,7 @@
     <string name="hours">Hours: </string>
     <string name="minutes">Minutes: </string>
     <string name="seconds">Seconds: </string>
+    <string name="timer_zeros">00:00:00</string>
     <string name="title_activity_choose_color">Choose Color</string>
     <string name="title_activity_set_time">SetTimeActivity</string>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
@@ -199,6 +211,9 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <!--<item name="colorAccent">@color/accent</item>-->
     </style>
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->

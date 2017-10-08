@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainScreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainScreen6Fragment" >
+    android:layout_height="match_parent" >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -58,7 +57,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:text="00:00"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/info_text_size" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -74,16 +74,20 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate1"
-                                    android:text="@string/Start" />
+                                    android:text="@string/Start"
+                                    android:textSize="@dimen/button_size" />
 
                                 <Button
                                     android:id="@+id/button1set"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate1"
-                                    android:text="@string/Set" />
+                                    android:text="@string/Set"
+                                    android:textSize="@dimen/button_size" />
 
                             </LinearLayout>
 
@@ -114,7 +118,7 @@
                             android:layout_gravity="center_vertical|center|fill"
                             android:layout_weight="3"
                             android:gravity="center"
-                            android:text="Chronometer"
+                            android:text="@string/timer_zeros"
                             android:textAlignment="center"
                             android:textSize="@dimen/countdown_text_size"
                             android:visibility="visible" />
@@ -124,8 +128,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="00:00"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:text="@string/timer_zeros"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/info_text_size" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -141,17 +146,20 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
-                                    android:background="@drawable/abc_ab_share_pack_mtrl_alpha"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate3"
-                                    android:text="@string/Start" />
+                                    android:text="@string/Start"
+                                    android:textSize="@dimen/button_size" />
 
                                 <Button
                                     android:id="@+id/button3set"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate3"
-                                    android:text="@string/Set" />
+                                    android:text="@string/Set"
+                                    android:textSize="@dimen/button_size" />
 							</LinearLayout>
 
                         </FrameLayout>
@@ -192,7 +200,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:text="00:00"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/info_text_size" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -208,16 +217,20 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate5"
-                                    android:text="@string/Start" />
+                                    android:text="@string/Start"
+                                    android:textSize="@dimen/button_size" />
 
                                 <Button
                                     android:id="@+id/button5set"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate5"
-                                    android:text="@string/Set" />
+                                    android:text="@string/Set"
+                                    android:textSize="@dimen/button_size" />
 
                             </LinearLayout>
 
@@ -277,7 +290,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:text="00:00"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/info_text_size" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -293,16 +307,20 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate2"
-                                    android:text="@string/Start" />
+                                    android:text="@string/Start"
+                                    android:textSize="@dimen/button_size" />
 
                                 <Button
                                     android:id="@+id/button2set"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate2"
-                                    android:text="@string/Set" />
+                                    android:text="@string/Set"
+                                    android:textSize="@dimen/button_size" />
 
                             </LinearLayout>
 
@@ -344,7 +362,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:text="00:00"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/info_text_size" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -360,16 +379,20 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate4"
-                                    android:text="@string/Start" />
+                                    android:text="@string/Start"
+                                    android:textSize="@dimen/button_size" />
 
                                 <Button
                                     android:id="@+id/button4set"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate4"
-                                    android:text="@string/Set" />
+                                    android:text="@string/Set"
+                                    android:textSize="@dimen/button_size" />
 
                             </LinearLayout>
 
@@ -411,7 +434,8 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:text="00:00"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textSize="@dimen/info_text_size" />
 
                         <FrameLayout
                             android:layout_width="match_parent"
@@ -427,16 +451,20 @@
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="startPlate6"
-                                    android:text="@string/Start" />
+                                    android:text="@string/Start"
+                                    android:textSize="@dimen/button_size" />
 
                                 <Button
                                     android:id="@+id/button6set"
                                     android:layout_width="fill_parent"
                                     android:layout_height="fill_parent"
                                     android:layout_weight="1"
+                                    android:background="@android:color/transparent"
                                     android:onClick="setPlate6"
-                                    android:text="@string/Set" />
+                                    android:text="@string/Set"
+                                    android:textSize="@dimen/button_size" />
 
                             </LinearLayout>
 

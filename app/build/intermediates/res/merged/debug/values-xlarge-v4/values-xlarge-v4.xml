@@ -7,4 +7,5 @@
     <item name="dialog_fixed_width_major" type="dimen">50%</item>
     <item name="dialog_fixed_width_minor" type="dimen">70%</item>
     <integer name="abc_max_action_buttons">5</integer>
+    <string name="size">xlarge</string>
 </resources>

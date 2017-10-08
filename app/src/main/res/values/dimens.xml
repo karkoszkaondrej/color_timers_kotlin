@@ -1,9 +1,11 @@
 <resources>
 
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="countdown_text_size">35dp</dimen>
-    <dimen name="fireMargin">2dp</dimen>
+    <dimen name="activity_horizontal_margin">16sp</dimen>
+    <dimen name="activity_vertical_margin">16sp</dimen>
+    <dimen name="countdown_text_size">35sp</dimen>
+    <dimen name="fireMargin">2sp</dimen>
+    <dimen name="info_text_size">18sp</dimen>
+    <dimen name="button_size">18sp</dimen>
 
 </resources>

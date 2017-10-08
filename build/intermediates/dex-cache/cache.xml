@@ -3,57 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/ttt/.android/build-cache/384f420a17eda69239bcf4223ddcdc9f004c7227/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_22b5f9e50d9b4bf58ec29a135a56c32e160c7eb9/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="24a1da65c3262268ef8bc3e4053e347b5b3f1ee4">
-        <dex dex="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_933ef11caac25f420b800f5271919aed1e308f4f/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="C:\Users\olafu\Downloads\CookingTime-20171007T172926Z-001\CookingTime\git\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_09152e39f23e139111ac86a7b3d10ec55737d6e4/classes.dex" />
+        <dex dex="C:\Users\olafu\Downloads\CookingTime-20171007T172926Z-001\CookingTime\git\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_1403ef948196ea12e64c24b4a2faabd7d75b4760\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="/Users/ttt/.android/build-cache/384f420a17eda69239bcf4223ddcdc9f004c7227/output/jars/libs/internal_impl-22.0.0.jar"
+        jar="C:\Users\olafu\Downloads\CookingTime-20171007T172926Z-001\CookingTime\git\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.0.0_c003a7979a3916bd04344ef9ba3e800aaf9c2205/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/jars/classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_4547ef43586a1698fac1b44cd25f1bd31b89c331/classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="/Users/ttt/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.0.0/support-annotations-22.0.0.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.0.0_12c218a0a1e48c5b396a55aef014677f0cbee25d/classes.dex" />
+        sha1="4fcbd6f76aa2025d18638ad1c4181964dccd0b6b">
+        <dex dex="C:\Users\olafu\Downloads\CookingTime-20171007T172926Z-001\CookingTime\git\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f6728f69890e34eb0ba20f90f942a815957c462e\classes.dex" />
     </item>
 
 </items>

@@ -91,9 +91,9 @@ public class SetTimeActivity extends ActionBarActivity implements
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.action_save:
-	            save();
-	            return true;
+//	        case R.id.action_save:
+//	            save();
+//	            return true;
 	        case android.R.id.home:
 	        	onBackPressed();
 	            return true;
@@ -110,19 +110,21 @@ public class SetTimeActivity extends ActionBarActivity implements
 	@Override
 	public void onPause() {
 		super.onPause();
+		save();
 	}
 
 	@Override
 	public void onBackPressed() {
+		save();
 		this.finish();
 	}
 	public void setPlate(View view) {
 		save();
 	}
 	private void save() {
-		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
-				Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+//				Intent.FLAG_ACTIVITY_SINGLE_TOP);
 		//for setup of already running alarm
 		if (actualPlate.getRuns() == Plate.STARTED && 
 				(actualPlate.getHours() != hoursNumber ||
@@ -135,8 +137,8 @@ public class SetTimeActivity extends ActionBarActivity implements
 		actualPlate.setMinutes(minutesNumber);
 		actualPlate.setSeconds(secondsNumber);
 		loader.savePlate(actualPlate);
-	    startActivity(intent);
-	    this.finish();
+//	    startActivity(intent);
+//	    this.finish();
 	}
 	public void setColor(View view) {
 		Intent intent = new Intent(this, SingleColorChoserActivity.class);

@@ -7,10 +7,11 @@ import com.karkoszka.cookingtime.fragments.MainScreen6Fragment;
 import com.karkoszka.cookingtime.services.AlarmSoundService;
 import com.karkoszka.cookingtime.services.CTBroadcastReceiver;
 
+import android.app.KeyguardManager;
+import android.os.PowerManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.app.AlarmManager;
@@ -36,14 +37,14 @@ public class MainActivity extends ActionBarActivity implements
 	MainScreen6Fragment.OnMainScreenFragmentInteractionListener {
 	
 	/** When's alarm off for intent from CTBroadcastReceiver	 */
-	public static final String ALARM_OFF_PLATE_NO = "plateno";
+	public static final String ALARM_OFF_PLATE_NO = "Alarm_Off_Plate_No";
 	//for intent from SetTimeActivity after change of values
-	public static final String CHANGED_PLATE_SETS = "changed";
-	public static final String SOUND_URI = "sounduri";
+	//public static final String CHANGED_PLATE_SETS = "changed";
+	//public static final String SOUND_URI = "sounduri";
 	private static final int NOTIFICATION_ID = 486534515;
 	
 	private static final int ALARM_UNIQUE_PREFIX = 68923402;
-	
+	//Product model variables
 	private LoaderPreferences loader;
 	private Plate[] plates = new Plate[6];
 	//private boolean[] started = new boolean[6];
@@ -52,98 +53,101 @@ public class MainActivity extends ActionBarActivity implements
 	private Button[] startButtons = new Button[6];
 	private FrameLayout colorFrame[] = new FrameLayout[6];
 	private PendingIntent[] pIntents = new PendingIntent[6]; 
-	private AlarmManager[] alarms = new AlarmManager[6];
+	//private AlarmManager[] alarms = new AlarmManager[6];
 	private BroadcastReceiver receiver = new CTBroadcastReceiver();
-	private static boolean alarmSound = false;
+	private static boolean alarmSoundBlockSet = false;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.d("On create", "" + SystemClock.elapsedRealtime());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         registerReceiver(receiver, new IntentFilter());
-        SharedPreferences settings = 
+        SharedPreferences settings =
         		getSharedPreferences(LoaderPreferences.PREFS_NAME, 0);
         loader = new LoaderPreferences(settings);
         initUIControls();
+
+		PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+		wakeLock.acquire();
+
+		KeyguardManager keyguardManager = (KeyguardManager) getApplicationContext().getSystemService(Context.KEYGUARD_SERVICE);
+		KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("TAG");
+		keyguardLock.disableKeyguard();
     }
 	@Override
     public void onResume() {
+        Log.d("On Resume", "" + SystemClock.elapsedRealtime());
     	super.onResume();
         plates = loader.loadPlates();
-        /*for(Plate pl : plates){
-        	pl.setRuns(Plate.READY);
-            loader.savePlate(pl);
-        }*/
-        setAlarmInfoText();
-        onResumeChronometers();
-        setBackground();
-        /*intent from CTBroadcastReceiver, alarm is fired off, iniciate alarm toast
+		//iterate throughout all plates
+        /*intent from CTBroadcastReceiver, alarm is fired off, initiate alarm toast
          */
-        if(getIntent().hasExtra(ALARM_OFF_PLATE_NO)) {
+        Intent intent = getIntent();
+        if(intent.hasExtra(ALARM_OFF_PLATE_NO)) {
         	int pl = getIntent().getIntExtra(ALARM_OFF_PLATE_NO, 100);
-        	if(plates[pl].getRuns() == Plate.STARTED && !alarmSound) {
-        		alarmSound = true;
-        		alarmOff(pl);
+        	if(plates[pl].getRuns() == Plate.STARTED && !alarmSoundBlockSet) {
+        		alarmSoundBlockSet = true;
+        		alarmOffToast(pl);
         	}
         	//getIntent().removeExtra(ALARM_OFF_PLATE_NO);
         }
+		for(int i = 0;i < 6;i++) {
+			makeAlarmInfoText(i);//TODO: Alarm info text is also changed by events
+        	onResumeChronometers(i);
+        	setBackground(i);
+			highlightAlarms(i);
+        	//check plates, only one is changed in future more can be, return int id, save plate
+			plateChangedReorderAlarm(i);
+		}
         /*if alarm time changed in SetTimeActivity and chronometer running
-         * time of alarms fire off is needed to control 
+         * time of alarms fire off is needed to control
          */
         //getIntent().hasExtra(CHANGED_PLATE_SETS) &&
         	//TODO: do for app closed before this case
         	/*
         	 * case when app already running
-        	 * case when app was closed and opened 
+        	 * case when app was closed and opened
         	 * case when phone was restarted
         	 * change during running already checked
-        	 * 
+        	 *
         	 */
-        //check plates, only one is changed, return int id, save plate
-        int pl = plateChanged();
-        if(pl != -1) 
-        {
-			Log.d("MA reconfiguring ", "plateR from ST: " + pl);
-			cancelAlarm(pl);
-			if(plates[pl].compareTime()) {//alarm reconfigured
-				startAlarm(pl);
-				Log.d("MA reconfiguring", "Alarm reconfiguring " + pl);
-			} else {
-				//TODO start alarm Plate.FIRED
-				Toast.makeText(this,"Alarm "+pl+"passed out.", Toast.LENGTH_LONG)
-					.show();
-				Log.d("MA reconfiguring", "canceled: " + pl );
-				Intent intent2 = new Intent(getApplicationContext(), AlarmSoundService.class);
-			    //intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			    intent2.putExtra(MainActivity.ALARM_OFF_PLATE_NO, pl);
-				intent2.putExtra(AlarmSoundService.START_PLAY, true);
-			    //context.startActivity(intent2);
 
-		        // Start the service, keeping the device awake while it is launching.
-		        Log.i("SimpleWakefulReceiver", "Starting service @ " + SystemClock.elapsedRealtime());
-		        startService(intent2);
-        	}
-			//getIntent().removeExtra(CHANGED_PLATE_SETS);
-			//getIntent().removeExtra(SetTimeActivity.PLATE);
-		}
-		highlightAlarms();
 	}
-	private int plateChanged(){
-		for(Plate plate : plates) {
-			if(plate.getRuns() == Plate.CHANGED) {
-				plate.setRuns(Plate.STARTED);
-				loader.savePlate(plate);
-				return plate.getId();
-			}
-				
+
+	private void fireAlarm(int pl) {
+		//TODO start alarm Plate.FIRED
+		Toast.makeText(this,"Alarm "+pl+"passed out.", Toast.LENGTH_LONG)
+				.show();
+		Log.d("MA reconfiguring", "canceled: " + pl );
+		Intent intentSoundService = new Intent(getApplicationContext(), AlarmSoundService.class);
+		//intentSoundService.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		intentSoundService.putExtra(MainActivity.ALARM_OFF_PLATE_NO, pl);
+		intentSoundService.putExtra(AlarmSoundService.START_PLAY, true);
+		//context.startActivity(intentSoundService);
+
+		// Start the service, keeping the device awake while it is launching.
+		Log.i("SimpleWakefulReceiver", "Starting service @ " + SystemClock.elapsedRealtime());
+		startService(intentSoundService);
+	}
+
+	private void plateChangedReorderAlarm(int i){
+		if(plates[i].getRuns() == Plate.CHANGED) {
+			plates[i].setRuns(Plate.STARTED);//set start procedure for plate
+			loader.savePlate(plates[i]);
+			cancelAlarm(i);
+			if(plates[i].checkIfFired()) //alarm reconfigured
+				fireAlarm(i);
+			else
+				startAlarmFromBefore(i);
 		}
-		return -1;
 	}
     /**
      * Makes info toast that plate is running
      * @param plate plates id
      */
-    private void alarmOff(int plate) {
+    private void alarmOffToast(int plate) {
     	//TODO: sound by service
     	//alarmSoundServiceStart(plate);//service starts from receiver
 	    int pl = plate + 1;
@@ -152,7 +156,7 @@ public class MainActivity extends ActionBarActivity implements
 	    Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
     /**
-     * shows Running notification 
+     * shows Running notification
      */
     private void notificate() {
     	NotificationCompat.Builder mBuilder =
@@ -199,7 +203,7 @@ public class MainActivity extends ActionBarActivity implements
 	private void alarmSoundServiceStop() {
 		Intent intent = new Intent(getApplicationContext(), AlarmSoundService.class);
 		stopService(intent);
-		alarmSound = false;
+		alarmSoundBlockSet = false;
 	}
 	private boolean isAlarm() {
 		/*for(int i = 0;i < 6;i++) {
@@ -223,14 +227,10 @@ public class MainActivity extends ActionBarActivity implements
     /*
      * highlights all alarms whitch went off
      */
-    private void highlightAlarms() {
-    	for(int i = 0;i < 6;i++) {
-    		if(plates[i].getRuns() == Plate.STARTED) {
-    			if(!plates[i].compareTime()) {
-    				plateAIT[i].setText("\\\\\\o  " + plateAIT[i].getText() + "  o///");
-    			} 
-    		}
-    	}
+    private void highlightAlarms(int i) {
+		if(plates[i].getRuns() == Plate.STARTED)
+    		if(plates[i].checkIfFired())
+    			plateAIT[i].setText("\\\\\\o  " + plateAIT[i].getText() + "  o///");
     }
 
     @Override
@@ -280,9 +280,9 @@ public class MainActivity extends ActionBarActivity implements
 	 * gives plate ID starting from 1
 	 */
 	private void clickSetButton(int plate) {
-		if (!alarmSound) {
+		if (!alarmSoundBlockSet) {
 			Intent intent = new Intent(this, SetTimeActivity.class);
-			intent.putExtra("plate", plate);
+			intent.putExtra(SetTimeActivity.PLATE, plate);
 			startActivity(intent);
 		}
 	}
@@ -314,62 +314,69 @@ public class MainActivity extends ActionBarActivity implements
 		Chronometer chrono = this.chronos[plate];
 		Button button = this.startButtons[plate];
 		//starts chronometer, alarm, sets plates alarm off time
-		if(this.plates[plate].getRuns() == Plate.READY){
-			this.plates[plate].setBase(SystemClock.elapsedRealtime());			
-			chrono.setBase(SystemClock.elapsedRealtime());
+		if(this.plates[plate].ready()){
+			//this.plates[plate].setBase(System.currentTimeMillis());
+			startAlarmFromNow(plate);
+			chrono.setBase(this.plates[plate].getBaseForChronometer());
 			chrono.start();
-			startAlarm(plate);
 			button.setText("Stop");
 			notificate();
     	}
-		//stops chronometer, cancels alarm 
-		else if (this.plates[plate].getRuns() == Plate.STARTED) {
+		//stops chronometer, cancels alarm
+		else if (this.plates[plate].started()) {
 			//TODO: manage stop of service
-			//TODO: set pIntents[plate] to null 
+			//TODO: set pIntents[plate] to null
 			chrono.stop();
 			cancelAlarm(plate);
-			setSinglePlateAlarmInfoText(plate);
+			makeAlarmInfoText(plate);
 			alarmSoundServiceStop();
 			button.setText("Reset");
-    		this.plates[plate].setRuns(Plate.STOPPED);
+    		this.plates[plate].stop();
 			if(isAlarm())
 				notificate();
 			else
 				cancelNotification();
     		this.plates[plate].setLast(chrono.getText().toString());
 			loader.savePlate(plate, plates[plate].getRuns(), plates[plate].getLast());
-    	} 
+    	}
 		//resets chronometer to zero
-		else if (this.plates[plate].getRuns() == Plate.STOPPED) {
+		else if (this.plates[plate].stopped()) {
 			chrono.setBase(SystemClock.elapsedRealtime());
 			button.setText("Start");
-    		this.plates[plate].setRuns(Plate.READY);
+    		this.plates[plate].reset();
 			loader.savePlate(plate, plates[plate].getRuns(), "");
     	}
 	}
 	/*
 	 * Starts alarms manager for the plate
 	 */
-	private void startAlarm(int plate) {
-		this.plates[plate].setSetOff();
-		Intent intent = new Intent(this,CTBroadcastReceiver.class);
-		intent.putExtra(ALARM_OFF_PLATE_NO, plate);
-		pIntents[plate] = PendingIntent.getBroadcast(this.getApplicationContext(), ALARM_UNIQUE_PREFIX
-					+ plate, intent
-				, PendingIntent.FLAG_CANCEL_CURRENT);
-		//TODO: pouzij options
-		((AlarmManager) this.getSystemService(Context.ALARM_SERVICE))
-			.set(AlarmManager.ELAPSED_REALTIME, plates[plate].getSetOff(),
-					pIntents[plate]);
-		this.plates[plate].setRuns(Plate.STARTED);
-		loader.savePlate(plate, plates[plate].getBase(),plates[plate].getSetOff()
-				,plates[plate].getRuns());
+	private void startAlarmFromNow(int plate) {
+        startIntentAndManager(plate, plates[plate].startFromNow());
 	}
+    private void startAlarmFromBefore(int plate) {
+        startIntentAndManager(plate, plates[plate].startFromBefore());
+    }
 
+	private void startIntentAndManager(int plate, long time) {
+        Intent intent = new Intent(this, CTBroadcastReceiver.class);
+        intent.putExtra(ALARM_OFF_PLATE_NO, plate);
+        pIntents[plate] = PendingIntent.getBroadcast(this.getApplicationContext()
+                , ALARM_UNIQUE_PREFIX + plate
+                , intent
+                , PendingIntent.FLAG_CANCEL_CURRENT);
+        //TODO: pouzij options
+        ((AlarmManager) this.getSystemService(Context.ALARM_SERVICE))
+                .set(AlarmManager.RTC_WAKEUP
+                        , time
+                        , pIntents[plate]);
+        loader.savePlate(plate, plates[plate].getBase(),plates[plate].getSetOff()
+                ,plates[plate].getRuns());
+    }
 	/*
 	 * cancel running alarm
 	 */
 	private void cancelAlarm(int plate) {
+		Log.d("MA reconfiguring ", "plateR from ST: " + plate);
 		if(pIntents[plate] != null) {
 			((AlarmManager) this.getSystemService(Context.ALARM_SERVICE))
 			  .cancel(pIntents[plate]);
@@ -379,7 +386,7 @@ public class MainActivity extends ActionBarActivity implements
 		else {
 			((AlarmManager) this.getSystemService(Context.ALARM_SERVICE))
 			  .cancel(PendingIntent.getBroadcast(this.getApplicationContext(),
-						ALARM_UNIQUE_PREFIX + plate, 
+						ALARM_UNIQUE_PREFIX + plate,
 						(new Intent(this,CTBroadcastReceiver.class))
 							.putExtra(ALARM_OFF_PLATE_NO, plate),
 							PendingIntent.FLAG_CANCEL_CURRENT));
@@ -388,22 +395,34 @@ public class MainActivity extends ActionBarActivity implements
 	/*
 	 * Service already started chronometers on resume activity
 	 */
-	private void onResumeChronometers() {
-		for (int i = 0;i < 6;i++) {
-			if (plates[i].getRuns() == Plate.STARTED) {
-				chronos[i].setBase(plates[i].getBase());
-				Log.d("Chronometer base: ", "" + plates[i].getBase());
-				chronos[i].start();
-				startButtons[i].setText("Stop");
-			} else if (plates[i].getRuns() == Plate.STOPPED) {
-				chronos[i].setText(plates[i].getLast());
-				startButtons[i].setText("Reset");
-			} else if (plates[i].getRuns() == Plate.READY) {
-				chronos[i].setBase(SystemClock.elapsedRealtime());
-				startButtons[i].setText("Start");
-			}
-		}
+	private void onResumeChronometers(int i) {
+			if (plates[i].getRuns() == Plate.STARTED)
+				plateIsStartedOnResume(i);
+			else if (plates[i].getRuns() == Plate.STOPPED)
+				plateIsStoppedOnResume(i);
+			else if (plates[i].getRuns() == Plate.READY)
+				plateIsReadyOnResume(i);
 	}
+
+	private void plateIsReadyOnResume(int i) {
+		chronos[i].setBase(SystemClock.elapsedRealtime());
+		startButtons[i].setText("Start");
+	}
+
+	private void plateIsStoppedOnResume(int i) {
+		chronos[i].setText(plates[i].getLast());
+		startButtons[i].setText("Reset");
+	}
+
+	private void plateIsStartedOnResume(int i) {
+//		if(SystemClock.elapsedRealtime() < plates[i].getBase())//tato podminka neni tak smerodatna
+//			throw new Exception("Telefon po restartu, aplikace spustena drive nez minule");
+		chronos[i].setBase(plates[i].getBaseForChronometer());
+		Log.d("Chronometer base: ", "" + plates[i].getBase());
+		chronos[i].start();
+		startButtons[i].setText("Stop");
+	}
+
 	//TODO: info grafika
 	public void onBroadcastReceived(int plate) {
 		this.plateAIT[plate].setText("\\\\\\o" + plates[plate].getHours() + ":"
@@ -431,19 +450,19 @@ public class MainActivity extends ActionBarActivity implements
 	/**
 	 * set alarm info texts at startup to normal
 	 */
-    private void setAlarmInfoText() {
+    private void makeAlarmInfoText() {
     	for(int i = 0;i < 6;i++) {
     		/*if(alarms[i] == null && plates[i].getRuns() == STARTED)
     			this.highlightAlarm(i);
     		else*/
-    			this.setSinglePlateAlarmInfoText(i);
+    			this.makeAlarmInfoText(i);
     	}
     }
     /**
      * sets one plates alarm info text to normal 
      */
-    private void setSinglePlateAlarmInfoText(int plate) {
-    	//TODO: two digit format
+    private void makeAlarmInfoText(int plate) {
+    	//TODO: Test two digit format to chronometer, from two digit to three digit
     	if (plates[plate].getHours() != 0) {
 			this.plateAIT[plate].setText("" + formateToTwoDigits(plates[plate].getHours())
 					+ ":"
@@ -467,10 +486,8 @@ public class MainActivity extends ActionBarActivity implements
     	}
     	return Integer.toString(num);
     }
-    private void setBackground() {
-    	for(int i =0;i < 6;i++) {
+    private void setBackground(int i) {
     		colorFrame[i].setBackgroundColor(plates[i].getColour());
-    	}
     }
     /**
      * inits UI controls

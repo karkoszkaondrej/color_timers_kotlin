@@ -1,6 +1,6 @@
 [
     {
-        "outputFile": "/Users/ttt/StudioProjects/CookingTime/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml",
+        "outputFile": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
         "map": [
             {
                 "to": {
@@ -12,7 +12,7 @@
                     "endOffset": 201
                 },
                 "from": {
-                    "file": "/Users/ttt/StudioProjects/CookingTime/app/src/main/res/values-v14/styles.xml",
+                    "file": "C:\\Users\\olafu\\Downloads\\CookingTime-20171007T172926Z-001\\CookingTime\\git\\app\\src\\main\\res\\values-v14\\styles.xml",
                     "position": {
                         "startLine": 7,
                         "startColumn": 4,
@@ -33,7 +33,7 @@
                     "endOffset": 477
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 4,
                         "startColumn": 4,
@@ -54,7 +54,7 @@
                     "endOffset": 991
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 11,
                         "startColumn": 4,
@@ -75,7 +75,7 @@
                     "endOffset": 1519
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 18,
                         "startColumn": 4,
@@ -96,7 +96,7 @@
                     "endOffset": 2045
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 25,
                         "startColumn": 4,
@@ -117,7 +117,7 @@
                     "endOffset": 2585
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 32,
                         "startColumn": 4,
@@ -137,7 +137,7 @@
                     "endOffset": 2664
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 39,
                         "startColumn": 4,
@@ -156,7 +156,7 @@
                     "endOffset": 2757
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 40,
                         "startColumn": 4,
@@ -175,7 +175,7 @@
                     "endOffset": 2848
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 41,
                         "startColumn": 4,
@@ -194,7 +194,7 @@
                     "endOffset": 2953
                 },
                 "from": {
-                    "file": "/Users/ttt/.android/build-cache/0f113e807e8c9e43fb2550044df5f2f1c58ba61f/output/res/values-v14/values.xml",
+                    "file": "C:\\Users\\olafu\\.android\\build-cache\\966ec9fb421f30eaa2de17c07dbc930c5214fe49\\output\\res\\values-v14\\values.xml",
                     "position": {
                         "startLine": 42,
                         "startColumn": 4,

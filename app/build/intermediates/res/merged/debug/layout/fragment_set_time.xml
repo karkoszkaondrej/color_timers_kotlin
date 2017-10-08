@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainScreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SetTimeFragment" >
+    android:layout_height="match_parent" >
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -270,20 +269,6 @@
                         android:layout_height="fill_parent"
                         android:onClick="setColor"
                         android:text="@string/color" />
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
-
-                    <Button
-                        android:id="@+id/buttonSetTime"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:onClick="setPlate"
-                        android:text="@string/Set" />
 
                 </FrameLayout>
 
