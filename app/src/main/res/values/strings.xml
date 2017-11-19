@@ -15,6 +15,5 @@
     <string name="action_save">Save</string>
     <string name="title_activity_set_time">SetTimeActivity</string>
     <string name="title_activity_choose_color">Choose Color</string>
-    <string name="timer_zeros">00:00:00</string>
 
 </resources>
