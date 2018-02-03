@@ -326,18 +326,12 @@ public class MainActivity extends ActionBarActivity implements
 		else if (this.plates[plate].started()) {
 			//TODO: manage stop of service
 			//TODO: set pIntents[plate] to null
-			chrono.stop();
-			cancelAlarm(plate);
-			makeAlarmInfoText(plate);
-			alarmSoundServiceStop();
-			button.setText("Reset");
-    		this.plates[plate].stop();
-			if(isAlarm())
-				notificate();
-			else
-				cancelNotification();
-    		this.plates[plate].setLast(chrono.getText().toString());
-			loader.savePlate(plate, plates[plate].getRuns(), plates[plate].getLast());
+			stopAlarm(plate);
+			for(Plate alarmed: plates) {
+				if(alarmed.checkIfFired())
+					stopAlarm(alarmed.getId());
+			}
+
     	}
 		//resets chronometer to zero
 		else if (this.plates[plate].stopped()) {
@@ -347,6 +341,22 @@ public class MainActivity extends ActionBarActivity implements
 			loader.savePlate(plate, plates[plate].getRuns(), "");
     	}
 	}
+
+	private void stopAlarm(int plate) {
+		this.chronos[plate].stop();
+		cancelAlarm(plate);
+		makeAlarmInfoText(plate);
+		alarmSoundServiceStop();
+		this.startButtons[plate].setText("Reset");
+		this.plates[plate].stop();
+		if(isAlarm())
+			notificate();
+		else
+			cancelNotification();
+		this.plates[plate].setLast(this.chronos[plate].getText().toString());
+		loader.savePlate(plate, plates[plate].getRuns(), plates[plate].getLast());
+	}
+
 	/*
 	 * Starts alarms manager for the plate
 	 */
