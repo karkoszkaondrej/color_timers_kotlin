@@ -314,9 +314,9 @@ public class MainActivity extends ActionBarActivity implements
 		Chronometer chrono = this.chronos[plate];
 		Button button = this.startButtons[plate];
 		//starts chronometer, alarm, sets plates alarm off time
-		if(this.plates[plate].ready()){
+		if(this.plates[plate].ready() && this.plates[plate].computeSetOff() > 0){
 			//this.plates[plate].setBase(System.currentTimeMillis());
-			startAlarmFromNow(plate);
+            startAlarmFromNow(plate);
 			chrono.setBase(this.plates[plate].getBaseForChronometer());
 			chrono.start();
 			button.setText("Stop");
