@@ -1,12 +1,13 @@
 package com.karkoszka.cookingtime.fragments;
 
-import com.karkoszka.cookingtime.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.karkoszka.cookingtime.R;
 
 public class MainScreen6Fragment extends Fragment {
 	// TODO: Rename parameter arguments, choose names that match

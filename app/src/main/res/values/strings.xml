@@ -13,7 +13,7 @@
     <string name="seconds">Seconds: </string>
     <string name="color">Color</string>
     <string name="action_save">Save</string>
-    <string name="title_activity_set_time">SetTimeActivity</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
     <string name="title_activity_choose_color">Choose Color</string>
 
 </resources>

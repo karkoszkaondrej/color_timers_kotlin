@@ -4,9 +4,6 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk
-        android:minSdkVersion="8"
-        android:targetSdkVersion="21" />
 	<uses-permission android:name="android.permission.VIBRATE"/>
 	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -27,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.SetTimeActivity"
+            android:name=".activities.SetPlateActivity"
             android:label="@string/title_activity_set_time"
         	android:screenOrientation="portrait" 
         	android:launchMode="standard"
@@ -39,15 +36,15 @@
         	>
         </activity>
         <activity
-            android:name=".activities.SingleColorChoserActivity"
+            android:name=".activities.ColorChoserActivity"
             android:label="@string/title_activity_choose_color" 
         	android:screenOrientation="portrait"
         	android:launchMode="standard"
-        	android:parentActivityName="com.karkoszka.cookingtime.activities.SetTimeActivity" >
+        	android:parentActivityName="com.karkoszka.cookingtime.activities.SetPlateActivity" >
         		<!-- Parent activity meta-data to support API level 7+ -->
         		<meta-data
             		android:name="android.support.PARENT_ACTIVITY"
-            		android:value="com.karkoszka.cookingtime.activities.SetTimeActivity" />
+            		android:value="com.karkoszka.cookingtime.activities.SetPlateActivity" />
         	>
         </activity>
         <receiver android:name="com.karkoszka.cookingtime.services.CTBroadcastReceiver" >

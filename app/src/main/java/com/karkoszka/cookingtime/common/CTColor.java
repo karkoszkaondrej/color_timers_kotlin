@@ -11,10 +11,15 @@ public class CTColor {
 	}
 
 	private final String name;
+	private final int backGroundColor;
 	
-	public CTColor(int color, String name) {
+	public CTColor(int color, String name, int backGroundColor) {
 		this.color = color;
 		this.name = name;
+		this.backGroundColor = backGroundColor;
 	}
-	
+
+	public int getBackGroundColor() {
+		return backGroundColor;
+	}
 }

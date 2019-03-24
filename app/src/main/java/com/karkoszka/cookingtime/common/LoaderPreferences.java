@@ -163,7 +163,7 @@ public class LoaderPreferences {
 	 * loads one plate from Shared Preferences
 	 */
 	public Plate loadPlate(int id) {
-		Plate plate = new Plate(id,
+		return new Plate(id,
 				settings.getInt(COLOR + id, 0),
 				settings.getInt(HOURS + id, 0),
 				settings.getInt(MINUTES + id, 0),
@@ -172,7 +172,6 @@ public class LoaderPreferences {
 				settings.getLong(DATE + id, 0),
 				settings.getLong(SETOFF + id, 0),
 				settings.getString(LAST_TIME + id, ""));
-		return plate;
 	}
 	public void savePlate(Plate saveMe) {
 		SharedPreferences.Editor editor = settings.edit();
@@ -192,7 +191,6 @@ public class LoaderPreferences {
 	 * saves started plate
 	 */
 	public void savePlate(int plateId, long baseTime, long setOff, int started) {
-		//plateId++;
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putInt(RUNNING + plateId, started);
 		editor.putLong(DATE + plateId, baseTime);
@@ -203,7 +201,6 @@ public class LoaderPreferences {
 	 * saves last measured time of the plate
 	 */
 	public void savePlate(int plateId, int started, String last) {
-		//plateId++;
 		SharedPreferences.Editor editor = settings.edit();
 		editor.putInt(RUNNING + plateId, started);
 		editor.putString(LAST_TIME + plateId, last);
@@ -217,9 +214,6 @@ public class LoaderPreferences {
 		editor.putInt(COLOR + plateId, color);
 		editor.commit();
 	}
-	/*Plate(int id, int colour, int hours, int minutes, int seconds,
-			boolean runs, long date) {
-			*/
 	/* method for puting value to shared preferences
 	 * looks too easy
 	 */
