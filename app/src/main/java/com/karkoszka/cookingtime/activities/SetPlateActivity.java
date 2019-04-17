@@ -40,7 +40,6 @@ public class SetPlateActivity
 	private Plate actualPlate;
 
 	
-	private int plateNumber;
 	private int hoursNumber;
 	private int minutesNumber;
 	private int secondsNumber;
@@ -51,8 +50,7 @@ public class SetPlateActivity
 	private TextView dynTextHours;
 	private TextView dynTextMinutes;
 	private TextView dynTextSeconds;
-	private FrameLayout colorInfo;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,7 +67,7 @@ public class SetPlateActivity
 	@Override
 	public void onResume() {
 		super.onResume();		
-		plateNumber = getIntent().getIntExtra(PLATE, 100);
+		int plateNumber = getIntent().getIntExtra(PLATE, 100);
 		actualPlate = loader.loadPlate(plateNumber);
 		if (getIntent().hasExtra(COLOR)) {
 			actualPlate.setColour(getIntent().getIntExtra(COLOR, 100));
@@ -83,30 +81,26 @@ public class SetPlateActivity
         
         initControls();
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.set_time, menu);
 		return true;
 	}
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    // Handle presses on the action bar items
-	    switch (item.getItemId()) {
-//	        case R.id.action_save:
-//	            save();
-//	            return true;
-	        case android.R.id.home:
-	        	onBackPressed();
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+		if (item.getItemId() == android.R.id.home) {
+				onBackPressed();
+				return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
 	public void onFragmentInteraction(Uri uri) {
-		// TODO Auto-generated method stub
+		// Just a formality
 		
 	}
 	@Override
@@ -124,23 +118,18 @@ public class SetPlateActivity
 		save();
 	}
 	private void save() {
-//		Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
-//				Intent.FLAG_ACTIVITY_SINGLE_TOP);
-		//for setup of already running alarm
-		if (actualPlate.getRuns() == Plate.STARTED && 
+		if (actualPlate.getRuns() == Plate.STARTED &&
 				(actualPlate.getHours() != hoursNumber ||
 				actualPlate.getMinutes() != minutesNumber ||
 				actualPlate.getSeconds() != secondsNumber)) {
 			actualPlate.setRuns(Plate.CHANGED);
 			Log.d("ST reconfiguring","inner loop" + actualPlate.getId());
 		}
+
 		actualPlate.setHours(hoursNumber);
 		actualPlate.setMinutes(minutesNumber);
 		actualPlate.setSeconds(secondsNumber);
 		loader.savePlate(actualPlate);
-//	    startActivity(intent);
-//	    this.finish();
 	}
 	public void setColor(View view) {
 		Intent intent = new Intent(this, ColorChoserActivity.class);
@@ -174,12 +163,9 @@ public class SetPlateActivity
 		dynTextHours.setText("" + actualPlate.getHours());
 		dynTextMinutes.setText("" + actualPlate.getMinutes());
 		dynTextSeconds.setText("" + actualPlate.getSeconds());
-		
-		colorInfo = (FrameLayout) findViewById(R.id.colorInfo);
+
+		FrameLayout colorInfo = (FrameLayout) findViewById(R.id.colorInfo);
 		colorInfo.setBackgroundColor(actualPlate.getColour());
-		
-	}
-	protected void changeValues(byte bar) {
 		
 	}
 

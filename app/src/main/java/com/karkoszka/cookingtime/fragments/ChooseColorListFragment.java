@@ -3,7 +3,6 @@ package com.karkoszka.cookingtime.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,6 @@ import android.widget.ListView;
 import com.karkoszka.cookingtime.R;
 import com.karkoszka.cookingtime.common.CTColor;
 import com.karkoszka.cookingtime.common.ChooseColorAdapter;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
 
 public class ChooseColorListFragment extends ListFragment {
 
@@ -74,44 +70,6 @@ public class ChooseColorListFragment extends ListFragment {
 		, new CTColor(getActivity().getResources().getColor(R.color.green),"green", getActivity().getResources().getColor(R.color.back_white))
 		, new CTColor(getActivity().getResources().getColor(R.color.blue),"blue", getActivity().getResources().getColor(R.color.back_black))
 		, new CTColor(getActivity().getResources().getColor(R.color.navy),"navy", getActivity().getResources().getColor(R.color.back_white))};
-	}
-	private ArrayList<CTColor> getColorsList () {
-		Field[] colorsConstants = R.color.class.getFields();
-		ArrayList<CTColor> ctColorsResult = new ArrayList<CTColor>();
-		for (int i = 0;i < colorsConstants.length;i++)
-		{
-			String name = colorsConstants[i].getName();
-			if (!name.contains(new CharSequence() {
-				@Override
-				public int length() {
-					return 1;
-				}
-
-				@Override
-				public char charAt(int i) {
-					return '_';
-				}
-
-				@Override
-				public CharSequence subSequence(int i, int i1) {
-					return null;
-				}
-			})) {
-				try {
-					ctColorsResult.add(
-							new CTColor(
-									colorsConstants[i].getInt(null),
-									colorsConstants[i].getName(),
-									getActivity().getResources().getColor(R.color.back_black)
-							)
-					);
-				}
-				catch (Exception e) {
-					Log.d("Colors Definition", "Unable get color");
-				}
-			}
-		}
-		return ctColorsResult;
 	}
 
 	/**

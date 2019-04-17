@@ -31,14 +31,14 @@ public class Plate implements IPlate {
 		this.last = last;
 	}
 
-	public Plate(int id, int colour, int hours, int minutes, int seconds,
+	public Plate(int id, int colour, TimeDto timeDto,
 			int runs, long date, long setOff, String last) {
 		super();
 		this.id = id;
 		this.colour = colour;
-		this.hours = hours;
-		this.minutes = minutes;
-		this.seconds = seconds;
+		this.hours = timeDto.getHours();
+		this.minutes = timeDto.getMinutes();
+		this.seconds = timeDto.getSeconds();
 		this.runs = runs;
 		this.base = date;
 		this.setOff = setOff;
@@ -124,17 +124,17 @@ public class Plate implements IPlate {
 	 * Computes set off time from now
 	 */
 	public long computeSetOff() {
-		return getHours() * 3600000
-				+ getMinutes() * 60000
-				+ getSeconds() * 1000;
+		return getHours() * 3600000L
+				+ getMinutes() * 60000L
+				+ getSeconds() * 1000L;
 	}
 	/*
      * Computes setOff from
 	 */
 	public long computeSetOff(long base) {
-		long setoff = getHours() * 3600000
-				+ getMinutes() * 60000
-				+ getSeconds() * 1000;
+		long setoff = getHours() * 3600000L
+				+ getMinutes() * 60000L
+				+ getSeconds() * 1000L;
 		Log.d("Plate setoff time in ms", "" + setoff);
 		setoff = base + setoff;
 		Log.d("Plate base and setoff", "" + setoff);
@@ -144,11 +144,8 @@ public class Plate implements IPlate {
 	 * compares the actual time with time on chronometer and alarm time
 	 * if alarm is passed out returns false
 	 */
-	public boolean checkIfFired() {//TODO: Prizpusobit nanovo CurrentTimeMillis
-		//long setoff = computeSetOff();
-		if(getSetOff() < System.currentTimeMillis())
-			return true;
-		return false;
+	public boolean checkIfFired() {
+		return getSetOff() < System.currentTimeMillis();
 	}
 	//Must be in SystemClock.elapsedRealtime() format logic
 	public long getBaseForChronometer() {
@@ -172,18 +169,18 @@ public class Plate implements IPlate {
 
 	@Override
 	public void changeColor() {
-
+		//will be moved if refactoring is neccessary
 	}
 
-	public boolean ready() {
+	public boolean isReady() {
 		return this.getRuns() == Plate.READY;
 	}
 
-	public boolean started() {
+	public boolean isStarted() {
 		return this.getRuns() == Plate.STARTED;
 	}
 
-	public boolean stopped() {
+	public boolean isStopped() {
 		return this.getRuns() == Plate.STOPPED;
 	}
 }

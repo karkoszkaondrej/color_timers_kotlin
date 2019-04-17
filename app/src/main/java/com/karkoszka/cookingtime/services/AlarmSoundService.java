@@ -141,7 +141,6 @@ public class AlarmSoundService extends Service  implements AudioManager.OnAudioF
 	 * obtaines alarms or notications URI
 	 */
 	private Uri getAlarmUri() {
-		//TODO: Preferences
         Uri alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
         if (alert != null) {
             alert = Uri.parse("android.resource://com.karkoszka.cookingtime/" 
@@ -175,8 +174,6 @@ public class AlarmSoundService extends Service  implements AudioManager.OnAudioF
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        // ... react appropriately ...
-    	//TODO: test and prepare for more errors
     	Log.d(ALARM_SOUND_SERVICE , "Error");
     	mMediaPlayer.reset();
     	mMediaPlayer.start();

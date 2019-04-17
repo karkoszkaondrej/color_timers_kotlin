@@ -41,7 +41,7 @@ public class LoaderPreferences {
 	public static final String SECONDS_P4 = "seconds3";
 	public static final String SECONDS_P5 = "seconds4";
 	public static final String SECONDS_P6 = "seconds5";
-	//plates state ready/started/stopped
+	//plates state isReady/isStarted/isStopped
 	public static final String RUNNING = "running";
 	public static final String RUNNING_P1 = "running0";
 	public static final String RUNNING_P2 = "running1";
@@ -165,9 +165,10 @@ public class LoaderPreferences {
 	public Plate loadPlate(int id) {
 		return new Plate(id,
 				settings.getInt(COLOR + id, 0),
-				settings.getInt(HOURS + id, 0),
-				settings.getInt(MINUTES + id, 0),
-				settings.getInt(SECONDS  + id, 0),
+				new TimeDto(settings.getInt(HOURS + id, 0),
+						settings.getInt(MINUTES + id, 0),
+						settings.getInt(SECONDS  + id, 0)
+				),
 				settings.getInt(RUNNING + id, 0),
 				settings.getLong(DATE + id, 0),
 				settings.getLong(SETOFF + id, 0),
@@ -188,7 +189,7 @@ public class LoaderPreferences {
 		
 	}
 	/*
-	 * saves started plate
+	 * saves isStarted plate
 	 */
 	public void savePlate(int plateId, long baseTime, long setOff, int started) {
 		SharedPreferences.Editor editor = settings.edit();

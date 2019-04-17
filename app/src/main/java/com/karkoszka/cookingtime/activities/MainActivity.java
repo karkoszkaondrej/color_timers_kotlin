@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements
         	}
         }
 		for(int i = 0;i < 6;i++) {
-			makeAlarmInfoText(i);//TODO: Alarm info text is also changed by events
+			makeAlarmInfoText(i);
         	onResumeChronometers(i);
         	setBackground(i);
 			highlightAlarms(i);
@@ -185,12 +185,11 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case R.id.action_settings:
-	            return true;
-	        default:
-	            return super.onOptionsItemSelected(item);
-	    }
+		if (item.getItemId() == R.id.action_settings) {
+				return true;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 
 	public void setPlate1(View view) {
@@ -245,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements
 		Chronometer chrono = this.chronos[plate];
 		Button button = this.startButtons[plate];
 
-		if(this.plates[plate].ready() && this.plates[plate].computeSetOff() > 0){
+		if(this.plates[plate].isReady() && this.plates[plate].computeSetOff() > 0){
 	        startAlarmFromNow(plate);
 			chrono.setBase(this.plates[plate].getBaseForChronometer());
 			chrono.start();
@@ -253,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements
 			notificate();
     	}
 
-		else if (this.plates[plate].started()) {
+		else if (this.plates[plate].isStarted()) {
 			stopAlarm(plate);
 			for(Plate alarmed: plates) {
 				if(alarmed.checkIfFired())
@@ -261,7 +260,7 @@ public class MainActivity extends AppCompatActivity implements
 			}
 
     	}
-		else if (this.plates[plate].stopped()) {
+		else if (this.plates[plate].isStopped()) {
 			chrono.setBase(SystemClock.elapsedRealtime());
 			button.setText("Start");
     		this.plates[plate].reset();
