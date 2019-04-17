@@ -41,7 +41,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karkoszka.cookingtime.activities.MainActivity" />
-        	>
         </activity>
         <activity
             android:name="com.karkoszka.cookingtime.activities.ColorChoserActivity"
@@ -54,7 +53,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karkoszka.cookingtime.activities.SetPlateActivity" />
-        	>
         </activity>
 
         <receiver android:name="com.karkoszka.cookingtime.services.CTBroadcastReceiver" >
