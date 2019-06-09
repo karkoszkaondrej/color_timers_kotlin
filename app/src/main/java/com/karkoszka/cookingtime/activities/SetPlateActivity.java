@@ -26,7 +26,6 @@ public class SetPlateActivity
  SeekBar.OnSeekBarChangeListener {
 
 	static final String PLATE = "plateNumber";
-	static final String PLATE_R = "plateNumber";
 	static final String COLOR = "color";
 	static final String HOURS = "hours";
 	static final String MINUTES = "minutes";

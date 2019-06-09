@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements
 	private Plate[] plates = new Plate[6];
 	private TextView[] plateAIT = new TextView[6];
 	private Chronometer[] chronos = new Chronometer[6];
-	private Button[] startButtons = new Button[6];
+	private ImageButton[] startButtons = new ImageButton[6];
 	private FrameLayout[] colorFrame = new FrameLayout[6];
 	private PendingIntent[] pIntents = new PendingIntent[6]; 
 	private BroadcastReceiver receiver = new CTBroadcastReceiver();
@@ -242,13 +243,13 @@ public class MainActivity extends AppCompatActivity implements
 	 */
 	private void clickStartButton(int plate) {
 		Chronometer chrono = this.chronos[plate];
-		Button button = this.startButtons[plate];
+		ImageButton button = this.startButtons[plate];
 
 		if(this.plates[plate].isReady() && this.plates[plate].computeSetOff() > 0){
 	        startAlarmFromNow(plate);
 			chrono.setBase(this.plates[plate].getBaseForChronometer());
 			chrono.start();
-			button.setText("Stop");
+			button.setImageDrawable(getResources().getDrawable(R.drawable.baseline_stop_black_36));
 			notificate();
     	}
 
@@ -262,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements
     	}
 		else if (this.plates[plate].isStopped()) {
 			chrono.setBase(SystemClock.elapsedRealtime());
-			button.setText("Start");
+            button.setImageDrawable(getResources().getDrawable(R.drawable.baseline_play_arrow_black_36));
     		this.plates[plate].reset();
 			loader.savePlate(plate, plates[plate].getRuns(), "");
     	}
@@ -273,7 +274,7 @@ public class MainActivity extends AppCompatActivity implements
 		cancelAlarm(plate);
 		makeAlarmInfoText(plate);
 		alarmSoundServiceStop();
-		this.startButtons[plate].setText("Reset");
+        startButtons[plate].setImageDrawable(getResources().getDrawable(R.drawable.baseline_replay_black_36));
 		this.plates[plate].stop();
 		if(isAlarm())
 			notificate();
@@ -334,19 +335,19 @@ public class MainActivity extends AppCompatActivity implements
 
 	private void plateIsReadyOnResume(int i) {
 		chronos[i].setBase(SystemClock.elapsedRealtime());
-		startButtons[i].setText("Start");
+		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.baseline_play_arrow_black_36));
 	}
 
 	private void plateIsStoppedOnResume(int i) {
 		chronos[i].setText(plates[i].getLast());
-		startButtons[i].setText("Reset");
+		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.baseline_replay_black_36));
 	}
 
 	private void plateIsStartedOnResume(int i) {
 		chronos[i].setBase(plates[i].getBaseForChronometer());
 		Log.d("Chronometer base: ", "" + plates[i].getBase());
 		chronos[i].start();
-		startButtons[i].setText("Stop");
+		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.baseline_stop_black_36));
 	}
 
 	public void onBroadcastReceived(int plate) {
@@ -442,12 +443,12 @@ public class MainActivity extends AppCompatActivity implements
      * Obtains references of start buttons
      */
     private void initStartButtons() {
-    	this.startButtons[0] = (Button) findViewById(R.id.button1start);
-    	this.startButtons[1] = (Button) findViewById(R.id.button2start);
-    	this.startButtons[2] = (Button) findViewById(R.id.button3start);
-    	this.startButtons[3] = (Button) findViewById(R.id.button4start);
-    	this.startButtons[4] = (Button) findViewById(R.id.button5start);
-    	this.startButtons[5] = (Button) findViewById(R.id.button6start);
+    	this.startButtons[0] = (ImageButton) findViewById(R.id.button1start);
+    	this.startButtons[1] = (ImageButton) findViewById(R.id.button2start);
+    	this.startButtons[2] = (ImageButton) findViewById(R.id.button3start);
+    	this.startButtons[3] = (ImageButton) findViewById(R.id.button4start);
+    	this.startButtons[4] = (ImageButton) findViewById(R.id.button5start);
+    	this.startButtons[5] = (ImageButton) findViewById(R.id.button6start);
     }
 
     /**
