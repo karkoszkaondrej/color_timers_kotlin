@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements
 		else if (this.plates[plate].isStarted()) {
 			stopAlarm(plate);
 			for(Plate alarmed: plates) {
-				if(alarmed.checkIfFired())
+				if(alarmed.isStarted() && alarmed.checkIfFired())
 					stopAlarm(alarmed.getId());
 			}
 
