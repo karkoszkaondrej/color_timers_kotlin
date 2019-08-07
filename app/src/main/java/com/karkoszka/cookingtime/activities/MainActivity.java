@@ -16,11 +16,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -176,22 +172,6 @@ public class MainActivity extends AppCompatActivity implements
 		if(plates[i].getRuns() == Plate.STARTED && plates[i].checkIfFired())
     		plateAIT[i].setText("\\\\\\o  " + plateAIT[i].getText() + "  o///");
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    	MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_settings) {
-				return true;
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
 
 	public void setPlate1(View view) {
 		this.clickSetButton(0);
