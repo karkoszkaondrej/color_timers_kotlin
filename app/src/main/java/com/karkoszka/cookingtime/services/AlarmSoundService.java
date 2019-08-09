@@ -212,8 +212,10 @@ public class AlarmSoundService extends Service  implements AudioManager.OnAudioF
 	        	Log.d(ALARM_SOUND_SERVICE , "LOSS_TRANSIENT_CAN_DUCK of focus");
 	            // Lost focus for a short time, but it's ok to keep playing
 	            // at an attenuated level
-	            if (mMediaPlayer.isPlaying()) mMediaPlayer.setVolume(0.1f, 0.1f);
-	            break;
+	            if (mMediaPlayer.isPlaying()) mMediaPlayer.setVolume(
+	            		audioManager.getStreamVolume(AudioManager.STREAM_ALARM),
+						audioManager.getStreamVolume(AudioManager.STREAM_ALARM));
+				break;
 			default:
 				audioFocusGain();
 				break;
@@ -229,6 +231,6 @@ public class AlarmSoundService extends Service  implements AudioManager.OnAudioF
 		else if (!mMediaPlayer.isPlaying()) {
 			mMediaPlayer.start();
 		}
-		mMediaPlayer.setVolume(1.0f, 1.0f);
+		mMediaPlayer.setVolume(audioManager.getStreamVolume(AudioManager.STREAM_ALARM), audioManager.getStreamVolume(AudioManager.STREAM_ALARM));
 	}
 }
