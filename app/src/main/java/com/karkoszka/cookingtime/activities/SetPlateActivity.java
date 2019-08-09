@@ -75,12 +75,16 @@ public class SetPlateActivity
 			actualPlate.setMinutes(getIntent().getIntExtra(MINUTES, 0));
 			actualPlate.setSeconds(getIntent().getIntExtra(SECONDS, 0));
 		}
-		setTitle("Alarm " + plateNumber);
+		setTitle("Alarm " + getPlateNumber(plateNumber) );
         
         initControls();
 	}
 
-	@Override
+    private String getPlateNumber(int plateNumber) {
+	    return Integer.toString(plateNumber + 1);
+    }
+
+    @Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 				onBackPressed();
