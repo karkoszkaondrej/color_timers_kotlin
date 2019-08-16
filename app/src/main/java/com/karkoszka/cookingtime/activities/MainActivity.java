@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements
 	        startAlarmFromNow(plate);
 			chrono.setBase(this.plates[plate].getBaseForChronometer());
 			chrono.start();
-			button.setImageDrawable(getResources().getDrawable(R.drawable.baseline_stop_black_36));
+			button.setImageDrawable(getResources().getDrawable(R.drawable.outline_stop_black_36));
 			notificate();
     	}
 
@@ -243,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements
     	}
 		else if (this.plates[plate].isStopped()) {
 			chrono.setBase(SystemClock.elapsedRealtime());
-            button.setImageDrawable(getResources().getDrawable(R.drawable.baseline_play_arrow_black_36));
+            button.setImageDrawable(getResources().getDrawable(R.drawable.outline_play_arrow_black_36));
     		this.plates[plate].reset();
 			loader.savePlate(plate, plates[plate].getRuns(), "");
     	}
@@ -315,7 +315,7 @@ public class MainActivity extends AppCompatActivity implements
 
 	private void plateIsReadyOnResume(int i) {
 		chronos[i].setBase(SystemClock.elapsedRealtime());
-		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.baseline_play_arrow_black_36));
+		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.outline_play_arrow_black_36));
 	}
 
 	private void plateIsStoppedOnResume(int i) {
@@ -327,7 +327,7 @@ public class MainActivity extends AppCompatActivity implements
 		chronos[i].setBase(plates[i].getBaseForChronometer());
 		Log.d("Chronometer base: ", "" + plates[i].getBase());
 		chronos[i].start();
-		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.baseline_stop_black_36));
+		startButtons[i].setImageDrawable(getResources().getDrawable(R.drawable.outline_stop_black_36));
 	}
 
 	public void onBroadcastReceived(int plate) {

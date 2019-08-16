@@ -3,277 +3,113 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/linearSplitSetTime"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:orientation="vertical" >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/frameTimeAssets"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="2" >
+        <LinearLayout
+            android:id="@+id/infoPanel"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:id="@+id/linearTimeAssets"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:orientation="horizontal" >
-
-                <FrameLayout
-                    android:id="@+id/frameSetTimeTitles"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="5" >
-
-                    <LinearLayout
-                        android:id="@+id/linearTitles"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-
-                        <FrameLayout
-                            android:id="@+id/frameTitleGroupHours"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="1" >
-
-                            <LinearLayout
-                                android:id="@+id/linearTitleGroupHours"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical" >
-
-                                <FrameLayout
-                                    android:id="@+id/frameTitleHours"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1" >
-
-                                    <TextView
-                                        android:id="@+id/textTitleHours"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="bottom|center_vertical|center_horizontal|center"
-                                        android:text="@string/hours"
-                                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                                </FrameLayout>
-
-                                <FrameLayout
-                                    android:id="@+id/frameDynamicHours"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1" >
-
-                                    <TextView
-                                        android:id="@+id/dynamicTextHours"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="top|center_vertical|center_horizontal|center"
-                                        android:text="16"
-                                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                                </FrameLayout>
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/frameTitleGroupMinutes"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="1" >
-
-                            <LinearLayout
-                                android:id="@+id/linearTitleGroupMinutes"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical" >
-
-                                <FrameLayout
-                                    android:id="@+id/frameTitleMinutes"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1" >
-
-                                    <TextView
-                                        android:id="@+id/textTitleMinutes"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="bottom|center_vertical|center_horizontal|center"
-                                        android:text="@string/minutes"
-                                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                                </FrameLayout>
-
-                                <FrameLayout
-                                    android:id="@+id/frameDynamicMinutes"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1" >
-
-                                    <TextView
-                                        android:id="@+id/dynamicTextMinutes"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="top|center_vertical|center_horizontal|center"
-                                        android:text="52"
-                                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                                </FrameLayout>
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/frameTitleGroupSeconds"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="1" >
-
-                            <LinearLayout
-                                android:id="@+id/linearTitleGroupSeconds"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical" >
-
-                                <FrameLayout
-                                    android:id="@+id/frameTitleSeconds"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1" >
-
-                                    <TextView
-                                        android:id="@+id/textTitleSeconds"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="bottom|center_vertical|center_horizontal|center"
-                                        android:text="@string/seconds"
-                                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                                </FrameLayout>
-
-                                <FrameLayout
-                                    android:id="@+id/frameDynamicSeconds"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1" >
-
-                                    <TextView
-                                        android:id="@+id/dynamicTextSeconds"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="top|center_vertical|center_horizontal|center"
-                                        android:text="49"
-                                        android:textAppearance="?android:attr/textAppearanceLarge" />
-                                </FrameLayout>
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/frameSetTimeSeekBars"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="2" >
-
-                    <LinearLayout
-                        android:id="@+id/linearSeeksBars"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical" >
-
-                        <FrameLayout
-                            android:id="@+id/frameSeekBarHours"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="3" >
-
-                            <SeekBar
-                                android:id="@+id/seekBarHours"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_gravity="center_vertical|center_horizontal|center"
-                             />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/frameSeekBarMinutes"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="3" >
-
-                            <SeekBar
-                                android:id="@+id/seekBarMinutes"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent"
-                                android:layout_gravity="center_vertical|center_horizontal|center" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:id="@+id/frameSeekBarSeconds"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_weight="3" >
-
-                            <SeekBar
-                                android:id="@+id/seekBarSeconds"
-                                android:layout_width="fill_parent"
-                                android:layout_height="fill_parent" />
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/frameButtons"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="3" >
-
-            <LinearLayout
-                android:id="@+id/llnearButtons"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/dynamicTextHours"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:orientation="vertical" >
+                android:layout_gravity="top|center_vertical|center_horizontal|center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/defaultTime"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/countdown_text_size" />
 
-                <FrameLayout
-                    android:id="@+id/colorInfo"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
+            <TextView
+                android:id="@+id/doubleDotHours"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|center_vertical|center_horizontal|center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/doubleDot"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/countdown_text_size" />
 
-                </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1" >
+            <TextView
+                android:id="@+id/dynamicTextMinutes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|center_vertical|center_horizontal|center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/defaultTime"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/countdown_text_size" />
 
-                    <Button
-                        android:id="@+id/buttonColor"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:onClick="setColor"
-                        android:text="@string/color" />
+            <TextView
+                android:id="@+id/doubleDotMinutes"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|center_vertical|center_horizontal|center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/doubleDot"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/countdown_text_size" />
 
-                </FrameLayout>
+            <TextView
+                android:id="@+id/dynamicTextSeconds"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="top|center_vertical|center_horizontal|center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/defaultTime"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="@dimen/countdown_text_size" />
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </FrameLayout>
+        <SeekBar
+            android:id="@+id/seekBarHours"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/seekBarSidePadding"
+            android:paddingRight="@dimen/seekBarSidePadding" />
+
+        <SeekBar
+            android:id="@+id/seekBarMinutes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/seekBarSidePadding"
+            android:paddingRight="@dimen/seekBarSidePadding" />
+
+        <SeekBar
+            android:id="@+id/seekBarSeconds"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/seekBarSidePadding"
+            android:paddingRight="@dimen/seekBarSidePadding" />
+
+        <ImageButton
+            android:id="@+id/buttonColor"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/abc_btn_borderless_material"
+            android:contentDescription="@string/paletteHint"
+            android:onClick="setColor"
+            android:src="@drawable/outline_palette_black_36" />
 
     </LinearLayout>
 

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -159,8 +160,8 @@ public class SetPlateActivity
 		dynTextMinutes.setText("" + actualPlate.getMinutes());
 		dynTextSeconds.setText("" + actualPlate.getSeconds());
 
-		FrameLayout colorInfo = (FrameLayout) findViewById(R.id.colorInfo);
-		colorInfo.setBackgroundColor(actualPlate.getColour());
+		LinearLayout linearSplitSetTime = (LinearLayout) findViewById(R.id.linearSplitSetTime);
+		linearSplitSetTime.setBackgroundColor(actualPlate.getColour());
 		
 	}
 
