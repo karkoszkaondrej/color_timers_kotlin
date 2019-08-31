@@ -110,7 +110,7 @@ public class AlarmSoundService extends Service  implements AudioManager.OnAudioF
     private Notification notificate(int plate) {
     	NotificationCompat.Builder mBuilder =
     	        new NotificationCompat.Builder(this)
-    	        .setSmallIcon(R.drawable.ic_launcher)
+    	        .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
     	        .setContentTitle("Cooking time")
     	        .setContentText("Timer " + plate + " is done.")
     	        .setAutoCancel(true);
