@@ -19,6 +19,12 @@ public class CTColor {
 		this.backGroundColor = backGroundColor;
 	}
 
+	public CTColor(int color, String name) {
+		this.color = color;
+		this.name = name;
+		this.backGroundColor = 0;
+	}
+
 	public int getBackGroundColor() {
 		return backGroundColor;
 	}
