@@ -13,7 +13,7 @@ import com.karkoszka.cookingtime.R;
 
 public class ChooseColorAdapter extends ArrayAdapter<CTColor> {
 
-	private final Context context;
+	  private final Context context;
 	  private final CTColor[] values;
 
 	  public ChooseColorAdapter(Context context, CTColor[] values) {

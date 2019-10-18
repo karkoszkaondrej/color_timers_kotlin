@@ -124,7 +124,7 @@ public class SetPlateActivity
 
 		actualPlate.setHours(hoursNumber);
 		actualPlate.setMinutes(minutesNumber);
-		actualPlate.setSeconds(secondsNumber);
+		actualPlate.setSeconds(secondsNumber < 5 && hoursNumber == 0 && minutesNumber == 0 ? 5 : secondsNumber);
 		loader.savePlate(actualPlate);
 	}
 	public void setColor(View view) {
@@ -156,9 +156,9 @@ public class SetPlateActivity
 		secondsSeekBar.setMax(SECONDS_MAX);
 		secondsSeekBar.setProgress(actualPlate.getSeconds());
 		
-		dynTextHours.setText("" + actualPlate.getHours());
-		dynTextMinutes.setText("" + actualPlate.getMinutes());
-		dynTextSeconds.setText("" + actualPlate.getSeconds());
+		dynTextHours.setText(getTimeLabel(actualPlate.getHours()));
+		dynTextMinutes.setText(getTimeLabel(actualPlate.getMinutes()));
+		dynTextSeconds.setText(getTimeLabel(actualPlate.getSeconds()));
 
 		LinearLayout linearSplitSetTime = (LinearLayout) findViewById(R.id.linearSplitSetTime);
 		linearSplitSetTime.setBackgroundColor(actualPlate.getColour());
@@ -169,15 +169,15 @@ public class SetPlateActivity
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		if(seekBar.getId() == hoursSeekBar.getId()) {
-			dynTextHours.setText("" + progress);
+			dynTextHours.setText(getTimeLabel(progress));
 			hoursNumber = progress;
 		}
 		else if(seekBar.getId() == minutesSeekBar.getId()) {
-			dynTextMinutes.setText("" + progress);
+			dynTextMinutes.setText(getTimeLabel(progress));
 			minutesNumber = progress;
 		}
 		else if(seekBar.getId() == secondsSeekBar.getId()) {
-			dynTextSeconds.setText("" + progress);
+			dynTextSeconds.setText(getTimeLabel(progress));
 			secondsNumber = progress;
 		}
 	}
@@ -213,5 +213,11 @@ public class SetPlateActivity
 			minutesSeekBar.setEnabled(true);
 		}
 		
+	}
+
+	private String getTimeLabel(int progress) {
+		if (progress < 10 )
+			return "0" + progress;
+		return "" + progress;
 	}
 }
