@@ -1,7 +1,6 @@
 package com.karkoszka.cookingtime.fragments;
 
 import android.app.Activity;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -12,13 +11,11 @@ import android.widget.ListView;
 import com.karkoszka.cookingtime.R;
 import com.karkoszka.cookingtime.common.CTColor;
 import com.karkoszka.cookingtime.common.ChooseColorAdapter;
-import com.karkoszka.cookingtime.common.XmlColorAdapter;
 
 public class ChooseColorListFragment extends ListFragment {
 
 	private OnChooseColorFragmentInteractionListener mListener;
     private CTColor[] values;
-    private CTColor[] valuesOriginal;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,10 +28,7 @@ public class ChooseColorListFragment extends ListFragment {
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		values = getValuesFromXml();
-		//values = getColors();
-		ChooseColorAdapter adapter = new ChooseColorAdapter(getActivity(), values);
-		//XmlColorAdapter adapter = new XmlColorAdapter(getActivity());
+		ChooseColorAdapter adapter = new ChooseColorAdapter(getActivity(), getValuesFromXml());
 		setListAdapter(adapter);
 	}
 
@@ -60,34 +54,13 @@ public class ChooseColorListFragment extends ListFragment {
 		mListener = null;
 	}
 
-	private CTColor[] getColors() {
-		return new CTColor[] {new CTColor(0,"Default", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.yellow),"Yellow", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.fuchsia),"fuchsia", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.red),"red", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.silver),"silver", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.gray),"gray", getActivity().getResources().getColor(R.color.back_white))
-				, new CTColor(getActivity().getResources().getColor(R.color.olive),"olive", getActivity().getResources().getColor(R.color.back_white))
-				, new CTColor(getActivity().getResources().getColor(R.color.purple),"purple", getActivity().getResources().getColor(R.color.back_white))
-				, new CTColor(getActivity().getResources().getColor(R.color.maroon),"maroon", getActivity().getResources().getColor(R.color.back_white))
-				, new CTColor(getActivity().getResources().getColor(R.color.aqua),"aqua", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.lime),"lime", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.teal),"teal", getActivity().getResources().getColor(R.color.back_white))
-				, new CTColor(getActivity().getResources().getColor(R.color.green),"green", getActivity().getResources().getColor(R.color.back_white))
-				, new CTColor(getActivity().getResources().getColor(R.color.blue),"blue", getActivity().getResources().getColor(R.color.back_black))
-				, new CTColor(getActivity().getResources().getColor(R.color.navy),"navy", getActivity().getResources().getColor(R.color.back_white))};
-	}
-
 	private CTColor[] getValuesFromXml() {
 		String[] colorNames = getActivity().getResources().getStringArray(R.array.colorNames);
 		CTColor[] values = new CTColor[colorNames.length];
+		int[] ta = getActivity().getResources().getIntArray(R.array.colors);
 		for(int i=0; i<colorNames.length; i++)
 		{
-			//Getting the color resource id
-			TypedArray ta = getActivity().getResources().obtainTypedArray(R.array.colors);
-			int colorToUse = ta.getResourceId(i, 0);
-
-			values[i] = new CTColor(colorToUse,colorNames[i], getActivity().getResources().getColor(R.color.back_black));
+			values[i] = new CTColor(ta[i], colorNames[i], getActivity().getResources().getColor(R.color.Black));
 		}
 
 		return values;
