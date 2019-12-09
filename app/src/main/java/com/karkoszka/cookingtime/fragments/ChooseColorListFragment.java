@@ -3,6 +3,7 @@ package com.karkoszka.cookingtime.fragments;
 import android.app.Activity;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,13 +58,10 @@ public class ChooseColorListFragment extends ListFragment {
 	private CTColor[] getValuesFromXml() {
 		String[] colorNames = getActivity().getResources().getStringArray(R.array.colorNames);
 		CTColor[] values = new CTColor[colorNames.length];
+		int[] ta = getActivity().getResources().getIntArray(R.array.colors);
 		for(int i=0; i<colorNames.length; i++)
 		{
-			//Getting the color resource id
-			TypedArray ta = getActivity().getResources().obtainTypedArray(R.array.colors);
-			int colorToUse = ta.getResourceId(i, 0);
-
-			values[i] = new CTColor(colorToUse,colorNames[i], getActivity().getResources().getColor(R.color.back_black));
+			values[i] = new CTColor(ta[i], colorNames[i], getActivity().getResources().getColor(R.color.Black));
 		}
 
 		return values;
