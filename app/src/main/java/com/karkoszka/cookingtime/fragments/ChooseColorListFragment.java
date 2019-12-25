@@ -57,7 +57,7 @@ public class ChooseColorListFragment extends ListFragment {
 
 	private CTColor[] getValuesFromXml() {
 		String[] colorNames = getActivity().getResources().getStringArray(R.array.colorNames);
-		CTColor[] values = new CTColor[colorNames.length];
+		values = new CTColor[colorNames.length];
 		int[] ta = getActivity().getResources().getIntArray(R.array.colors);
 		for(int i=0; i<colorNames.length; i++)
 		{
