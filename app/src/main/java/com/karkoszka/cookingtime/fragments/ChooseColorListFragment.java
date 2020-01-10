@@ -1,7 +1,6 @@
 package com.karkoszka.cookingtime.fragments;
 
 import android.app.Activity;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -16,7 +15,7 @@ import com.karkoszka.cookingtime.common.ChooseColorAdapter;
 public class ChooseColorListFragment extends ListFragment {
 
 	private OnChooseColorFragmentInteractionListener mListener;
-    private CTColor[] values;
+    private CTColor[] valuesDTO;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,7 +34,7 @@ public class ChooseColorListFragment extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		mListener.onColorChosen(values[position].getColor());
+		mListener.onColorChosen(valuesDTO[position].getColor());
 	}
 
 	@Override
@@ -57,15 +56,16 @@ public class ChooseColorListFragment extends ListFragment {
 
 	private CTColor[] getValuesFromXml() {
 		String[] colorNames = getActivity().getResources().getStringArray(R.array.colorNames);
-		values = new CTColor[colorNames.length];
+		valuesDTO = new CTColor[colorNames.length];
 		int[] ta = getActivity().getResources().getIntArray(R.array.colors);
 		for(int i=0; i<colorNames.length; i++)
 		{
-			values[i] = new CTColor(ta[i], colorNames[i], getActivity().getResources().getColor(R.color.Black));
+			valuesDTO[i] = new CTColor(ta[i], colorNames[i], getActivity().getResources().getColor(R.color.Black));
 		}
 
-		return values;
+		return valuesDTO;
 	}
+
 	/**
 	 * This interface must be implemented by activities that contain this
 	 * fragment to allow an interaction in this fragment to be communicated to
