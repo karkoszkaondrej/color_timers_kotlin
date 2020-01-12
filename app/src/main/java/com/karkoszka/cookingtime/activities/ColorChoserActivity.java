@@ -25,15 +25,19 @@ public class ColorChoserActivity extends AppCompatActivity
 		hoursN = extras.getInt(SetPlateActivity.HOURS);
 		minutesN = extras.getInt(SetPlateActivity.MINUTES);
 		secondsN = extras.getInt(SetPlateActivity.SECONDS);
-		setTitle("Choose color for " + plate);
+		setTitle("Choose color for " + getPlateNumber(plate));
 		
 		setContentView(R.layout.activity_single_choose_color);
         
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-		
-        
 	}
+
+	private String getPlateNumber(int plateNumber) {
+		return Integer.toString(plateNumber + 1);
+	}
+
+
 	@Override
 	public void onPause() {
 		super.onPause();
