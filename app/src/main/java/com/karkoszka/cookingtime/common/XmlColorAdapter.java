@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import java.util.List;
 
 import com.karkoszka.cookingtime.R;
 
@@ -28,17 +27,17 @@ public class XmlColorAdapter extends ArrayAdapter<CTColor> {
 
     private CTColor[] getValuesFromXml() {
         String[] colorNames = context.getResources().getStringArray(R.array.colorNames);
-        CTColor[] values = new CTColor[colorNames.length];
+        CTColor[] valuesCT = new CTColor[colorNames.length];
         for(int i=0; i<colorNames.length; i++)
         {
             //Getting the color resource id
             TypedArray ta = context.getResources().obtainTypedArray(R.array.colors);
             int colorToUse = ta.getResourceId(i, 0);
 
-            values[i] = new CTColor(colorToUse,colorNames[i]);
+            valuesCT[i] = new CTColor(colorToUse,colorNames[i]);
         }
 
-        return values;
+        return valuesCT;
     }
 
     @Override

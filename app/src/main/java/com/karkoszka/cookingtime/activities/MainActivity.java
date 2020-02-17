@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity implements
                 , intent
                 , PendingIntent.FLAG_CANCEL_CURRENT);
         ((AlarmManager) this.getSystemService(Context.ALARM_SERVICE))
-                .set(AlarmManager.RTC_WAKEUP
+                .setExact(AlarmManager.RTC_WAKEUP
                         , time
                         , pIntents[plate]);
         loader.savePlate(plate, plates[plate].getBase(),plates[plate].getSetOff()
