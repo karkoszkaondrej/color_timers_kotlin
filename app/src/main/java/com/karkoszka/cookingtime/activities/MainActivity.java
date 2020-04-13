@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements
 	}
 
 	private void fireAlarm(int pl) {
-		Toast.makeText(this,"Alarm "+pl+"passed out.", Toast.LENGTH_LONG)
+		Toast.makeText(this,getResources().getString(R.string.alarm) + (pl + 1) + getResources().getString(R.string.passed), Toast.LENGTH_LONG)
 				.show();
 		Log.d("MA reconfiguring", "canceled: " + pl );
 		Intent intentSoundService = new Intent(getApplicationContext(), AlarmSoundService.class);
@@ -116,19 +116,18 @@ public class MainActivity extends AppCompatActivity implements
      * @param plate plates id
      */
     private void alarmOffToast(int plate) {
-    	int pl = plate + 1;
-	    CharSequence msg = "Timer " + pl + " is done.";
+    	//int pl = plate + 1;
+	    CharSequence msg = getResources().getString(R.string.timer) + (plate + 1) + getResources().getString(R.string.is_done);
 	    Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
 	}
     /**
-     * shows Running notification
+     * shows notification after push to start button
      */
     private void notificate() {
     	NotificationCompat.Builder mBuilder =
     	        new NotificationCompat.Builder(this)
     	        .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
-    	        .setContentTitle("Six Timers")
-    	        .setContentText("Timer is running.")
+    	        .setContentTitle( getResources().getString(R.string.running))
     	        .setAutoCancel(false);
     	Intent resultIntent = new Intent(this, MainActivity.class);
     	resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
