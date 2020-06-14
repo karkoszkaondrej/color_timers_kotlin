@@ -12,9 +12,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
@@ -29,6 +29,7 @@ import com.karkoszka.cookingtime.common.Plate;
 import com.karkoszka.cookingtime.fragments.MainScreen6Fragment;
 import com.karkoszka.cookingtime.services.AlarmSoundService;
 import com.karkoszka.cookingtime.services.CTBroadcastReceiver;
+
 
 public class MainActivity extends AppCompatActivity implements
 	MainScreen6Fragment.OnMainScreenFragmentInteractionListener {

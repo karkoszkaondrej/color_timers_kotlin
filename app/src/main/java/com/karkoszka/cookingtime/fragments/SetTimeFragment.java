@@ -2,7 +2,7 @@ package com.karkoszka.cookingtime.fragments;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.karkoszka.cookingtime.R;
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass. Activities that
+ * A simple {@link Fragment} subclass. Activities that
  * contain this fragment must implement the
  * {@link SetTimeFragment.OnSetTimeFragmentInteractionListener} interface to handle
  * interaction events. Use the {@link SetTimeFragment#newInstance} factory
