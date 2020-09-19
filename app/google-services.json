@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "149701010651-h37e7isjvna5l734ff2uo1bb4hjkjvt5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.karkoszka.cookingtime",
+            "certificate_hash": "32bd9a6ed72e862d92479b320de60b076938954b"
+          }
+        },
+        {
           "client_id": "149701010651-i4sfs80v2u00cfgmeicn2c4umk5poioc.apps.googleusercontent.com",
           "client_type": 3
         }
