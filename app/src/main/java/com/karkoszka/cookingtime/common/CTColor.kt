@@ -16,4 +16,10 @@ class CTColor {
         this.name = name
         backGroundColor = 0
     }
+
+    constructor() {
+        this.color = 0
+        this.name = ""
+        this.backGroundColor = 0
+    }
 }

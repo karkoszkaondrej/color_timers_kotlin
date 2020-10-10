@@ -25,5 +25,5 @@
     <string name="running">Timer is running.</string>
     <string name="alarm">"Alarm "</string>
     <string name="passed">" passed out."</string>
-
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
 </resources>

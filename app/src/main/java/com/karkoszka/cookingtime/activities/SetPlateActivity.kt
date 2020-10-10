@@ -76,6 +76,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         finish()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun setPlateNumber(view: View?) {
         save()
     }
@@ -88,10 +89,11 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         }
         actualPlate!!.hours = hoursNumber
         actualPlate!!.minutes = minutesNumber
-        actualPlate!!.seconds = if (secondsNumber < 5 && hoursNumber == 0 && minutesNumber == 0) 5 else secondsNumber
+        actualPlate!!.seconds = secondsNumber
         loader!!.savePlate(actualPlate!!)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun setColor(view: View?) {
         val intent = Intent(this, ColorChoserActivity::class.java)
         intent.putExtra(PLATE, actualPlate!!.id)

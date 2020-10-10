@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.ListFragment
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.common.CTColor
@@ -28,9 +29,10 @@ class ChooseColorListFragment : ListFragment() {
     }
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
-        mListener!!.onColorChosen(valuesDTO[position]!!.color)
+        mListener!!.onColorChosen(valuesDTO[position].color)
     }
 
+    @SuppressWarnings("deprecation")
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         mListener = try {
@@ -47,12 +49,12 @@ class ChooseColorListFragment : ListFragment() {
     }
 
     private val valuesFromXml: Array<CTColor>
-        private get() {
+        get() {
             val colorNames = activity!!.resources.getStringArray(R.array.colorNames)
-            valuesDTO = arrayOf()
             val ta = activity!!.resources.getIntArray(R.array.colors)
+            valuesDTO = Array(colorNames.size) { CTColor()}
             for (i in colorNames.indices) {
-                valuesDTO[i] = CTColor(ta[i], colorNames[i], activity!!.resources.getColor(R.color.Black))
+                valuesDTO[i] = CTColor(ta[i], colorNames[i])
             }
             return valuesDTO
         }

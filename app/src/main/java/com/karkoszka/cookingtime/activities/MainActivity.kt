@@ -12,10 +12,12 @@ import android.os.PowerManager
 import android.os.SystemClock
 import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
+import androidx.core.content.res.ResourcesCompat
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.common.LoaderPreferences
 import com.karkoszka.cookingtime.common.Plate
@@ -42,7 +44,9 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         loader = LoaderPreferences(settings)
         initUIControls()
         val pm = applicationContext.getSystemService(POWER_SERVICE) as PowerManager
-        val wakeLock = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP, "com.karkoszka.cookingtime:waketag")
+        val wakeLock = pm.newWakeLock(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                or PowerManager.ACQUIRE_CAUSES_WAKEUP,
+                "com.karkoszka.cookingtime:waketag")
         wakeLock.acquire()
         val keyguardManager = applicationContext.getSystemService(KEYGUARD_SERVICE) as KeyguardManager
         val keyguardLock = keyguardManager.newKeyguardLock("com.karkoszka.cookingtime:waketag")
@@ -104,7 +108,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * shows notification after push to start button
      */
     private fun notificate() {
-        val mBuilder = NotificationCompat.Builder(this)
+        val mBuilder = NotificationCompat.Builder(this, "com.karkoszka.cookingtime.notification")
                 .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
                 .setContentTitle(resources.getString(R.string.running))
                 .setAutoCancel(false)
@@ -138,7 +142,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     }
 
     private val isAlarm: Boolean
-        private get() {
+        get() {
             for (pl in plates) {
                 if (pl!!.runs == 1) return true
             }
@@ -146,62 +150,76 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         }
 
     private fun highlightAlarms(i: Int) {
-        if (plates[i]!!.runs == Plate.STARTED && plates[i]!!.checkIfFired()) plateAIT[i]!!.text = "\\\\\\o  " + plateAIT[i]!!.text + "  o///"
+        if (plates[i]!!.runs == Plate.STARTED && plates[i]!!.checkIfFired()) plateAIT[i]!!.text =
+                //getString(R.string.alarming_left) + plateAIT[i]!!.text + getString(R.string.alarming_right)
+                String.format(getString(R.string.alarming), plateAIT[i]!!.text)
     }
 
-    fun setPlate1(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun setPlate1(view: View) {
         clickSetButton(0)
     }
 
-    fun setPlate2(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun setPlate2(view: View) {
         clickSetButton(1)
     }
 
-    fun setPlate3(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun setPlate3(view: View) {
         clickSetButton(2)
     }
 
-    fun setPlate4(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun setPlate4(view: View) {
         clickSetButton(3)
     }
 
-    fun setPlate5(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun setPlate5(view: View) {
         clickSetButton(4)
     }
 
-    fun setPlate6(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun setPlate6(view: View) {
         clickSetButton(5)
     }
 
     private fun clickSetButton(plate: Int) {
         if (!alarmSoundBlockSet) {
             val intent = Intent(this, SetPlateActivity::class.java)
-            intent.putExtra(SetPlateActivity.Companion.PLATE, plate)
+            intent.putExtra(SetPlateActivity.PLATE, plate)
             startActivity(intent)
         }
     }
 
-    fun startPlate1(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun startPlate1(view: View) {
         clickStartButton(0)
     }
 
-    fun startPlate2(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun startPlate2(view: View) {
         clickStartButton(1)
     }
 
-    fun startPlate3(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun startPlate3(view: View) {
         clickStartButton(2)
     }
 
-    fun startPlate4(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun startPlate4(view: View) {
         clickStartButton(3)
     }
 
-    fun startPlate5(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun startPlate5(view: View) {
         clickStartButton(4)
     }
 
-    fun startPlate6(view: View?) {
+    @Suppress("UNUSED_PARAMETER")
+    fun startPlate6(view: View) {
         clickStartButton(5)
     }
 
@@ -215,7 +233,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             startAlarmFromNow(plate)
             chrono!!.base = plates[plate]!!.baseForChronometer
             chrono.start()
-            button!!.setImageDrawable(resources.getDrawable(R.drawable.outline_stop_black_36))
+            button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
             notificate()
         } else if (plates[plate]!!.isStarted) {
             stopAlarm(plate)
@@ -224,7 +242,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             }
         } else if (plates[plate]!!.isStopped) {
             chrono!!.base = SystemClock.elapsedRealtime()
-            button!!.setImageDrawable(resources.getDrawable(R.drawable.outline_play_arrow_black_36))
+            button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_play_arrow_black_36, null))
             plates[plate]!!.reset()
             loader!!.savePlate(plate, plates[plate]!!.runs, "")
         }
@@ -235,7 +253,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         cancelAlarm(plate)
         makeAlarmInfoText(plate)
         alarmSoundServiceStop()
-        startButtons[plate]!!.setImageDrawable(resources.getDrawable(R.drawable.baseline_replay_black_36))
+        startButtons[plate]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.baseline_replay_black_36, null))
         plates[plate]!!.stop()
         if (isAlarm) notificate() else cancelNotification()
         plates[plate]!!.last = chronos[plate]!!.text.toString()
@@ -281,19 +299,19 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
 
     private fun plateIsReadyOnResume(i: Int) {
         chronos[i]!!.base = SystemClock.elapsedRealtime()
-        startButtons[i]!!.setImageDrawable(resources.getDrawable(R.drawable.outline_play_arrow_black_36))
+        startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_play_arrow_black_36, null))
     }
 
     private fun plateIsStoppedOnResume(i: Int) {
         chronos[i]!!.text = plates[i]!!.last
-        startButtons[i]!!.setImageDrawable(resources.getDrawable(R.drawable.baseline_replay_black_36))
+        startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.baseline_replay_black_36, null))
     }
 
     private fun plateIsStartedOnResume(i: Int) {
         chronos[i]!!.base = plates[i]!!.baseForChronometer
         Log.d("Chronometer base: ", "" + plates[i]!!.base)
         chronos[i]!!.start()
-        startButtons[i]!!.setImageDrawable(resources.getDrawable(R.drawable.outline_stop_black_36))
+        startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
     }
 
     fun onBroadcastReceived(plate: Int) {
