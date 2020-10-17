@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
  android: circleci/android@0.2.1
+ sonarcloud: sonarsource/sonarcloud@1.0.0
 
 jobs:
   build:
@@ -9,5 +10,6 @@ jobs:
         
     steps:
       - checkout
+      - sonarcloud/scan
       - run:
           command: ./gradlew build
