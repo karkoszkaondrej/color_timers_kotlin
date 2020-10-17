@@ -13,3 +13,8 @@ jobs:
       - sonarcloud/scan
       - run:
           command: ./gradlew build
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context: sonarcloud
