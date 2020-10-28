@@ -1,13 +1,20 @@
 version: 2.1
 
 orbs:
- android: circleci/android@0.2.1
+  android: circleci/android@0.2.1
+  sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
   build:
     executor: android/android
-        
+
     steps:
       - checkout
+      - sonarcloud/scan
       - run:
           command: ./gradlew build
+workflows:
+  my-workflow:
+    jobs:
+      - build:
+          context: sonarcloud
