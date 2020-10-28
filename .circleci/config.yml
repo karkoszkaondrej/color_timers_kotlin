@@ -13,10 +13,6 @@ jobs:
       - sonarcloud/scan
       - run:
           command: ./gradlew build
-          environment:
-            SONARQUBE_SCANNER_PARAMS: '{"sonar.host.url":"https://sonarcloud.io",
-              "sonar.projectKey":"OlafusS5_color_timers_kotlin",
-              "sonar.organization":"olafuss5"}'
 workflows:
   my-workflow:
     jobs:
