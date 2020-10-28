@@ -18,3 +18,19 @@ workflows:
     jobs:
       - build:
           context: sonarcloud
+
+machine:
+  environment:
+    BROWSERSTACK_USERNAME: "ondrejkarkoszka1"
+    BROWSERSTACK_ACCESS_KEY: "NrcMiiK4GPVZj3dYkdeY"
+    BROWSERSTACK_LOCAL: true
+
+test:
+  pre:
+    # Download the browserstack binary file
+    - wget "https://www.browserstack.com/browserstack-local/BrowserStackLocal-linux-x64.zip"
+    # Unzip the BrowserStack Local binary file
+    - unzip BrowserStackLocal-linux-x64.zip
+    # Run the file with your access key
+    - ./BrowserStackLocal $BROWSERSTACK_ACCESS_KEY:
+        background: true
