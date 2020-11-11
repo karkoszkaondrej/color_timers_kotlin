@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Barva Timers</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Izberite barvo %1$s</string>
+    <string name="chronometer">Kronometer</string>
+    <string name="paletteHint">Izberite barvo</string>
+    <string name="timer_done">Timer %1$s je naredil!</string>
+    <string name="running">Timer teče.</string>
+    <string name="alarm_off">Alarm %1$s Off.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

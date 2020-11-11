@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Litur Teljarar</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Veldu lit fyrir %1$s</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="paletteHint">Veldu lit</string>
+    <string name="timer_done">Teljari %1$s er gert!</string>
+    <string name="running">Myndataka er í gangi.</string>
+    <string name="alarm_off">Viðvörun %1$s Burt.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

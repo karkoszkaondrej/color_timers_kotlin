@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">အရောင် Timer</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">အဘို့အအရောင်ကိုရွေးချယ်ပါ %1$s</string>
+    <string name="chronometer">ကို Chronometer</string>
+    <string name="paletteHint">အရောင်ကိုရွေးချယ်ပါ</string>
+    <string name="timer_done">timer %1$s ပြုသောအမှုသည်တကား</string>
+    <string name="running">timer ပြေးနေသည်။</string>
+    <string name="alarm_off">နှိုးစက် %1$s ချွတ်။</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

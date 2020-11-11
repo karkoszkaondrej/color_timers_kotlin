@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Lliw Amseryddion</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Dewiswch lliw ar gyfer %1$s</string>
+    <string name="chronometer">Cronomedrau</string>
+    <string name="paletteHint">Dewiswch liw</string>
+    <string name="timer_done">Timer %1$s yn cael ei wneud!</string>
+    <string name="running">Amserydd yn rhedeg.</string>
+    <string name="alarm_off">Larwm %1$s Ffwrdd.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

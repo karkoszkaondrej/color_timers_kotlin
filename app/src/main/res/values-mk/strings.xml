@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Боја Тајмери</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Изберете боја за %1$s</string>
+    <string name="chronometer">Хронометар</string>
+    <string name="paletteHint">Изберете боја</string>
+    <string name="timer_done">Тајмер %1$s е направено!</string>
+    <string name="running">Тајмерот е активен.</string>
+    <string name="alarm_off">Аларм %1$s Исклучи.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

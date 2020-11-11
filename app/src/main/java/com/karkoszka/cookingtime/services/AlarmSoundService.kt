@@ -94,7 +94,7 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
     private fun notificate(plate: Int): Notification {
         val mBuilder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
-                .setContentTitle(resources.getString(R.string.timer) + plate + resources.getString(R.string.is_done))
+                .setContentTitle(String.format(resources.getString(R.string.timer_done), (plate + 1)))
                 .setAutoCancel(true)
         val resultIntent = Intent(this, MainActivity::class.java)
         resultIntent.putExtra(MainActivity.ALARM_OFF_PLATE_NO, plate)

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Színes Időzítők</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Válasszon színt %1$s</string>
+    <string name="chronometer">Kronométer</string>
+    <string name="paletteHint">Válassz színt</string>
+    <string name="timer_done">Timer %1$s kész!</string>
+    <string name="running">Időzítő fut.</string>
+    <string name="alarm_off">Riasztás %1$s Le.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

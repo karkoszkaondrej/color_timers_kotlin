@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ឧបករណ៍កំណត់ពេលវេលា Color</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">ជ្រើសណ៍សម្រាប់ %1$s</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="paletteHint">ជ្រើសណ៍</string>
+    <string name="timer_done">ឧបករណ៍កំណត់ពេលវេលា %1$s ត្រូវបានធ្វើរួច!</string>
+    <string name="running">ឧបករណ៍កំណត់ពេលវេលាកំពុងរត់។</string>
+    <string name="alarm_off">សំឡេងរោទិ៍ %1$s បិទ។</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

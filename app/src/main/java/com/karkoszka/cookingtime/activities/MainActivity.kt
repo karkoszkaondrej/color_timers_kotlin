@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     }
 
     private fun fireAlarm(pl: Int) {
-        Toast.makeText(this, resources.getString(R.string.alarm) + (pl + 1) + resources.getString(R.string.passed), Toast.LENGTH_LONG)
+        Toast.makeText(this, String.format(resources.getString(R.string.alarm_off), (pl + 1)), Toast.LENGTH_LONG)
                 .show()
         Log.d("MA reconfiguring", "canceled: $pl")
         val intentSoundService = Intent(applicationContext, AlarmSoundService::class.java)
@@ -99,7 +99,10 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * @param plate plates id
      */
     private fun alarmOffToast(plate: Int) {
-        //int pl = plate + 1;
+        val msg: CharSequence = String.format(resources.getString(R.string.timer_done), (plate + 1))
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+    }
+    private fun alarmOffToastold(plate: Int) {
         val msg: CharSequence = resources.getString(R.string.timer) + (plate + 1) + resources.getString(R.string.is_done)
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }

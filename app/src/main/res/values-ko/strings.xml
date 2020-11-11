@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">컬러 타이머</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">대한 색상을 선택 %1$s</string>
+    <string name="chronometer">메트로놈</string>
+    <string name="paletteHint">색상을 선택</string>
+    <string name="timer_done">타이머 %1$s 이루어집니다!</string>
+    <string name="running">타이머가 실행 중입니다.</string>
+    <string name="alarm_off">알람 %1$s 끕니다.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

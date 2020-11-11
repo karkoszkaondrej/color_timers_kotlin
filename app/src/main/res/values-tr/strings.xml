@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Renk Zamanlayıcılar</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">için renk seçin %1$s</string>
+    <string name="chronometer">Kronometre</string>
+    <string name="paletteHint">Renk seç</string>
+    <string name="timer_done">Zamanlayıcı %1$s yapılır!</string>
+    <string name="running">Zamanlayıcı çalışıyor.</string>
+    <string name="alarm_off">Alarm %1$s Kapatır.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

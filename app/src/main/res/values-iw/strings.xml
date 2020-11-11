@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">צבע טיימרים</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">בחר צבע עבור %1$s</string>
+    <string name="chronometer">כּרוֹנוֹמֶטר</string>
+    <string name="paletteHint">בחרי צבע</string>
+    <string name="timer_done">טיימר %1$s נעשתה!</string>
+    <string name="running">טיימר פועל.</string>
+    <string name="alarm_off">מעורר %1$s Off.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Colore Timer</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Scegli il colore per %1$s</string>
+    <string name="chronometer">Cronometro</string>
+    <string name="paletteHint">Scegli il colore</string>
+    <string name="timer_done">Timer %1$s è fatto!</string>
+    <string name="running">Timer è in esecuzione.</string>
+    <string name="alarm_off">Allarme %1$s Off.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

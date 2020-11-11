@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Color Shidda</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">"Dooro midabka %1$s</string>
+    <string name="chronometer"> waayo</string>
+    <string name="paletteHint">"</string>
+    <string name="timer_done">Chronometer</string>
+    <string name="running">Dooro midabka</string>
+    <string name="alarm_off">Saacad %1$s waxaa loo sameeyaa!</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

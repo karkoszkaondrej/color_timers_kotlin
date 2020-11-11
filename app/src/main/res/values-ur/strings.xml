@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">رنگین ٹائمر</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">کے لئے رنگ منتخب کریں %1$s</string>
+    <string name="chronometer">گھڑی</string>
+    <string name="paletteHint">رنگ منتخب کریں</string>
+    <string name="timer_done">ٹائمر %1$s سے کیا جاتا ہے!</string>
+    <string name="running">ٹائمر چل رہا ہے.</string>
+    <string name="alarm_off">بند الارم %1$s.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>
