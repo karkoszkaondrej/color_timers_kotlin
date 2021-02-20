@@ -19,7 +19,7 @@ class ColorChoserActivity : AppCompatActivity(), OnChooseColorFragmentInteractio
         hoursN = extras.getInt(SetPlateActivity.HOURS)
         minutesN = extras.getInt(SetPlateActivity.MINUTES)
         secondsN = extras.getInt(SetPlateActivity.SECONDS)
-        title = "Choose color for " + getPlateNumber(plate)
+        title = String.format(resources.getString(R.string.title_activity_choose_color), getPlateNumber(plate))
         setContentView(R.layout.activity_single_choose_color)
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)

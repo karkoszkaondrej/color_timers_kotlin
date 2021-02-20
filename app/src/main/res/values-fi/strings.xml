@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Väri Ajastimet</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Valitse väri %1$s</string>
+    <string name="chronometer">Kronometri</string>
+    <string name="paletteHint">Valitse väri</string>
+    <string name="timer_done">Ajastin %1$s on valmis!</string>
+    <string name="running">Ajastin on käynnissä.</string>
+    <string name="alarm_off">Hälytys %1$s Pois.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

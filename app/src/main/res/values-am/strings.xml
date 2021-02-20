@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ቀለም ቆጣሪዎች</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">ለ ቀለም ይምረጡ %1$s</string>
+    <string name="chronometer">በሚመዝነው</string>
+    <string name="paletteHint">ቀለም ይምረጡ</string>
+    <string name="timer_done">ቆጣሪ %1$s እንዳደረገ ነው!</string>
+    <string name="running">ቆጣሪ እያሄደ ነው.</string>
+    <string name="alarm_off">ማንቂያ %1$s ጠፍቷል.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Awọ Oó</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Yan awọ fun %1$s</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="paletteHint">yan awọ</string>
+    <string name="timer_done">Aago %1$s ti wa ni ṣe!</string>
+    <string name="running">Aago ti wa ni nṣiṣẹ.</string>
+    <string name="alarm_off">Itaniji %1$s Pipa.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

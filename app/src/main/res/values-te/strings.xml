@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">రంగు టైమర్లు</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">కోసం రంగును ఎంచుకోండి %1$s</string>
+    <string name="chronometer">క్రోనోమీటర్</string>
+    <string name="paletteHint">రంగును ఎంచుకోండి</string>
+    <string name="timer_done">టైమర్ %1$s జరుగుతుంది!</string>
+    <string name="running">టైమర్ రన్.</string>
+    <string name="alarm_off">అలారం %1$s ఆఫ్.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

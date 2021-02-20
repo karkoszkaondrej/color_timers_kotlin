@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Գույն Timers</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Ընտրեք գույնը %1$s</string>
+    <string name="chronometer">Ժամանակաչափ</string>
+    <string name="paletteHint">Ընտրեք գույնը</string>
+    <string name="timer_done">Ժմչփ %1$s արվում է!</string>
+    <string name="running">Ժմչփ է վազում:</string>
+    <string name="alarm_off">"Համակ.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

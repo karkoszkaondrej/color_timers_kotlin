@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Culoare Temporizatoare</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Alege culoarea pentru %1$s</string>
+    <string name="chronometer">Cronometru</string>
+    <string name="paletteHint">Alege culoarea</string>
+    <string name="timer_done">Cronometrul %1$s se face!</string>
+    <string name="running">Cronometrul se execută.</string>
+    <string name="alarm_off">Alarmă %1$s Off.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

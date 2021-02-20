@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">રંગ ટાઈમરો</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">માટે રંગ પસંદ કરો %1$s</string>
+    <string name="chronometer">ક્રનૉમિટર</string>
+    <string name="paletteHint">રંગ પસંદ કરો</string>
+    <string name="timer_done">ટાઈમર %1$s કરવામાં આવે છે!</string>
+    <string name="running">ટાઈમર ચાલી રહ્યું છે.</string>
+    <string name="alarm_off">અલાર્મ %1$s બંધ.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

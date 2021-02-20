@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">اللون مؤقتات</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">اختيار لون ل %1$s</string>
+    <string name="chronometer">الكونومتر الميقات</string>
+    <string name="paletteHint">اختيار اللون</string>
+    <string name="timer_done">يتم الموقت %1$s!</string>
+    <string name="running">والموقت قيد التشغيل.</string>
+    <string name="alarm_off">ناقوس الخطر %1$s قبالة.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

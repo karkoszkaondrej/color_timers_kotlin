@@ -1,7 +1,6 @@
 package com.karkoszka.cookingtime.common
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,15 +16,7 @@ class XmlColorAdapter(context: Context) : ArrayAdapter<CTColor?>(context, R.layo
     //Getting the color resource id
     private val valuesFromXml: Array<CTColor?>
         private get() {
-            val colorNames = context.resources.getStringArray(R.array.colorNames)
-            val valuesCT = arrayOfNulls<CTColor>(colorNames.size)
-            for (i in colorNames.indices) {
-                //Getting the color resource id
-                val ta = context.resources.obtainTypedArray(R.array.colors)
-                val colorToUse = ta.getResourceId(i, 0)
-                valuesCT[i] = CTColor(colorToUse, colorNames[i])
-            }
-            return valuesCT
+            return CTColor.createArray(context.resources.getIntArray(R.array.colors))
         }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -35,8 +26,7 @@ class XmlColorAdapter(context: Context) : ArrayAdapter<CTColor?>(context, R.layo
         val textView = rowView.findViewById<View>(R.id.textct1) as TextView
         val layout = rowView.findViewById<View>(R.id.lay1) as RelativeLayout
         layout.setBackgroundColor(values[position]!!.color)
-        textView.text = values[position]!!.name
-        Log.d("Color$position", values[position]!!.name + " : " + values[position]!!.color)
+        textView.text = ""
         return rowView
     }
 
