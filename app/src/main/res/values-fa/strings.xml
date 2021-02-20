@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">رنگ تایمر</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">انتخاب رنگ برای %1$s</string>
+    <string name="chronometer">زمان سنج</string>
+    <string name="paletteHint">انتخاب رنگ</string>
+    <string name="timer_done">تایمر %1$s انجام شده است!</string>
+    <string name="running">تایمر در حال اجرا است.</string>
+    <string name="alarm_off">زنگ %1$s است.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

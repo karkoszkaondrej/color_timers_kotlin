@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Rangli Taymerlar</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">uchun rang tanlash %1$s</string>
+    <string name="chronometer">Soniya</string>
+    <string name="paletteHint">rangini tanlang</string>
+    <string name="timer_done">Taymer %1$s qilinadi!</string>
+    <string name="running">Taymer ishlayotgan.</string>
+    <string name="alarm_off">Signal %1$s Off.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

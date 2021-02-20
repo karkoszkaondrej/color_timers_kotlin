@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Kleur Timers</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">Kies een kleur voor %1$s</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="paletteHint">Kies een kleur</string>
+    <string name="timer_done">Timer %1$s wordt gedaan!</string>
+    <string name="running">Timer loopt.</string>
+    <string name="alarm_off">Alarm %1$s Af.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

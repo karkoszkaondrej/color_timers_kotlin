@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">වර්ණ කාල ගණකයන්</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">සඳහා වර්ණ තෝරා %1$s</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="paletteHint">වර්ණ තෝරා</string>
+    <string name="timer_done">ටයිමරයට ගැලපෙන %1$s සිදු වේ!</string>
+    <string name="running">ටයිමරයට ගැලපෙන ලෙස ධාවනය වෙයි.</string>
+    <string name="alarm_off">එලාම් %1$s ලකුණු.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

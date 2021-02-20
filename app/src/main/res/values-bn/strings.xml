@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">রঙ টাইমার</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">জন্য রঙ চয়ন করুন %1$s</string>
+    <string name="chronometer">কালনিরুপক-যন্ত্র</string>
+    <string name="paletteHint">রঙ চয়ন করুন</string>
+    <string name="timer_done">টাইমার %1$s সম্পন্ন করা হয়!</string>
+    <string name="running">টাইমার চলমান হয়।</string>
+    <string name="alarm_off">এলার্ম %1$s বন্ধ।</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

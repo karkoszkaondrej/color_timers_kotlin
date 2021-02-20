@@ -2,24 +2,21 @@ package com.karkoszka.cookingtime.common
 
 class CTColor {
     val color: Int
-    val name: String
-    val backGroundColor: Int
 
-    constructor(color: Int, name: String, backGroundColor: Int) {
+    constructor(color: Int) {
         this.color = color
-        this.name = name
-        this.backGroundColor = backGroundColor
-    }
-
-    constructor(color: Int, name: String) {
-        this.color = color
-        this.name = name
-        backGroundColor = 0
     }
 
     constructor() {
         this.color = 0
-        this.name = ""
-        this.backGroundColor = 0
+    }
+    companion object {
+        fun createArray(array: IntArray) : Array<CTColor?> {
+            var values = arrayListOf<CTColor>()
+            for (i in array) {
+                values.add(CTColor(i))
+            }
+            return values.toTypedArray()
+        }
     }
 }

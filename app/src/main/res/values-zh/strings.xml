@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">颜色计时器</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">选择颜色 %1$s</string>
+    <string name="chronometer">时计</string>
+    <string name="paletteHint">选择颜色</string>
+    <string name="timer_done">定时器%1$s完成了！</string>
+    <string name="running">定时器正在运行。</string>
+    <string name="alarm_off">报警%1$s折。</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

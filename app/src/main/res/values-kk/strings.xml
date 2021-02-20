@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Түс Таймерлер</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">түсін таңдаңыз %1$s</string>
+    <string name="chronometer">Chronometer</string>
+    <string name="paletteHint">түсін таңдаңыз</string>
+    <string name="timer_done">Таймер %1$s жасалады!</string>
+    <string name="running">Таймер жұмыс істеп тұр.</string>
+    <string name="alarm_off">Дабыл %1$s Кеңсе.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>

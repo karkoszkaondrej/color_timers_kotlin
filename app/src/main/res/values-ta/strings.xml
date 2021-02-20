@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">கலர் டைமர்கள்</string>
+    <string name="title_activity_set_time">SetPlateActivity</string>
+    <string name="title_activity_choose_color">நிறம் தேர்வு %1$s</string>
+    <string name="chronometer">க்ரானோமீட்டர்</string>
+    <string name="paletteHint">நிறம் தேர்வு</string>
+    <string name="timer_done">டைமர் %1$s செய்யப்படுகிறது!</string>
+    <string name="running">டைமர் இயங்கும்.</string>
+    <string name="alarm_off">அலார %1$s ஆஃப்.</string>
+    <string name="default_time">00:00</string>
+    <string name="doubleDot">:</string>
+    <string name="defaultTime">00</string>
+    <string name="alarming">"\\\\\\o  %1$s  o///"</string>
+</resources>
