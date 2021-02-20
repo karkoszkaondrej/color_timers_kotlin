@@ -102,10 +102,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         val msg: CharSequence = String.format(resources.getString(R.string.timer_done), (plate + 1))
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
-    private fun alarmOffToastold(plate: Int) {
-        val msg: CharSequence = resources.getString(R.string.timer) + (plate + 1) + resources.getString(R.string.is_done)
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
-    }
 
     /**
      * shows notification after push to start button

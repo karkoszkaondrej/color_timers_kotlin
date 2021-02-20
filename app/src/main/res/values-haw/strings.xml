@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Kala Like 'Ole Nō Hoʻi</string>
+    <string name="app_name">Kala Like \'Ole Nō Hoʻi</string>
     <string name="title_activity_set_time">SetPlateActivity</string>
     <string name="title_activity_choose_color">Koho ano no ka %1$s</string>
     <string name="chronometer">Chronometer</string>

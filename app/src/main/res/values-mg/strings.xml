@@ -3,7 +3,7 @@
 
     <string name="app_name">Color Timers</string>
     <string name="title_activity_set_time">SetPlateActivity</string>
-    <string name="title_activity_choose_color">Mifidiana loko ho an'ny %1$s</string>
+    <string name="title_activity_choose_color">Mifidiana loko ho an\'ny %1$s</string>
     <string name="chronometer">Chronometer</string>
     <string name="paletteHint">Mifidiana loko</string>
     <string name="timer_done">Fameram-potoana %1$s Vita</string>
