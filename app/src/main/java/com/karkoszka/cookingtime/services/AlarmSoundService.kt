@@ -72,8 +72,14 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
             }
             play()
         } catch (e: Exception) {
-            Log.d(ALARM_SOUND_SERVICE, e.message)
+            Log.d(ALARM_SOUND_SERVICE, message(e.message))
         }
+    }
+
+    private fun message(message: String?): String {
+        if (message == null)
+            return "Media Player initialization fail."
+        return message.toString()
     }
 
     private fun play() {
