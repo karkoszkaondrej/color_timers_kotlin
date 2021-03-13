@@ -1,4 +1,4 @@
-package com.karkoszka.cookingtime.activities
+git stpackage com.karkoszka.cookingtime.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -108,6 +108,8 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     override fun onBackPressed() {
         save()
         finish()
+        val intent = Intent(this@SetPlateActivity, MainActivity::class.java)
+        startActivity(intent)
     }
 
     @Suppress("UNUSED_PARAMETER")
