@@ -1,5 +1,3 @@
-package com.karkoszka.cookingtime.activities
-
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
@@ -11,6 +9,8 @@ import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import com.karkoszka.cookingtime.R
+import com.karkoszka.cookingtime.activities.ColorChoserActivity
+import com.karkoszka.cookingtime.activities.MainActivity
 import com.karkoszka.cookingtime.common.LoaderPreferences
 import com.karkoszka.cookingtime.common.OnSwipeTouchListener
 import com.karkoszka.cookingtime.common.Plate
@@ -108,6 +108,8 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     override fun onBackPressed() {
         save()
         finish()
+        val intent = Intent(this@SetPlateActivity, MainActivity::class.java)
+        startActivity(intent)
     }
 
     @Suppress("UNUSED_PARAMETER")

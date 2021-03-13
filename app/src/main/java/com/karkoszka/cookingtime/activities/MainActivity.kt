@@ -1,5 +1,6 @@
 package com.karkoszka.cookingtime.activities
 
+import SetPlateActivity
 import android.app.AlarmManager
 import android.app.KeyguardManager
 import android.app.NotificationManager
