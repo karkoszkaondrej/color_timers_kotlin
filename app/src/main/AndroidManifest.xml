@@ -1,55 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.karkoszka.cookingtime">
+    package="com.karkoszka.cookingtime">
 
-	<uses-permission android:name="android.permission.VIBRATE"/>
-	<uses-permission android:name="android.permission.WAKE_LOCK"/>
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+
     <application
-		android:allowBackup="true"
-		android:fullBackupContent="true"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@drawable/ic_shortcut_icon"
         android:label="@string/app_name"
         android:theme="@style/Theme.AppCompat.Light">
+
         <activity
-            android:name="com.karkoszka.cookingtime.activities.MainActivity"
-            android:label="@string/app_name" 
-        	android:screenOrientation="portrait"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        	android:launchMode="standard">
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="standard"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".activities.SetPlateActivity"
             android:label="@string/title_activity_set_time"
-        	android:screenOrientation="portrait" 
-        	android:launchMode="standard"
-        	android:parentActivityName="com.karkoszka.cookingtime.activities.MainActivity" >
-        		<!-- Parent activity meta-data to support API level 7+ -->
-        		<meta-data
-            		android:name="android.support.PARENT_ACTIVITY"
-            		android:value="com.karkoszka.cookingtime.activities.MainActivity" />
+            android:launchMode="standard"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.karkoszka.cookingtime.activities.MainActivity" />
         </activity>
         <activity
             android:name=".activities.ColorChoserActivity"
-            android:label="@string/title_activity_choose_color" 
-        	android:screenOrientation="portrait"
-        	android:launchMode="standard"
-        	android:parentActivityName="com.karkoszka.cookingtime.activities.SetPlateActivity" >
-        		<!-- Parent activity meta-data to support API level 7+ -->
-        		<meta-data
-            		android:name="android.support.PARENT_ACTIVITY"
-            		android:value="com.karkoszka.cookingtime.activities.SetPlateActivity" />
+            android:label="@string/title_activity_choose_color"
+            android:launchMode="standard"
+            android:parentActivityName=".activities.SetPlateActivity"
+            android:screenOrientation="portrait">
+
+            <!-- Parent activity meta-data to support API level 7+ -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.karkoszka.cookingtime.activities.SetPlateActivity" />
         </activity>
-        <receiver android:name="com.karkoszka.cookingtime.services.CTBroadcastReceiver" >
-        </receiver>
-        <service 
+
+        <receiver android:name=".services.CTBroadcastReceiver" />
+
+        <service
+            android:name=".services.AlarmSoundService"
             android:enabled="true"
-            android:name="com.karkoszka.cookingtime.services.AlarmSoundService"
             android:permission="com.karkoszka.cookingtime.MY_SERVICE_PERMISSION" />
     </application>
 

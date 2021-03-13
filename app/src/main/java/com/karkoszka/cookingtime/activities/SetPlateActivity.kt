@@ -1,18 +1,18 @@
 package com.karkoszka.cookingtime.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.SeekBar
+import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.common.LoaderPreferences
+import com.karkoszka.cookingtime.common.OnSwipeTouchListener
 import com.karkoszka.cookingtime.common.Plate
 import com.karkoszka.cookingtime.fragments.SetTimeFragment.OnSetTimeFragmentInteractionListener
 
@@ -28,6 +28,8 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     private var dynTextHours: TextView? = null
     private var dynTextMinutes: TextView? = null
     private var dynTextSeconds: TextView? = null
+    private lateinit var layout: FrameLayout
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_time)
@@ -36,6 +38,38 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         loader = LoaderPreferences(settings)
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
+        layout = findViewById(R.id.set_time_fragment)
+        layout.setOnTouchListener(@SuppressLint("ClickableViewAccessibility")
+        object : OnSwipeTouchListener(this@SetPlateActivity) {
+            override fun onSwipeLeft() {
+                super.onSwipeLeft()
+                val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
+                intent.putExtra(SetPlateActivity.PLATE, previousPlate(actualPlate!!.id))
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right,
+                        R.anim.slide_out_left)
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
+                intent.putExtra(SetPlateActivity.PLATE,  nextPlate(actualPlate!!.id))
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left,
+                        R.anim.slide_out_right)
+            }
+        })
+    }
+
+    private fun previousPlate(id: Int): Int {
+        if (actualPlate!!.id == 0)
+            return 5
+        return id - 1
+    }
+
+    private fun nextPlate(id: Int): Int {
+        if (actualPlate!!.id == 5)
+            return 0
+        return id + 1
     }
 
     public override fun onResume() {

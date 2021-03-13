@@ -29,7 +29,7 @@ class ZeroCounterTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun mainActivityTest2() {
+    fun zeroCounterTest() {
         val appCompatImageButton = onView(
                 allOf(withId(R.id.button4set),
                         childAtPosition(

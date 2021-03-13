@@ -29,7 +29,7 @@ class SetColorExistTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun mainActivityTest3() {
+    fun setColorExistTest() {
         val appCompatImageButton = onView(
                 allOf(withId(R.id.button1set),
                         childAtPosition(
