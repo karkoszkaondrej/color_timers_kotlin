@@ -1,3 +1,5 @@
+package com.karkoszka.cookingtime.activities
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
