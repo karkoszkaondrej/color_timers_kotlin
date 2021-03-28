@@ -1,6 +1,6 @@
 package com.karkoszka.cookingtime.activities
 
-import SetPlateActivity
+import com.karkoszka.cookingtime.activities.SetPlateActivity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
