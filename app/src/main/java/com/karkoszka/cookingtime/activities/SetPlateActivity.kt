@@ -41,12 +41,17 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
         layout = findViewById(R.id.set_time_fragment)
+        initSwipeSettings()
+    }
+
+    private fun initSwipeSettings() {
         layout.setOnTouchListener(@SuppressLint("ClickableViewAccessibility")
         object : OnSwipeTouchListener(this@SetPlateActivity) {
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
                 val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
                 intent.putExtra(SetPlateActivity.PLATE, nextPlate(actualPlate!!.id))
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_right,
                         R.anim.slide_out_left)
@@ -55,6 +60,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
                 super.onSwipeRight()
                 val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
                 intent.putExtra(SetPlateActivity.PLATE,  previousPlate(actualPlate!!.id))
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left,
                         R.anim.slide_out_right)
@@ -111,6 +117,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         save()
         finish()
         val intent = Intent(this@SetPlateActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
     }
 
