@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/linearSplitSetTime"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -79,7 +79,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:paddingLeft="@dimen/seekBarSidePadding"
             android:paddingRight="@dimen/seekBarSidePadding" />
 
@@ -88,7 +88,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:paddingLeft="@dimen/seekBarSidePadding"
             android:paddingRight="@dimen/seekBarSidePadding" />
 
@@ -97,19 +97,33 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal|center"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:paddingLeft="@dimen/seekBarSidePadding"
             android:paddingRight="@dimen/seekBarSidePadding" />
 
-        <ImageButton
-            android:id="@+id/buttonColor"
-            android:layout_width="fill_parent"
+        <Space
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/abc_btn_borderless_material"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/buttonColor"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_margin="20dp"
+            android:layout_weight="0.3"
+            android:background="@drawable/rounded_corners"
             android:contentDescription="@string/paletteHint"
             android:onClick="setColor"
-            android:src="@drawable/outline_palette_black_36" />
+            android:drawableStart="@drawable/outline_palette_black_36"
+            android:text="@string/paletteHint"
+            android:textSize="@dimen/countdown_text_size"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5" />
 
     </LinearLayout>
 
