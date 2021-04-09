@@ -27,14 +27,14 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class SwipeSettingsTest {
+class ActionBarTitleTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun swipeSettingsTest() {
+    fun actionBarTitleTest() {
         val appCompatImageButton = onView(
                 allOf(withId(R.id.button3set),
                         childAtPosition(
