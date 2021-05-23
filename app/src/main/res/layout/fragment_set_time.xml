@@ -1,116 +1,126 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/mainScreen"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearSplitSetTime"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/linearSplitSetTime"
+    <LinearLayout
+        android:id="@+id/infoPanel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal">
 
-        <LinearLayout
-            android:id="@+id/infoPanel"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <TextView
+            android:id="@+id/dynamicTextHours"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_vertical|center_horizontal|center"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:text="@string/defaultTime"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/countdown_text_size" />
 
-            <TextView
-                android:id="@+id/dynamicTextHours"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|center_vertical|center_horizontal|center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/defaultTime"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/countdown_text_size" />
-
-            <TextView
-                android:id="@+id/doubleDotHours"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|center_vertical|center_horizontal|center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/doubleDot"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/countdown_text_size" />
-
-
-            <TextView
-                android:id="@+id/dynamicTextMinutes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|center_vertical|center_horizontal|center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/defaultTime"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/countdown_text_size" />
-
-            <TextView
-                android:id="@+id/doubleDotMinutes"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|center_vertical|center_horizontal|center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/doubleDot"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/countdown_text_size" />
-
-            <TextView
-                android:id="@+id/dynamicTextSeconds"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="top|center_vertical|center_horizontal|center"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/defaultTime"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textSize="@dimen/countdown_text_size" />
-
-        </LinearLayout>
-
-        <SeekBar
-            android:id="@+id/seekBarHours"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal|center"
+        <TextView
+            android:id="@+id/doubleDotHours"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_vertical|center_horizontal|center"
             android:layout_weight="1"
-            android:paddingLeft="@dimen/seekBarSidePadding"
-            android:paddingRight="@dimen/seekBarSidePadding" />
+            android:gravity="center"
+            android:text="@string/doubleDot"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/countdown_text_size" />
 
-        <SeekBar
-            android:id="@+id/seekBarMinutes"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal|center"
-            android:layout_weight="1"
-            android:paddingLeft="@dimen/seekBarSidePadding"
-            android:paddingRight="@dimen/seekBarSidePadding" />
 
-        <SeekBar
-            android:id="@+id/seekBarSeconds"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal|center"
+        <TextView
+            android:id="@+id/dynamicTextMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_vertical|center_horizontal|center"
             android:layout_weight="1"
-            android:paddingLeft="@dimen/seekBarSidePadding"
-            android:paddingRight="@dimen/seekBarSidePadding" />
+            android:gravity="center"
+            android:text="@string/defaultTime"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/countdown_text_size" />
 
-        <ImageButton
-            android:id="@+id/buttonColor"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/doubleDotMinutes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_vertical|center_horizontal|center"
             android:layout_weight="1"
-            android:background="@drawable/abc_btn_borderless_material"
-            android:contentDescription="@string/paletteHint"
-            android:onClick="setColor"
-            android:src="@drawable/outline_palette_black_36" />
+            android:gravity="center"
+            android:text="@string/doubleDot"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/countdown_text_size" />
+
+        <TextView
+            android:id="@+id/dynamicTextSeconds"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_vertical|center_horizontal|center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/defaultTime"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/countdown_text_size" />
 
     </LinearLayout>
 
-</FrameLayout>
+    <SeekBar
+        android:id="@+id/seekBarHours"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_weight="0.5"
+        android:paddingLeft="@dimen/seekBarSidePadding"
+        android:paddingRight="@dimen/seekBarSidePadding" />
+
+    <SeekBar
+        android:id="@+id/seekBarMinutes"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_weight="0.5"
+        android:paddingLeft="@dimen/seekBarSidePadding"
+        android:paddingRight="@dimen/seekBarSidePadding" />
+
+    <SeekBar
+        android:id="@+id/seekBarSeconds"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal|center"
+        android:layout_weight="0.5"
+        android:paddingLeft="@dimen/seekBarSidePadding"
+        android:paddingRight="@dimen/seekBarSidePadding" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/buttonColor"
+        android:layout_width="wrap_content"
+        android:layout_weight="0.4"
+        android:layout_height="10dp"
+        android:background="@drawable/rounded_corners"
+        android:contentDescription="@string/paletteHint"
+        android:drawableStart="@drawable/outline_palette_black_36"
+        android:gravity="center"
+        android:onClick="setColor"
+        android:text="@string/paletteHint"
+        android:textSize="@dimen/countdown_text_size"
+        android:textAlignment="center"
+        android:padding="5dp"/>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5" />
+
+</LinearLayout>
