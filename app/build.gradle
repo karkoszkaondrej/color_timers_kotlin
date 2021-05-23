@@ -10,8 +10,8 @@ android {
         applicationId "com.karkoszka.cookingtime"
         minSdkVersion 23
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        versionCode 4
-        versionName "1.1.4"
+        versionCode 5
+        versionName "1.2"
     }
     buildTypes {
         release {
@@ -19,7 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-    buildToolsVersion = '30.0.1'
+    buildToolsVersion = '30.0.3'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
