@@ -11,8 +11,6 @@ import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
 import com.karkoszka.cookingtime.R
-import com.karkoszka.cookingtime.activities.ColorChoserActivity
-import com.karkoszka.cookingtime.activities.MainActivity
 import com.karkoszka.cookingtime.common.LoaderPreferences
 import com.karkoszka.cookingtime.common.OnSwipeTouchListener
 import com.karkoszka.cookingtime.common.Plate
@@ -30,7 +28,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     private var dynTextHours: TextView? = null
     private var dynTextMinutes: TextView? = null
     private var dynTextSeconds: TextView? = null
-    private lateinit var layout: FrameLayout
+    private lateinit var layout: LinearLayout
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +48,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
             override fun onSwipeLeft() {
                 super.onSwipeLeft()
                 val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
-                intent.putExtra(SetPlateActivity.PLATE, nextPlate(actualPlate!!.id))
+                intent.putExtra(PLATE, nextPlate(actualPlate!!.id))
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_right,
@@ -59,7 +57,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
             override fun onSwipeRight() {
                 super.onSwipeRight()
                 val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
-                intent.putExtra(SetPlateActivity.PLATE,  previousPlate(actualPlate!!.id))
+                intent.putExtra(PLATE,  previousPlate(actualPlate!!.id))
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
                 overridePendingTransition(R.anim.slide_in_left,
@@ -97,7 +95,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     }
 
     private fun getPlateNumber(plateNumber: Int): String {
-        return Integer.toString(plateNumber + 1)
+        return (plateNumber + 1).toString()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
