@@ -1,18 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/linearSplitSetTime"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/activity_horizontal_margin">
 
     <LinearLayout
         android:id="@+id/infoPanel"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/countdownMarginBottom"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/dynamicTextHours"
@@ -72,56 +70,55 @@
 
     </LinearLayout>
 
-    <SeekBar
-        android:id="@+id/seekBarHours"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|center"
-        android:layout_weight="0.5"
-        android:paddingLeft="@dimen/seekBarSidePadding"
-        android:paddingRight="@dimen/seekBarSidePadding" />
-
-    <SeekBar
-        android:id="@+id/seekBarMinutes"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|center"
-        android:layout_weight="0.5"
-        android:paddingLeft="@dimen/seekBarSidePadding"
-        android:paddingRight="@dimen/seekBarSidePadding" />
-
-    <SeekBar
-        android:id="@+id/seekBarSeconds"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|center_horizontal|center"
-        android:layout_weight="0.5"
-        android:paddingLeft="@dimen/seekBarSidePadding"
-        android:paddingRight="@dimen/seekBarSidePadding" />
-
-    <Space
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/infoPanel"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonColor"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.4"
-        android:layout_height="10dp"
-        android:background="@drawable/rounded_corners"
-        android:contentDescription="@string/paletteHint"
-        android:drawableStart="@drawable/outline_palette_black_36"
-        android:gravity="center"
-        android:onClick="setColor"
-        android:text="@string/paletteHint"
-        android:textSize="@dimen/countdown_text_size"
-        android:textAlignment="center"
-        android:padding="5dp"/>
+        <SeekBar
+            android:id="@+id/seekBarHours"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/seekBarHeight"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="@dimen/seekBarWeight"
+            android:paddingLeft="@dimen/seekBarSidePadding"
+            android:paddingRight="@dimen/seekBarSidePadding" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5" />
+        <SeekBar
+            android:id="@+id/seekBarMinutes"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/seekBarHeight"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="@dimen/seekBarWeight"
+            android:paddingLeft="@dimen/seekBarSidePadding"
+            android:paddingRight="@dimen/seekBarSidePadding" />
 
-</LinearLayout>
+        <SeekBar
+            android:id="@+id/seekBarSeconds"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/seekBarHeight"
+            android:layout_gravity="center_vertical|center_horizontal|center"
+            android:layout_weight="@dimen/seekBarWeight"
+            android:paddingLeft="@dimen/seekBarSidePadding"
+            android:paddingRight="@dimen/seekBarSidePadding" />
+
+        <Button
+            android:id="@+id/buttonColor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_marginTop="@dimen/buttonMarginTop"
+            android:layout_marginBottom="@dimen/buttonMarginBottom"
+            android:layout_weight="@dimen/buttonWeight"
+            android:background="@drawable/rounded_corners"
+            android:contentDescription="@string/paletteHint"
+            android:drawableStart="@drawable/outline_palette_black_36"
+            android:onClick="setColor"
+            android:padding="@dimen/buttonPadding"
+            android:singleLine="true"
+            android:text="@string/paletteHint"
+            android:textSize="@dimen/buttonText" />
+
+    </LinearLayout>
+
+</RelativeLayout>

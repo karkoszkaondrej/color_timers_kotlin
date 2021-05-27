@@ -91,7 +91,7 @@ class LoaderPreferences(prefs: SharedPreferences) {
     fun savePlate(saveMe: Plate) {
         val editor = settings.edit()
         val plateId = saveMe.id
-        editor.putInt(COLOR + plateId, saveMe.colour)
+        editor.putInt(COLOR + plateId, saveMe.color)
         editor.putInt(HOURS + plateId, saveMe.hours)
         editor.putInt(MINUTES + plateId, saveMe.minutes)
         editor.putInt(SECONDS + plateId, saveMe.seconds)

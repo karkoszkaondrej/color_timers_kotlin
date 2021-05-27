@@ -1,6 +1,5 @@
 package com.karkoszka.cookingtime.activities
 
-import com.karkoszka.cookingtime.activities.SetPlateActivity
 import android.app.AlarmManager
 import android.app.KeyguardManager
 import android.app.NotificationManager
@@ -361,7 +360,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     }
 
     private fun setBackground(i: Int) {
-        colorFrame[i]!!.setBackgroundColor(plates[i]!!.colour)
+        colorFrame[i]!!.setBackgroundColor(plates[i]!!.color)
     }
 
     /**

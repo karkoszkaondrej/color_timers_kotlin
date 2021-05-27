@@ -28,7 +28,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     private var dynTextHours: TextView? = null
     private var dynTextMinutes: TextView? = null
     private var dynTextSeconds: TextView? = null
-    private lateinit var layout: LinearLayout
+    private lateinit var layout: RelativeLayout
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +83,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         val plateNumber = intent.getIntExtra(PLATE, 100)
         actualPlate = loader!!.loadPlate(plateNumber)
         if (intent.hasExtra(COLOR)) {
-            actualPlate!!.colour = intent.getIntExtra(COLOR, 100)
+            actualPlate!!.color = intent.getIntExtra(COLOR, 100)
         }
         if (intent.hasExtra(HOURS)) {
             actualPlate!!.hours = intent.getIntExtra(HOURS, 0)
@@ -166,47 +166,58 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         dynTextHours!!.text = getTimeLabel(actualPlate!!.hours)
         dynTextMinutes!!.text = getTimeLabel(actualPlate!!.minutes)
         dynTextSeconds!!.text = getTimeLabel(actualPlate!!.seconds)
-        val linearSplitSetTime = findViewById<View>(R.id.linearSplitSetTime) as LinearLayout
-        linearSplitSetTime.setBackgroundColor(actualPlate!!.colour)
+        layout.setBackgroundColor(actualPlate!!.color)
     }
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int,
                                    fromUser: Boolean) {
-        if (seekBar.id == hoursSeekBar!!.id) {
-            dynTextHours!!.text = getTimeLabel(progress)
-            hoursNumber = progress
-        } else if (seekBar.id == minutesSeekBar!!.id) {
-            dynTextMinutes!!.text = getTimeLabel(progress)
-            minutesNumber = progress
-        } else if (seekBar.id == secondsSeekBar!!.id) {
-            dynTextSeconds!!.text = getTimeLabel(progress)
-            secondsNumber = progress
+        when (seekBar.id) {
+            hoursSeekBar!!.id -> {
+                dynTextHours!!.text = getTimeLabel(progress)
+                hoursNumber = progress
+            }
+            minutesSeekBar!!.id -> {
+                dynTextMinutes!!.text = getTimeLabel(progress)
+                minutesNumber = progress
+            }
+            secondsSeekBar!!.id -> {
+                dynTextSeconds!!.text = getTimeLabel(progress)
+                secondsNumber = progress
+            }
         }
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar) {
-        if (seekBar.id == hoursSeekBar!!.id) {
-            minutesSeekBar!!.isEnabled = false
-            secondsSeekBar!!.isEnabled = false
-        } else if (seekBar.id == minutesSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = false
-            secondsSeekBar!!.isEnabled = false
-        } else if (seekBar.id == secondsSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = false
-            minutesSeekBar!!.isEnabled = false
+        when (seekBar.id) {
+            hoursSeekBar!!.id -> {
+                minutesSeekBar!!.isEnabled = false
+                secondsSeekBar!!.isEnabled = false
+            }
+            minutesSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = false
+                secondsSeekBar!!.isEnabled = false
+            }
+            secondsSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = false
+                minutesSeekBar!!.isEnabled = false
+            }
         }
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar) {
-        if (seekBar.id == hoursSeekBar!!.id) {
-            minutesSeekBar!!.isEnabled = true
-            secondsSeekBar!!.isEnabled = true
-        } else if (seekBar.id == minutesSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = true
-            secondsSeekBar!!.isEnabled = true
-        } else if (seekBar.id == secondsSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = true
-            minutesSeekBar!!.isEnabled = true
+        when (seekBar.id) {
+            hoursSeekBar!!.id -> {
+                minutesSeekBar!!.isEnabled = true
+                secondsSeekBar!!.isEnabled = true
+            }
+            minutesSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = true
+                secondsSeekBar!!.isEnabled = true
+            }
+            secondsSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = true
+                minutesSeekBar!!.isEnabled = true
+            }
         }
     }
 

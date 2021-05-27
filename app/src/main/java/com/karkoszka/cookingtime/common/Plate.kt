@@ -1,20 +1,20 @@
 package com.karkoszka.cookingtime.common
 
 import android.os.SystemClock
-import android.util.Log
 
-class Plate(var id: Int, var colour: Int, timeDto: TimeDto,
+class Plate(var id: Int, var color: Int, timeDto: TimeDto,
             runs: Int, date: Long, setOff: Long, last: String) : IPlate {
-    var hours: Int
-    var minutes: Int
-    var seconds: Int
-    var runs: Int
 
-    //hodnota spusteni alarmu v System.CurrentTimeInMillis
-    var base: Long
-    var setOff: Long
+    var hours: Int = timeDto.hours
+    var minutes: Int = timeDto.minutes
+    var seconds: Int = timeDto.seconds
+    var runs: Int = runs
+
+    // value of setting alarm v System.CurrentTimeInMillis
+    var base: Long = date
+    var setOff: Long = setOff
         private set
-    var last: String
+    var last: String = last
     fun startFromNow(): Long {
         start()
         base = System.currentTimeMillis()
@@ -33,17 +33,6 @@ class Plate(var id: Int, var colour: Int, timeDto: TimeDto,
 	 */
     fun computeSetOff(): Long {
         return hours * 3600000L + minutes * 60000L + seconds * 1000L
-    }
-
-    /*
-     * Computes setOff from
-	 */
-    fun computeSetOff(base: Long): Long {
-        var setoff = hours * 3600000L + minutes * 60000L + seconds * 1000L
-        Log.d("Plate setoff time in ms", "" + setoff)
-        setoff = base + setoff
-        Log.d("Plate base and setoff", "" + setoff)
-        return setoff
     }
 
     /**
@@ -71,7 +60,7 @@ class Plate(var id: Int, var colour: Int, timeDto: TimeDto,
     }
 
     override fun changeColor() {
-        //will be moved if refactoring is neccessary
+        //will be moved if refactoring is necessary
     }
 
     val isReady: Boolean
@@ -86,17 +75,6 @@ class Plate(var id: Int, var colour: Int, timeDto: TimeDto,
         const val READY = 0
         const val STARTED = 1
         const val STOPPED = 2
-        const val FIRED = 3
         const val CHANGED = 4
-    }
-
-    init {
-        hours = timeDto.hours
-        minutes = timeDto.minutes
-        seconds = timeDto.seconds
-        this.runs = runs
-        base = date
-        this.setOff = setOff
-        this.last = last
     }
 }
