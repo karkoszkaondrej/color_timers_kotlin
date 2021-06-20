@@ -226,12 +226,13 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * Serve start buttons and chronometers according plates state
      */
     private fun clickStartButton(plate: Int) {
-        val chrono = chronos[plate]
+        val chronometer = chronos[plate]
         val button = startButtons[plate]
         if (plates[plate]!!.isReady && plates[plate]!!.computeSetOff() > 0) {
             startAlarmFromNow(plate)
-            chrono!!.base = plates[plate]!!.baseForChronometer
-            chrono.start()
+            chronometer!!.base = plates[plate]!!.baseForChronometer
+            //chronometer.format = "00:00:00"
+            chronometer.start()
             button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
             notificate()
         } else if (plates[plate]!!.isStarted) {
@@ -240,7 +241,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
                 if (alarmed!!.isStarted && alarmed.checkIfFired()) stopAlarm(alarmed.id)
             }
         } else if (plates[plate]!!.isStopped) {
-            chrono!!.base = SystemClock.elapsedRealtime()
+            chronometer!!.base = SystemClock.elapsedRealtime()
             button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_play_arrow_black_36, null))
             plates[plate]!!.reset()
             loader!!.savePlate(plate, plates[plate]!!.runs, "")

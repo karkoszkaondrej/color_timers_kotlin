@@ -1,11 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <!-- TODO: Update blank fragment layout -->
 
      <LinearLayout
          android:id="@+id/splitLinear"
@@ -78,7 +74,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="startPlate1"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
+                                    android:src="@drawable/outline_play_arrow_black_36"
+                                    android:contentDescription="@string/start" />
 
                                 <ImageButton
                                     android:id="@+id/button1set"
@@ -87,7 +84,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="setPlate1"
-                                    android:src="@drawable/outline_settings_black_36" />
+                                    android:src="@drawable/outline_settings_black_36"
+                                    android:contentDescription="@string/set" />
 
                             </LinearLayout>
 
@@ -115,7 +113,7 @@
                         <Chronometer
                             android:id="@+id/chronometer3"
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_vertical|center|fill"
                             android:layout_weight="3"
                             android:gravity="center"
@@ -148,7 +146,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="startPlate3"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
+                                    android:src="@drawable/outline_play_arrow_black_36"
+                                    android:contentDescription="@string/start" />
 
                                 <ImageButton
                                     android:id="@+id/button3set"
@@ -157,7 +156,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="setPlate3"
-                                    android:src="@drawable/outline_settings_black_36" />
+                                    android:src="@drawable/outline_settings_black_36"
+                                    android:contentDescription="@string/set" />
                             </LinearLayout>
 
                         </FrameLayout>
@@ -184,7 +184,7 @@
                         <Chronometer
                             android:id="@+id/chronometer5"
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_vertical|center|fill"
                             android:layout_weight="3"
                             android:gravity="center"
@@ -217,7 +217,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="startPlate5"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
+                                    android:src="@drawable/outline_play_arrow_black_36"
+                                    android:contentDescription="@string/start" />
 
                                 <ImageButton
                                     android:id="@+id/button5set"
@@ -226,7 +227,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="setPlate5"
-                                    android:src="@drawable/outline_settings_black_36" />
+                                    android:src="@drawable/outline_settings_black_36"
+                                    android:contentDescription="@string/set" />
 
                             </LinearLayout>
 
@@ -272,7 +274,7 @@
                         <Chronometer
                             android:id="@+id/chronometer2"
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_vertical|center|fill"
                             android:layout_weight="3"
                             android:gravity="center"
@@ -305,7 +307,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="startPlate2"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
+                                    android:src="@drawable/outline_play_arrow_black_36"
+                                    android:contentDescription="@string/start" />
 
                                 <ImageButton
                                     android:id="@+id/button2set"
@@ -314,7 +317,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="setPlate2"
-                                    android:src="@drawable/outline_settings_black_36" />
+                                    android:src="@drawable/outline_settings_black_36"
+                                    android:contentDescription="@string/set" />
 
                             </LinearLayout>
 
@@ -342,7 +346,7 @@
                         <Chronometer
                             android:id="@+id/chronometer4"
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_vertical|center|fill"
                             android:layout_weight="3"
                             android:gravity="center"
@@ -375,7 +379,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="startPlate4"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
+                                    android:src="@drawable/outline_play_arrow_black_36"
+                                    android:contentDescription="@string/start" />
 
                                 <ImageButton
                                     android:id="@+id/button4set"
@@ -384,7 +389,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="setPlate4"
-                                    android:src="@drawable/outline_settings_black_36" />
+                                    android:src="@drawable/outline_settings_black_36"
+                                    android:contentDescription="@string/set" />
 
                             </LinearLayout>
 
@@ -412,7 +418,7 @@
                         <Chronometer
                             android:id="@+id/chronometer6"
                             android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
+                            android:layout_height="0dp"
                             android:layout_gravity="center_vertical|center|fill"
                             android:layout_weight="3"
                             android:gravity="center"
@@ -445,7 +451,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="startPlate6"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
+                                    android:src="@drawable/outline_play_arrow_black_36"
+                                    android:contentDescription="@string/start" />
 
                                 <ImageButton
                                     android:id="@+id/button6set"
@@ -454,7 +461,8 @@
                                     android:layout_weight="1"
                                     android:background="@android:color/transparent"
                                     android:onClick="setPlate6"
-                                    android:src="@drawable/outline_settings_black_36" />
+                                    android:src="@drawable/outline_settings_black_36"
+                                    android:contentDescription="@string/set" />
 
                             </LinearLayout>
 
