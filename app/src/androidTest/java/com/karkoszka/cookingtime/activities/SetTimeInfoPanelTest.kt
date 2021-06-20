@@ -4,11 +4,6 @@ package com.karkoszka.cookingtime.activities
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAction
-import androidx.test.espresso.action.GeneralLocation
-import androidx.test.espresso.action.GeneralSwipeAction
-import androidx.test.espresso.action.Press
-import androidx.test.espresso.action.Swipe
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -25,20 +20,19 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class SwipeMinutesTest {
+class SetTimeInfoPanelTest {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun swipeTest() {
+    fun setTimeInfoPanleTest() {
         val appCompatImageButton = onView(
             allOf(
-                withId(R.id.button3set),
+                withId(R.id.button1set),
                 childAtPosition(
                     childAtPosition(
                         withClassName(`is`("android.widget.FrameLayout")),
@@ -51,11 +45,9 @@ class SwipeMinutesTest {
         )
         appCompatImageButton.perform(click())
 
-        onView(withId(R.id.seekBarMinutes)).perform(swipeRight())
-
         val textView = onView(
             allOf(
-                withId(R.id.dynamicTextMinutes),
+                withId(R.id.dynamicTextHours), withText("00"),
                 withParent(
                     allOf(
                         withId(R.id.infoPanel),
@@ -65,15 +57,49 @@ class SwipeMinutesTest {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("59")))
-    }
+        textView.check(matches(withText("00")))
 
-
-    fun swipeRight(): ViewAction? {
-        return GeneralSwipeAction(
-            Swipe.FAST, GeneralLocation.CENTER_LEFT,
-            GeneralLocation.CENTER_RIGHT, Press.FINGER
+        val textView2 = onView(
+            allOf(
+                withId(R.id.dynamicTextMinutes), withText("00"),
+                withParent(
+                    allOf(
+                        withId(R.id.infoPanel),
+                        withParent(withId(R.id.set_time_fragment))
+                    )
+                ),
+                isDisplayed()
+            )
         )
+        textView2.check(matches(withText("00")))
+
+        val textView3 = onView(
+            allOf(
+                withId(R.id.dynamicTextSeconds), withText("00"),
+                withParent(
+                    allOf(
+                        withId(R.id.infoPanel),
+                        withParent(withId(R.id.set_time_fragment))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView3.check(matches(withText("00")))
+
+        val textView4 = onView(
+            allOf(
+                withId(R.id.dynamicTextSeconds), withText("00"),
+                withParent(
+                    allOf(
+                        withId(R.id.infoPanel),
+                        withParent(withId(R.id.set_time_fragment))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView4.check(matches(withText("00")))
     }
 
     private fun childAtPosition(

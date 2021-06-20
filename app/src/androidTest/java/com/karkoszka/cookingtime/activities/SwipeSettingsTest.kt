@@ -52,7 +52,7 @@ class SwipeSettingsTest {
                         isDisplayed()))
         textView.check(matches(withText("Alarm 3")))
 
-        onView(withId(R.id.linearSplitSetTime)).perform(swipeTopRight())
+        onView(withId(R.id.infoPanel)).perform(swipeTopRight())
 
         val textView2 = onView(
                 allOf(withText("Alarm 2"),

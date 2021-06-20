@@ -40,16 +40,22 @@ class ZeroCounterTest {
                         isDisplayed()))
         appCompatImageButton.perform(click())
 
-        val appCompatImageButton2 = onView(
-                allOf(withId(R.id.buttonColor), withContentDescription("Choose color"),
-                        childAtPosition(
-                                allOf(withId(R.id.linearSplitSetTime),
-                                        childAtPosition(
-                                                withId(R.id.set_time_fragment),
-                                                0)),
-                                4),
-                        isDisplayed()))
-        appCompatImageButton2.perform(click())
+        val appCompatButton = onView(
+            allOf(
+                withId(R.id.buttonColor),
+                withText("Choose color"),
+                withContentDescription("Choose color"),
+                childAtPosition(
+                    childAtPosition(
+                        withId(R.id.set_time_fragment),
+                        1
+                    ),
+                    3
+                ),
+                isDisplayed()
+            )
+        )
+        appCompatButton.perform(click())
 
         val chronometer = onView(
                 allOf(withId(R.id.chronometer1), withContentDescription("0 seconds"),
