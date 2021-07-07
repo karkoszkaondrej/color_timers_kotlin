@@ -3,18 +3,16 @@ package com.karkoszka.cookingtime.common
 import android.os.SystemClock
 
 class Plate(var id: Int, var color: Int, timeDto: TimeDto,
-            runs: Int, date: Long, setOff: Long, last: String) : IPlate {
+            var runs: Int, date: Long, setOff: Long, var last: String) : IPlate {
 
     var hours: Int = timeDto.hours
     var minutes: Int = timeDto.minutes
     var seconds: Int = timeDto.seconds
-    var runs: Int = runs
 
     // value of setting alarm v System.CurrentTimeInMillis
     var base: Long = date
     var setOff: Long = setOff
         private set
-    var last: String = last
     fun startFromNow(): Long {
         start()
         base = System.currentTimeMillis()
@@ -76,5 +74,25 @@ class Plate(var id: Int, var color: Int, timeDto: TimeDto,
         const val STARTED = 1
         const val STOPPED = 2
         const val CHANGED = 4
+
+        fun formatAlarmInfoText(hours: Int, minutes: Int, seconds: Int): CharSequence {
+            return String.format(
+                "%s:%s:%s",
+                formatToTwoDigits(hours),
+                formatToTwoDigits(minutes),
+                formatToTwoDigits(seconds)
+            )
+        }
+
+        /**
+         * Converts single time info to two digit format
+         * @param num time cell digit in int
+         * @return
+         */
+        private fun formatToTwoDigits(num: Int): String {
+            return if (num < 10) {
+                "0$num"
+            } else num.toString()
+        }
     }
 }

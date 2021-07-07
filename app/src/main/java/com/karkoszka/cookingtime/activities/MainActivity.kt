@@ -150,7 +150,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
 
     private fun highlightAlarms(i: Int) {
         if (plates[i]!!.runs == Plate.STARTED && plates[i]!!.checkIfFired()) plateAIT[i]!!.text =
-                //getString(R.string.alarming_left) + plateAIT[i]!!.text + getString(R.string.alarming_right)
                 String.format(getString(R.string.alarming), plateAIT[i]!!.text)
     }
 
@@ -278,7 +277,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     }
 
     private fun cancelAlarm(plate: Int) {
-        Log.d("MA reconfiguring ", "plateR from ST: $plate")
         if (pIntents[plate] != null) {
             (this.getSystemService(ALARM_SERVICE) as AlarmManager)
                     .cancel(pIntents[plate])
@@ -309,7 +307,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
 
     private fun plateIsStartedOnResume(i: Int) {
         chronos[i]!!.base = plates[i]!!.baseForChronometer
-        Log.d("Chronometer base: ", "" + plates[i]!!.base)
         chronos[i]!!.start()
         startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
     }
@@ -332,32 +329,12 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         //default implementation ignored
     }
 
-    /**
-     * sets one plates alarm info text to normal
-     */
     private fun makeAlarmInfoText(plate: Int) {
-        if (plates[plate]!!.hours != 0) {
-            plateAIT[plate]!!.text = ("" + formateToTwoDigits(plates[plate]!!.hours)
-                    + ":"
-                    + formateToTwoDigits(plates[plate]!!.minutes)
-                    + ":"
-                    + formateToTwoDigits(plates[plate]!!.seconds))
-        } else {
-            plateAIT[plate]!!.text = ("" + formateToTwoDigits(plates[plate]!!.minutes)
-                    + ":"
-                    + formateToTwoDigits(plates[plate]!!.seconds))
-        }
-    }
-
-    /**
-     * Converts single time info to two digit formate
-     * @param num time cell digit in int
-     * @return
-     */
-    private fun formateToTwoDigits(num: Int): String {
-        return if (num < 10) {
-            "0" + Integer.toString(num)
-        } else Integer.toString(num)
+        plateAIT[plate]!!.text = Plate.formatAlarmInfoText(
+            plates[plate]!!.hours,
+            plates[plate]!!.minutes,
+            plates[plate]!!.seconds
+        )
     }
 
     private fun setBackground(i: Int) {
