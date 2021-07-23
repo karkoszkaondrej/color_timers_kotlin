@@ -84,7 +84,7 @@ class MainActivityElementsTest {
 
         val textView = onView(
             allOf(
-                withId(R.id.timeInfo1), withText("00:00"),
+                withId(R.id.timeInfo1), withText("00:00:00"),
                 childAtPosition(
                     allOf(
                         withId(R.id.linear1),
@@ -98,7 +98,7 @@ class MainActivityElementsTest {
                 isDisplayed()
             )
         )
-        textView.check(matches(withText("00:00")))
+        textView.check(matches(withText("00:00:00")))
 
         val chronometer = onView(
             allOf(
@@ -168,7 +168,7 @@ class MainActivityElementsTest {
 
         val textView2 = onView(
             allOf(
-                withId(R.id.timeInfo2), withText("00:00"),
+                withId(R.id.timeInfo2), withText("00:00:00"),
                 childAtPosition(
                     allOf(
                         withId(R.id.linear2),
@@ -182,7 +182,7 @@ class MainActivityElementsTest {
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("00:00")))
+        textView2.check(matches(withText("00:00:00")))
 
         val chronometer2 = onView(
             allOf(
@@ -252,7 +252,7 @@ class MainActivityElementsTest {
 
         val textView3 = onView(
             allOf(
-                withId(R.id.timeInfo3), withText("00:00"),
+                withId(R.id.timeInfo3), withText("00:00:00"),
                 childAtPosition(
                     allOf(
                         withId(R.id.linear3),
@@ -266,7 +266,7 @@ class MainActivityElementsTest {
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("00:00")))
+        textView3.check(matches(withText("00:00:00")))
 
         val chronometer3 = onView(
             allOf(
@@ -336,7 +336,7 @@ class MainActivityElementsTest {
 
         val textView4 = onView(
             allOf(
-                withId(R.id.timeInfo4), withText("00:00"),
+                withId(R.id.timeInfo4), withText("00:00:00"),
                 childAtPosition(
                     allOf(
                         withId(R.id.linear4),
@@ -350,7 +350,7 @@ class MainActivityElementsTest {
                 isDisplayed()
             )
         )
-        textView4.check(matches(withText("00:00")))
+        textView4.check(matches(withText("00:00:00")))
 
         val chronometer4 = onView(
             allOf(
@@ -420,7 +420,7 @@ class MainActivityElementsTest {
 
         val textView5 = onView(
             allOf(
-                withId(R.id.timeInfo5), withText("00:00"),
+                withId(R.id.timeInfo5), withText("00:00:00"),
                 childAtPosition(
                     allOf(
                         withId(R.id.linear5),
@@ -434,7 +434,7 @@ class MainActivityElementsTest {
                 isDisplayed()
             )
         )
-        textView5.check(matches(withText("00:00")))
+        textView5.check(matches(withText("00:00:00")))
 
         val chronometer5 = onView(
             allOf(
@@ -504,7 +504,7 @@ class MainActivityElementsTest {
 
         val textView6 = onView(
             allOf(
-                withId(R.id.timeInfo6), withText("00:00"),
+                withId(R.id.timeInfo6), withText("00:00:00"),
                 childAtPosition(
                     allOf(
                         withId(R.id.linear6),
@@ -518,7 +518,7 @@ class MainActivityElementsTest {
                 isDisplayed()
             )
         )
-        textView6.check(matches(withText("00:00")))
+        textView6.check(matches(withText("00:00:00")))
 
         val chronometer6 = onView(
             allOf(
