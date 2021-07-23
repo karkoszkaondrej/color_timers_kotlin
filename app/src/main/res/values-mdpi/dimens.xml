@@ -15,5 +15,6 @@
     <dimen name="buttonMarginBottom">30dp</dimen>
     <dimen name="countdownMarginBottom">30dp</dimen>
     <dimen name="buttonMarginStart">40dp</dimen>
+    <dimen name="buttonDrawablePadding">10dp</dimen>
 
 </resources>

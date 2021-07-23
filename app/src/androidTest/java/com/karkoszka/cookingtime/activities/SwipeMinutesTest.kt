@@ -18,13 +18,11 @@ import androidx.test.runner.AndroidJUnit4
 import com.karkoszka.cookingtime.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
@@ -35,14 +33,17 @@ class SwipeMinutesTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun swipeTest() {
+    fun swipeMinutesTest() {
         val appCompatImageButton = onView(
             allOf(
-                withId(R.id.button3set),
+                withId(R.id.button3set), withContentDescription("Set"),
                 childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.FrameLayout")),
-                        0
+                    allOf(
+                        withId(R.id.buttonLayout3),
+                        childAtPosition(
+                            withId(R.id.main_fragment),
+                            16
+                        )
                     ),
                     1
                 ),
@@ -50,6 +51,13 @@ class SwipeMinutesTest {
             )
         )
         appCompatImageButton.perform(click())
+
+        fun swipeRight(): ViewAction? {
+            return GeneralSwipeAction(
+                Swipe.FAST, GeneralLocation.CENTER_LEFT,
+                GeneralLocation.CENTER_RIGHT, Press.FINGER
+            )
+        }
 
         onView(withId(R.id.seekBarMinutes)).perform(swipeRight())
 
@@ -66,14 +74,6 @@ class SwipeMinutesTest {
             )
         )
         textView.check(matches(withText("59")))
-    }
-
-
-    fun swipeRight(): ViewAction? {
-        return GeneralSwipeAction(
-            Swipe.FAST, GeneralLocation.CENTER_LEFT,
-            GeneralLocation.CENTER_RIGHT, Press.FINGER
-        )
     }
 
     private fun childAtPosition(

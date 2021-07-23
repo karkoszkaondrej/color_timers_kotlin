@@ -15,6 +15,6 @@
     <dimen name="countdownMarginBottom">30dp</dimen>
     <dimen name="buttonWeight">0.6</dimen>
     <dimen name="seekBarWeight">1</dimen>
-    <dimen name="buttonDrawablePadding">10dp</dimen>
+    <dimen name="buttonDrawablePadding">7dp</dimen>
     <dimen name="buttonMarginStart">85dp</dimen>
 </resources>

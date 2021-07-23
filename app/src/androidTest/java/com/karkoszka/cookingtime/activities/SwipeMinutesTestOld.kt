@@ -4,8 +4,13 @@ package com.karkoszka.cookingtime.activities
 import android.view.View
 import android.view.ViewGroup
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewAction
+import androidx.test.espresso.action.GeneralLocation
+import androidx.test.espresso.action.GeneralSwipeAction
+import androidx.test.espresso.action.Press
+import androidx.test.espresso.action.Swipe
 import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -20,57 +25,60 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ZeroCounterTest {
+class SwipeMinutesTestOld {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun zeroCounterTest() {
+    fun swipeTest() {
         val appCompatImageButton = onView(
-                allOf(withId(R.id.button4set),
-                        childAtPosition(
-                                childAtPosition(
-                                        withClassName(`is`("android.widget.FrameLayout")),
-                                        0),
-                                1),
-                        isDisplayed()))
-        appCompatImageButton.perform(click())
-
-        val appCompatButton = onView(
             allOf(
-                withId(R.id.buttonColor),
-                withText("Choose color"),
-                withContentDescription("Choose color"),
+                withId(R.id.button3set),
                 childAtPosition(
                     childAtPosition(
-                        withId(R.id.set_time_fragment),
-                        1
+                        withClassName(`is`("android.widget.FrameLayout")),
+                        0
                     ),
-                    3
+                    1
                 ),
                 isDisplayed()
             )
         )
-        appCompatButton.perform(click())
+        appCompatImageButton.perform(click())
 
-        val chronometer = onView(
-                allOf(withId(R.id.chronometer1), withContentDescription("0 seconds"),
-                        childAtPosition(
-                                allOf(withId(R.id.linearSplitSetTime),
-                                        childAtPosition(
-                                                withId(R.id.timeInfo6),
-                                                0)),
-                                0),
-                        isDisplayed()))
-        chronometer.check(doesNotExist())
+        onView(withId(R.id.seekBarMinutes)).perform(swipeRight())
+
+        val textView = onView(
+            allOf(
+                withId(R.id.dynamicTextMinutes),
+                withParent(
+                    allOf(
+                        withId(R.id.infoPanel),
+                        withParent(withId(R.id.set_time_fragment))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("59")))
+    }
+
+
+    fun swipeRight(): ViewAction? {
+        return GeneralSwipeAction(
+            Swipe.FAST, GeneralLocation.CENTER_LEFT,
+            GeneralLocation.CENTER_RIGHT, Press.FINGER
+        )
     }
 
     private fun childAtPosition(
-            parentMatcher: Matcher<View>, position: Int): Matcher<View> {
+        parentMatcher: Matcher<View>, position: Int
+    ): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {

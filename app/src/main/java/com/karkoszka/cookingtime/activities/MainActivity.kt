@@ -1,5 +1,6 @@
 package com.karkoszka.cookingtime.activities
 
+import android.annotation.SuppressLint
 import android.app.AlarmManager
 import android.app.KeyguardManager
 import android.app.NotificationManager
@@ -19,6 +20,8 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import androidx.core.content.res.ResourcesCompat
 import com.karkoszka.cookingtime.R
+import com.karkoszka.cookingtime.common.ColorFrame
+import com.karkoszka.cookingtime.common.IColorFrame
 import com.karkoszka.cookingtime.common.LoaderPreferences
 import com.karkoszka.cookingtime.common.Plate
 import com.karkoszka.cookingtime.fragments.MainScreen6Fragment.OnMainScreenFragmentInteractionListener
@@ -31,10 +34,11 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private val plateAIT = arrayOfNulls<TextView>(6)
     private val chronos = arrayOfNulls<Chronometer>(6)
     private val startButtons = arrayOfNulls<ImageButton>(6)
-    private val colorFrame = arrayOfNulls<FrameLayout>(6)
+    private val colorFrame = arrayOfNulls<IColorFrame>(6)
     private val pIntents = arrayOfNulls<PendingIntent>(6)
     private val receiver: BroadcastReceiver = CTBroadcastReceiver()
     private var alarmSoundBlockSet = false
+    @SuppressLint("WakelockTimeout")
     public override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("On create", "" + SystemClock.elapsedRealtime())
         super.onCreate(savedInstanceState)
@@ -391,12 +395,12 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * Obtains references of background frames
      */
     private fun initBackground() {
-        colorFrame[0] = findViewById<View>(R.id.frame1) as FrameLayout
-        colorFrame[1] = findViewById<View>(R.id.frame2) as FrameLayout
-        colorFrame[2] = findViewById<View>(R.id.frame3) as FrameLayout
-        colorFrame[3] = findViewById<View>(R.id.frame4) as FrameLayout
-        colorFrame[4] = findViewById<View>(R.id.frame5) as FrameLayout
-        colorFrame[5] = findViewById<View>(R.id.frame6) as FrameLayout
+        colorFrame[0] = ColorFrame(findViewById(R.id.chronometer1), findViewById(R.id.timeInfo1), findViewById(R.id.buttonLayout1) )
+        colorFrame[1] = ColorFrame(findViewById(R.id.chronometer2), findViewById(R.id.timeInfo2), findViewById(R.id.buttonLayout2) )
+        colorFrame[2] = ColorFrame(findViewById(R.id.chronometer3), findViewById(R.id.timeInfo3), findViewById(R.id.buttonLayout3) )
+        colorFrame[3] = ColorFrame(findViewById(R.id.chronometer4), findViewById(R.id.timeInfo4), findViewById(R.id.buttonLayout4) )
+        colorFrame[4] = ColorFrame(findViewById(R.id.chronometer5), findViewById(R.id.timeInfo5), findViewById(R.id.buttonLayout5), findViewById(R.id.spaceStart) )
+        colorFrame[5] = ColorFrame(findViewById(R.id.chronometer6), findViewById(R.id.timeInfo6), findViewById(R.id.buttonLayout6), findViewById(R.id.spaceEnd) )
     }
 
     companion object {

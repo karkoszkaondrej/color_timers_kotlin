@@ -13,7 +13,6 @@ import androidx.test.runner.AndroidJUnit4
 import com.karkoszka.cookingtime.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
@@ -29,14 +28,17 @@ class SetTimeInfoPanelTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun setTimeInfoPanleTest() {
+    fun setTimeInfoPanelTest() {
         val appCompatImageButton = onView(
             allOf(
-                withId(R.id.button1set),
+                withId(R.id.button3set), withContentDescription("Set"),
                 childAtPosition(
-                    childAtPosition(
-                        withClassName(`is`("android.widget.FrameLayout")),
-                        0
+                    allOf(
+                        withId(R.id.buttonLayout3),
+                        childAtPosition(
+                            withId(R.id.main_fragment),
+                            16
+                        )
                     ),
                     1
                 ),
@@ -86,20 +88,6 @@ class SetTimeInfoPanelTest {
             )
         )
         textView3.check(matches(withText("00")))
-
-        val textView4 = onView(
-            allOf(
-                withId(R.id.dynamicTextSeconds), withText("00"),
-                withParent(
-                    allOf(
-                        withId(R.id.infoPanel),
-                        withParent(withId(R.id.set_time_fragment))
-                    )
-                ),
-                isDisplayed()
-            )
-        )
-        textView4.check(matches(withText("00")))
     }
 
     private fun childAtPosition(

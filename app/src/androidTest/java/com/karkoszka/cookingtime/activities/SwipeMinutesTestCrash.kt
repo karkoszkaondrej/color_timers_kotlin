@@ -25,22 +25,23 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class ActionBarTitleTest {
+class SwipeMinutesTestCrash {
 
     @Rule
     @JvmField
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun actionBarTitleTest() {
+    fun swipeTestCrash() {
         val appCompatImageButton = onView(
             allOf(
-                withId(R.id.button3set), withContentDescription("Set"),
+                withId(R.id.button1set), withContentDescription("Set"),
                 childAtPosition(
                     allOf(
-                        withId(R.id.buttonLayout3),
+                        withId(R.id.buttonLayout1),
                         childAtPosition(
                             withId(R.id.main_fragment),
                             16
@@ -53,41 +54,42 @@ class ActionBarTitleTest {
         )
         appCompatImageButton.perform(click())
 
-        val textView = onView(
-            allOf(
-                withText("Alarm 3"),
-                withParent(
-                    allOf(
-                        withId(R.id.action_bar),
-                        withParent(withId(R.id.action_bar_container))
-                    )
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("Alarm 3")))
-
-        onView(withId(R.id.infoPanel)).perform(swipeTopRight())
+        onView(withId(R.id.seekBarMinutes)).perform(swipeRight())
 
         val textView2 = onView(
             allOf(
-                withText("Alarm 2"),
+                withId(R.id.dynamicTextMinutes),
                 withParent(
                     allOf(
-                        withId(R.id.action_bar),
-                        withParent(withId(R.id.action_bar_container))
+                        withId(R.id.infoPanel),
+                        withParent(withId(R.id.set_time_fragment))
                     )
                 ),
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Alarm 2")))
+        textView2.check(matches(withText("59")))
+
+        /*val textView = onView(
+            allOf(
+                withId(R.id.dynamicTextMinutes),
+                withParent(
+                    allOf(
+                        withId(R.id.infoPanel),
+                        withParent(withId(R.id.set_time_fragment))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
+        textView.check(matches(withText("59")))*/
     }
 
-    fun swipeTopRight(): ViewAction {
+
+    fun swipeRight(): ViewAction? {
         return GeneralSwipeAction(
-            Swipe.FAST, GeneralLocation.TOP_LEFT,
-            GeneralLocation.TOP_RIGHT, Press.FINGER
+            Swipe.FAST, GeneralLocation.CENTER_LEFT,
+            GeneralLocation.CENTER_RIGHT, Press.FINGER
         )
     }
 
