@@ -25,8 +25,4 @@ workflows:
           # Use pre-steps and post-steps if necessary
           # to execute custom steps before and afer any of the built-in steps
           system-image: system-images;android-29;default;x86
-      - store_artifacts:
-        path: /tmp/art-1
-        destination: artifact-file
-      - store_artifacts:
-        path: /tmp/artifacts
+
