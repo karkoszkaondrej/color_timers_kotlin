@@ -18,7 +18,6 @@ import androidx.test.runner.AndroidJUnit4
 import com.karkoszka.cookingtime.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.junit.Rule
@@ -36,39 +35,63 @@ class SwipeSettingsTest {
     @Test
     fun swipeSettingsTest() {
         val appCompatImageButton = onView(
-                allOf(withId(R.id.button3set),
+            allOf(
+                withId(R.id.button3set), withContentDescription("Set"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.buttonLayout3),
                         childAtPosition(
-                                childAtPosition(
-                                        withClassName(`is`("android.widget.FrameLayout")),
-                                        0),
-                                1),
-                        isDisplayed()))
+                            withId(R.id.main_fragment),
+                            16
+                        )
+                    ),
+                    1
+                ),
+                isDisplayed()
+            )
+        )
         appCompatImageButton.perform(click())
 
         val textView = onView(
-                allOf(withText("Alarm 3"),
-                        withParent(allOf(withId(R.id.action_bar),
-                                withParent(withId(R.id.action_bar_container)))),
-                        isDisplayed()))
+            allOf(
+                withText("Alarm 3"),
+                withParent(
+                    allOf(
+                        withId(R.id.action_bar),
+                        withParent(withId(R.id.action_bar_container))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
         textView.check(matches(withText("Alarm 3")))
 
         onView(withId(R.id.infoPanel)).perform(swipeTopRight())
 
         val textView2 = onView(
-                allOf(withText("Alarm 2"),
-                        withParent(allOf(withId(R.id.action_bar),
-                                withParent(withId(R.id.action_bar_container)))),
-                        isDisplayed()))
+            allOf(
+                withText("Alarm 2"),
+                withParent(
+                    allOf(
+                        withId(R.id.action_bar),
+                        withParent(withId(R.id.action_bar_container))
+                    )
+                ),
+                isDisplayed()
+            )
+        )
         textView2.check(matches(withText("Alarm 2")))
     }
 
     fun swipeTopRight(): ViewAction {
-        return GeneralSwipeAction(Swipe.FAST, GeneralLocation.TOP_LEFT,
-                GeneralLocation.TOP_RIGHT, Press.FINGER)
+        return GeneralSwipeAction(
+            Swipe.FAST, GeneralLocation.TOP_LEFT,
+            GeneralLocation.TOP_RIGHT, Press.FINGER)
     }
 
     private fun childAtPosition(
-            parentMatcher: Matcher<View>, position: Int): Matcher<View> {
+        parentMatcher: Matcher<View>, position: Int
+    ): Matcher<View> {
 
         return object : TypeSafeMatcher<View>() {
             override fun describeTo(description: Description) {
