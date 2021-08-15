@@ -13,6 +13,11 @@ jobs:
       - sonarcloud/scan
       - run:
           command: ./gradlew build
+      - store_artifacts:
+          path: /tmp/art-1
+          destination: artifact-file
+      - store_artifacts:
+          path: /tmp/artifacts
 workflows:
   my-workflow:
     jobs:
