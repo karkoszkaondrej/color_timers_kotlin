@@ -42,6 +42,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         initSwipeSettings()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun initSwipeSettings() {
         layout.setOnTouchListener(@SuppressLint("ClickableViewAccessibility")
         object : OnSwipeTouchListener(this@SetPlateActivity) {
@@ -119,11 +120,6 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         startActivity(intent)
     }
 
-    @Suppress("UNUSED_PARAMETER")
-    fun setPlateNumber(view: View?) {
-        save()
-    }
-
     private fun save() {
         if (actualPlate!!.runs == Plate.STARTED &&
                 (actualPlate!!.hours != hoursNumber || actualPlate!!.minutes != minutesNumber || actualPlate!!.seconds != secondsNumber)) {
@@ -138,7 +134,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
 
     @Suppress("UNUSED_PARAMETER")
     fun setColor(view: View?) {
-        val intent = Intent(this, ColorChoserActivity::class.java)
+        val intent = Intent(this, ColorChooserActivity::class.java)
         intent.putExtra(PLATE, actualPlate!!.id)
         intent.putExtra(HOURS, hoursNumber)
         intent.putExtra(MINUTES, minutesNumber)

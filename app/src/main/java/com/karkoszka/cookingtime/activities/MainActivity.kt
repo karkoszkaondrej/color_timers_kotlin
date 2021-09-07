@@ -1,8 +1,6 @@
 package com.karkoszka.cookingtime.activities
 
-import android.annotation.SuppressLint
 import android.app.AlarmManager
-import android.app.KeyguardManager
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -11,7 +9,6 @@ import android.content.IntentFilter
 import android.os.Bundle
 import android.os.PowerManager
 import android.os.SystemClock
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.*
@@ -38,9 +35,8 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private val pIntents = arrayOfNulls<PendingIntent>(6)
     private val receiver: BroadcastReceiver = CTBroadcastReceiver()
     private var alarmSoundBlockSet = false
-    @SuppressLint("WakelockTimeout")
+
     public override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("On create", "" + SystemClock.elapsedRealtime())
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         registerReceiver(receiver, IntentFilter())
@@ -52,13 +48,9 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
                 or PowerManager.ACQUIRE_CAUSES_WAKEUP,
                 "com.karkoszka.cookingtime:waketag")
         wakeLock.acquire()
-        val keyguardManager = applicationContext.getSystemService(KEYGUARD_SERVICE) as KeyguardManager
-        val keyguardLock = keyguardManager.newKeyguardLock("com.karkoszka.cookingtime:waketag")
-        keyguardLock.disableKeyguard()
     }
 
     public override fun onResume() {
-        Log.d("On Resume", "" + SystemClock.elapsedRealtime())
         super.onResume()
         plates = loader!!.loadPlates()
         val intent = intent
@@ -81,11 +73,9 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private fun fireAlarm(pl: Int) {
         Toast.makeText(this, String.format(resources.getString(R.string.alarm_off), (pl + 1)), Toast.LENGTH_LONG)
                 .show()
-        Log.d("MA reconfiguring", "canceled: $pl")
         val intentSoundService = Intent(applicationContext, AlarmSoundService::class.java)
         intentSoundService.putExtra(ALARM_OFF_PLATE_NO, pl)
         intentSoundService.putExtra(AlarmSoundService.START_PLAY, true)
-        Log.i("SimpleWakefulReceiver", "Starting service @ " + SystemClock.elapsedRealtime())
         startService(intentSoundService)
     }
 
@@ -110,7 +100,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     /**
      * shows notification after push to start button
      */
-    private fun notificate() {
+    private fun notification() {
         val mBuilder = NotificationCompat.Builder(this, "com.karkoszka.cookingtime.notification")
                 .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
                 .setContentTitle(resources.getString(R.string.running))
@@ -237,7 +227,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             //chronometer.format = "00:00:00"
             chronometer.start()
             button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
-            notificate()
+            notification()
         } else if (plates[plate]!!.isStarted) {
             stopAlarm(plate)
             for (alarmed in plates) {
@@ -258,7 +248,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         alarmSoundServiceStop()
         startButtons[plate]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.baseline_replay_black_36, null))
         plates[plate]!!.stop()
-        if (isAlarm) notificate() else cancelNotification()
+        if (isAlarm) notification() else cancelNotification()
         plates[plate]!!.last = chronos[plate]!!.text.toString()
         loader!!.savePlate(plate, plates[plate]!!.runs, plates[plate]!!.last)
     }
@@ -274,7 +264,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private fun startIntentAndManager(plate: Int, time: Long) {
         val intent = Intent(this, CTBroadcastReceiver::class.java)
         intent.putExtra(ALARM_OFF_PLATE_NO, plate)
-        pIntents[plate] = PendingIntent.getBroadcast(this.applicationContext, ALARM_UNIQUE_PREFIX + plate, intent, PendingIntent.FLAG_CANCEL_CURRENT)
+        pIntents[plate] = PendingIntent.getBroadcast(this.applicationContext, ALARM_UNIQUE_PREFIX + plate, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT)
         (this.getSystemService(ALARM_SERVICE) as AlarmManager)
                 .setExact(AlarmManager.RTC_WAKEUP, time, pIntents[plate])
         loader!!.savePlate(plate, plates[plate]!!.base, plates[plate]!!.setOff, plates[plate]!!.runs)
@@ -291,7 +281,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
                             ALARM_UNIQUE_PREFIX + plate,
                             Intent(this, CTBroadcastReceiver::class.java)
                                     .putExtra(ALARM_OFF_PLATE_NO, plate),
-                            PendingIntent.FLAG_CANCEL_CURRENT))
+                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT))
         }
     }
 
@@ -313,11 +303,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         chronos[i]!!.base = plates[i]!!.baseForChronometer
         chronos[i]!!.start()
         startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
-    }
-
-    fun onBroadcastReceived(plate: Int) {
-        plateAIT[plate]!!.text = ("\\\\\\o" + plates[plate]!!.hours + ":"
-                + plates[plate]!!.minutes + ":" + plates[plate]!!.seconds)
     }
 
     override fun onDestroy() {
@@ -346,7 +331,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     }
 
     /**
-     * inits UI controls
+     * initiates UI controls
      */
     private fun initUIControls() {
         initAlarmInfoText()

@@ -39,7 +39,7 @@
                 android:value="com.karkoszka.cookingtime.activities.MainActivity" />
         </activity>
         <activity
-            android:name=".activities.ColorChoserActivity"
+            android:name=".activities.ColorChooserActivity"
             android:label="@string/title_activity_choose_color"
             android:launchMode="standard"
             android:parentActivityName=".activities.SetPlateActivity"
