@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.common.LoaderPreferences
 import com.karkoszka.cookingtime.common.OnSwipeTouchListener
@@ -28,7 +29,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     private var dynTextHours: TextView? = null
     private var dynTextMinutes: TextView? = null
     private var dynTextSeconds: TextView? = null
-    private lateinit var layout: RelativeLayout
+    private lateinit var layout: FragmentContainerView
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

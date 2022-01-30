@@ -84,7 +84,7 @@
         <ImageButton
             android:id="@+id/button1start"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="startPlate1"
@@ -125,7 +125,7 @@
         <ImageButton
             android:id="@+id/button2set"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="setPlate2"
@@ -218,7 +218,7 @@
         <ImageButton
             android:id="@+id/button3start"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="startPlate3"
@@ -228,7 +228,7 @@
         <ImageButton
             android:id="@+id/button3set"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="setPlate3"
@@ -249,7 +249,7 @@
         <ImageButton
             android:id="@+id/button4start"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="startPlate4"
@@ -315,12 +315,12 @@
         android:id="@+id/timeInfo5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_time"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:gravity="center"
         android:layout_below="@id/chronometer5"
+        android:layout_alignParentStart="true"
         android:layout_toStartOf="@id/strutTexts2"
-        android:layout_alignParentStart="true"/>
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/timeInfo6"
@@ -351,22 +351,22 @@
         <ImageButton
             android:id="@+id/button5start"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/start"
             android:onClick="startPlate5"
-            android:src="@drawable/outline_play_arrow_black_36"
-            android:contentDescription="@string/start" />
+            android:src="@drawable/outline_play_arrow_black_36" />
 
         <ImageButton
             android:id="@+id/button5set"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/set"
             android:onClick="setPlate5"
-            android:src="@drawable/outline_settings_black_36"
-            android:contentDescription="@string/set" />
+            android:src="@drawable/outline_settings_black_36" />
 
     </LinearLayout>
 
@@ -382,7 +382,7 @@
         <ImageButton
             android:id="@+id/button6start"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="startPlate6"
@@ -392,7 +392,7 @@
         <ImageButton
             android:id="@+id/button6set"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:onClick="setPlate6"

@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "149701010651",
-    "firebase_url": "https://color-timers.firebaseio.com",
-    "project_id": "color-timers",
-    "storage_bucket": "color-timers.appspot.com"
+    "project_number": "574111202727",
+    "project_id": "six-timers-development",
+    "storage_bucket": "six-timers-development.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:149701010651:android:7b2f6c4af501dc6e8618fe",
+        "mobilesdk_app_id": "1:574111202727:android:5a66287f82561a9c9e4a82",
         "android_client_info": {
           "package_name": "com.karkoszka.cookingtime"
         }
       },
       "oauth_client": [
         {
-          "client_id": "149701010651-h37e7isjvna5l734ff2uo1bb4hjkjvt5.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.karkoszka.cookingtime",
-            "certificate_hash": "32bd9a6ed72e862d92479b320de60b076938954b"
-          }
-        },
-        {
-          "client_id": "149701010651-i4sfs80v2u00cfgmeicn2c4umk5poioc.apps.googleusercontent.com",
+          "client_id": "574111202727-il84h5ofr5r0nkmrjhb9gijpqt5hc3f4.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB0u_XMmNxi-leauazMEGGxe0vUqeX_xwo"
+          "current_key": "AIzaSyDFuAnffKxSdjHY3wXCJUvCZKAdV2qasF4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "149701010651-i4sfs80v2u00cfgmeicn2c4umk5poioc.apps.googleusercontent.com",
+              "client_id": "574111202727-il84h5ofr5r0nkmrjhb9gijpqt5hc3f4.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

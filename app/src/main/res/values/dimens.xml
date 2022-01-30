@@ -8,7 +8,7 @@
     <dimen name="seekBarSidePadding">10dp</dimen>
     <dimen name="seekBarHeight">50dp</dimen>
     <dimen name="buttonPadding">5dp</dimen>
-    <dimen name="buttonHeight">50dp</dimen>
+    <dimen name="buttonHeight">48dp</dimen>
     <dimen name="buttonText">20sp</dimen>
     <dimen name="buttonMarginTop">60dp</dimen>
     <dimen name="buttonMarginBottom">30dp</dimen>

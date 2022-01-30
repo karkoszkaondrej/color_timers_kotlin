@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-	<fragment 
+	<androidx.fragment.app.FragmentContainerView
 	        android:name="com.karkoszka.cookingtime.fragments.ChooseColorListFragment"
 	        android:id="@+id/choose_color"
 	        android:layout_height="match_parent"
-	        android:layout_width="match_parent"
+	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        tools:layout="@layout/fragment_choose_color" />
 </LinearLayout>

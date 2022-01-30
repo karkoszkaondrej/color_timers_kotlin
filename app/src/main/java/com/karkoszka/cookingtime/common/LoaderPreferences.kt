@@ -6,7 +6,7 @@ class LoaderPreferences(prefs: SharedPreferences) {
     private val settings: SharedPreferences
 
     /*
-	 * Prvni spusteni programu inicializace pameti uzivatele
+	 * First run of programme initialize   user memory
 	 */
     private fun initialize(editor: SharedPreferences.Editor) {
         editor.putBoolean(INITIALIZED, true)
@@ -99,7 +99,7 @@ class LoaderPreferences(prefs: SharedPreferences) {
         editor.putLong(DATE + plateId, saveMe.base)
         editor.putLong(SETOFF + plateId, saveMe.setOff)
         editor.putString(LAST_TIME + plateId, saveMe.last)
-        editor.commit()
+        editor.apply()
     }
 
     /*
@@ -110,7 +110,7 @@ class LoaderPreferences(prefs: SharedPreferences) {
         editor.putInt(RUNNING + plateId, started)
         editor.putLong(DATE + plateId, baseTime)
         editor.putLong(SETOFF + plateId, setOff)
-        editor.commit()
+        editor.apply()
     }
 
     /*
@@ -120,24 +120,7 @@ class LoaderPreferences(prefs: SharedPreferences) {
         val editor = settings.edit()
         editor.putInt(RUNNING + plateId, started)
         editor.putString(LAST_TIME + plateId, last)
-        editor.commit()
-    }
-
-    /*
-	 * saves selected color
-	 */
-    fun savePlate(plateId: Int, color: Int) {
-        val editor = settings.edit()
-        editor.putInt(COLOR + plateId, color)
-        editor.commit()
-    }
-
-    /* method for puting value to shared preferences
-	 * looks too easy
-	 */
-    fun putColor(edit: SharedPreferences.Editor, id: Int, value: Int) {
-        edit.putInt(COLOR + id, value)
-        edit.commit()
+        editor.apply()
     }
 
     companion object {
@@ -216,8 +199,7 @@ class LoaderPreferences(prefs: SharedPreferences) {
     }
 
     /*
-	 *Konstruktor spusti inicializaci pri prvnim spustenim
-	 *
+	 * Constructor run initiation for first run
 	 */
     init {
         if (!prefs.contains(INITIALIZED)) initialize(prefs.edit())
