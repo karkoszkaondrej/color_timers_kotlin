@@ -5,7 +5,7 @@
 	<dimen name="fireMargin">6dp</dimen>
 	<dimen name="fire_bottom_padding">30dp</dimen>
 	<dimen name="seekBarSidePadding">30dp</dimen>
-	<dimen name="seekBarHeight">300dp</dimen>
+	<dimen name="seekBarHeight">70dp</dimen>
 	<dimen name="buttonPadding">15dp</dimen>
 	<dimen name="buttonHeight">48dp</dimen>
 	<dimen name="buttonText">17sp</dimen>

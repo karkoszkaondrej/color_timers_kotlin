@@ -53,7 +53,7 @@ class SetTimeInfoPanelTest {
                 withParent(
                     allOf(
                         withId(R.id.infoPanel),
-                        withParent(withId(R.id.set_time_fragment))
+                        withParent(withId(R.id.linearSplitSetTime))
                     )
                 ),
                 isDisplayed()
@@ -67,7 +67,7 @@ class SetTimeInfoPanelTest {
                 withParent(
                     allOf(
                         withId(R.id.infoPanel),
-                        withParent(withId(R.id.set_time_fragment))
+                        withParent(withId(R.id.linearSplitSetTime))
                     )
                 ),
                 isDisplayed()
@@ -81,7 +81,7 @@ class SetTimeInfoPanelTest {
                 withParent(
                     allOf(
                         withId(R.id.infoPanel),
-                        withParent(withId(R.id.set_time_fragment))
+                        withParent(withId(R.id.linearSplitSetTime))
                     )
                 ),
                 isDisplayed()
