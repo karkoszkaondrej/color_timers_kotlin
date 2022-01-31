@@ -402,24 +402,24 @@
 
     </LinearLayout>
 
-<!--    <View android:id="@+id/strutSpace"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_below="@id/strutButtons2" />-->
+    <View android:id="@+id/strutSpace"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutButtons2" />
 
-<!--    <View android:id="@+id/spaceStart"-->
-<!--        android:layout_width="fill_parent"-->
-<!--        android:layout_height="fill_parent"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_below="@id/buttonLayout5"-->
-<!--        android:layout_toStartOf="@id/strutSpace"/>-->
+    <View android:id="@+id/spaceStart"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttonLayout5"
+        android:layout_toStartOf="@id/strutSpace"/>
 
-<!--    <View android:id="@+id/spaceEnd"-->
-<!--        android:layout_width="fill_parent"-->
-<!--        android:layout_height="fill_parent"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_below="@id/buttonLayout6"-->
-<!--        android:layout_toEndOf="@id/strutSpace"/>-->
+    <View android:id="@+id/spaceEnd"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttonLayout6"
+        android:layout_toEndOf="@id/strutSpace"/>
 
 </RelativeLayout>
