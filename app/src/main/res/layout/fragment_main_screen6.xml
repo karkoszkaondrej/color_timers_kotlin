@@ -12,21 +12,21 @@
     <Chronometer
         android:id="@+id/chronometer1"
         android:layout_width="50pt"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_alignParentStart="true"
         android:layout_gravity="center_vertical|center|fill"
+        android:layout_toStartOf="@id/strutChronometers0"
         android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
         android:textAlignment="center"
         android:textSize="@dimen/countdown_text_size"
-        android:visibility="visible"
-        android:layout_toStartOf="@id/strutChronometers0"
-        android:layout_alignParentStart="true"
-        android:paddingTop="@dimen/buttonDrawablePadding"
-        android:paddingBottom="@dimen/buttonDrawablePadding"/>
+        android:visibility="visible" />
 
     <Chronometer
         android:id="@+id/chronometer2"
         android:layout_width="50pt"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
         android:layout_gravity="center_vertical|center|fill"
         android:gravity="center"
         android:text="@string/chronometer"
@@ -144,33 +144,33 @@
     <Chronometer
         android:id="@+id/chronometer3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout1"
+        android:layout_alignParentStart="true"
         android:layout_gravity="center_vertical|center|fill"
+        android:layout_toStartOf="@id/strutChronometers1"
         android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
         android:textAlignment="center"
         android:textSize="@dimen/countdown_text_size"
-        android:visibility="visible"
-        android:layout_toStartOf="@id/strutChronometers1"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/buttonLayout1"
-        android:paddingTop="@dimen/buttonDrawablePadding"
-        android:paddingBottom="@dimen/buttonDrawablePadding"/>
+        android:visibility="visible" />
 
     <Chronometer
         android:id="@+id/chronometer4"
         android:layout_width="50pt"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout2"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="center_vertical|center|fill"
+        android:layout_toEndOf="@id/strutChronometers1"
         android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
         android:text="@string/chronometer"
         android:textAlignment="center"
         android:textSize="@dimen/countdown_text_size"
-        android:visibility="visible"
-        android:layout_toEndOf="@id/strutChronometers1"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/buttonLayout2"
-        android:paddingTop="@dimen/buttonDrawablePadding"
-        android:paddingBottom="@dimen/buttonDrawablePadding"/>
+        android:visibility="visible" />
 
     <View android:id="@+id/strutTexts1"
         android:layout_width="0dp"
@@ -182,12 +182,12 @@
         android:id="@+id/timeInfo3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/default_time"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:gravity="center"
         android:layout_below="@id/chronometer3"
+        android:layout_alignParentStart="true"
         android:layout_toStartOf="@id/strutTexts1"
-        android:layout_alignParentStart="true"/>
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/timeInfo4"
@@ -222,9 +222,9 @@
             android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/start"
             android:onClick="startPlate3"
-            android:src="@drawable/outline_play_arrow_black_36"
-            android:contentDescription="@string/start" />
+            android:src="@drawable/outline_play_arrow_black_36" />
 
         <ImageButton
             android:id="@+id/button3set"
@@ -232,9 +232,9 @@
             android:layout_height="@dimen/buttonHeight"
             android:layout_weight="1"
             android:background="@android:color/transparent"
+            android:contentDescription="@string/set"
             android:onClick="setPlate3"
-            android:src="@drawable/outline_settings_black_36"
-            android:contentDescription="@string/set" />
+            android:src="@drawable/outline_settings_black_36" />
 
     </LinearLayout>
 
@@ -278,33 +278,33 @@
     <Chronometer
         android:id="@+id/chronometer5"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout3"
+        android:layout_alignParentStart="true"
         android:layout_gravity="center_vertical|center|fill"
+        android:layout_toStartOf="@id/strutChronometers2"
         android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
         android:textAlignment="center"
         android:textSize="@dimen/countdown_text_size"
-        android:visibility="visible"
-        android:layout_toStartOf="@id/strutChronometers2"
-        android:layout_alignParentStart="true"
-        android:layout_below="@id/buttonLayout3"
-        android:paddingTop="@dimen/buttonDrawablePadding"
-        android:paddingBottom="@dimen/buttonDrawablePadding"/>
+        android:visibility="visible" />
 
     <Chronometer
         android:id="@+id/chronometer6"
         android:layout_width="50pt"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout4"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="center_vertical|center|fill"
+        android:layout_toEndOf="@id/strutChronometers2"
         android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
         android:text="@string/chronometer"
         android:textAlignment="center"
         android:textSize="@dimen/countdown_text_size"
-        android:visibility="visible"
-        android:layout_toEndOf="@id/strutChronometers2"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/buttonLayout4"
-        android:paddingTop="@dimen/buttonDrawablePadding"
-        android:paddingBottom="@dimen/buttonDrawablePadding"/>
+        android:visibility="visible" />
 
     <View android:id="@+id/strutTexts2"
         android:layout_width="0dp"
@@ -402,20 +402,23 @@
 
     </LinearLayout>
 
-    <View android:id="@+id/strutSpace"
+    <View
+        android:id="@+id/strutSpace"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/strutButtons2" />
 
-    <View android:id="@+id/spaceStart"
+    <View
+        android:id="@+id/spaceStart"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerHorizontal="true"
         android:layout_below="@id/buttonLayout5"
-        android:layout_toStartOf="@id/strutSpace"/>
+        android:layout_centerHorizontal="true"
+        android:layout_toStartOf="@id/strutSpace" />
 
-    <View android:id="@+id/spaceEnd"
+    <View
+        android:id="@+id/spaceEnd"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerHorizontal="true"

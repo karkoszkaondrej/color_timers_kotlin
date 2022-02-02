@@ -17,4 +17,5 @@
     <dimen name="seekBarWeight">1</dimen>
     <dimen name="buttonDrawablePadding">7dp</dimen>
     <dimen name="buttonMarginStart">85dp</dimen>
+    <dimen name="chronometerHeight">40pt</dimen>
 </resources>
