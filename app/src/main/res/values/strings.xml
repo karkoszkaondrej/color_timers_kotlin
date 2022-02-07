@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Color Timers</string>
+    <string name="app_package" translatable="false">com.karkoszka.cookingtime</string>
+    <string name="app_waketag" translatable="false">com.karkoszka.cookingtime:waketag</string>
     <string name="title_activity_set_time">SetPlateActivity</string>
     <string name="title_activity_choose_color">Choose color for %1$s</string>
     <string name="chronometer">Chronometer</string>

@@ -4,14 +4,19 @@ import android.app.AlarmManager
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.os.PowerManager
 import android.os.SystemClock
 import android.view.View
 import android.view.WindowManager
-import android.widget.*
+import android.widget.Chronometer
+import android.widget.ImageButton
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
@@ -36,6 +41,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private val receiver: BroadcastReceiver = CTBroadcastReceiver()
     private var alarmSoundBlockSet = false
 
+    @Suppress("UselessCallOnNotNull")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -43,11 +49,18 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         val settings = getSharedPreferences(LoaderPreferences.PREFS_NAME, 0)
         loader = LoaderPreferences(settings)
         initUIControls()
-        val pm = applicationContext.getSystemService(POWER_SERVICE) as PowerManager
-        val wakeLock = pm.newWakeLock(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                or PowerManager.ACQUIRE_CAUSES_WAKEUP,
-                "com.karkoszka.cookingtime:waketag")
-        wakeLock.acquire()
+        val wakeLock: PowerManager.WakeLock =
+            (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
+                newWakeLock(
+                    PowerManager.PARTIAL_WAKE_LOCK,
+                    R.string.app_waketag.toString().orEmpty()
+                ).apply {
+                    acquire(5000)
+                }
+            }
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        wakeLock.release()
+
     }
 
     public override fun onResume() {
@@ -101,19 +114,21 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * shows notification after push to start button
      */
     private fun notification() {
-        val mBuilder = NotificationCompat.Builder(this, "com.karkoszka.cookingtime.notification")
-                .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
-                .setContentTitle(resources.getString(R.string.running))
-                .setAutoCancel(false)
+        val mBuilder = NotificationCompat.Builder(this, R.string.app_package.toString())
+            .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
+            .setContentTitle(resources.getString(R.string.running))
+            .setAutoCancel(false)
         val resultIntent = Intent(this, MainActivity::class.java)
-        resultIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                Intent.FLAG_ACTIVITY_SINGLE_TOP)
+        resultIntent.addFlags(
+            Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP
+        )
         val stackBuilder = TaskStackBuilder.create(this)
         stackBuilder.addParentStack(MainActivity::class.java)
         stackBuilder.addNextIntent(resultIntent)
         val resultPendingIntent = stackBuilder.getPendingIntent(
-                0,
-                PendingIntent.FLAG_CANCEL_CURRENT
+            0,
+            PendingIntent.FLAG_CANCEL_CURRENT
         )
         mBuilder.setContentIntent(resultPendingIntent)
         val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
@@ -276,12 +291,29 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
                     .cancel(pIntents[plate])
             pIntents[plate] = null
         } else {
-            (this.getSystemService(ALARM_SERVICE) as AlarmManager)
-                    .cancel(PendingIntent.getBroadcast(this.applicationContext,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                (this.getSystemService(ALARM_SERVICE) as AlarmManager)
+                    .cancel(
+                        PendingIntent.getBroadcast(
+                            this.applicationContext,
                             ALARM_UNIQUE_PREFIX + plate,
                             Intent(this, CTBroadcastReceiver::class.java)
-                                    .putExtra(ALARM_OFF_PLATE_NO, plate),
-                        PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT))
+                                .putExtra(ALARM_OFF_PLATE_NO, plate),
+                            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+                        )
+                    )
+            } else {
+                (this.getSystemService(ALARM_SERVICE) as AlarmManager)
+                    .cancel(
+                        PendingIntent.getBroadcast(
+                            this.applicationContext,
+                            ALARM_UNIQUE_PREFIX + plate,
+                            Intent(this, CTBroadcastReceiver::class.java)
+                                .putExtra(ALARM_OFF_PLATE_NO, plate),
+                            PendingIntent.FLAG_CANCEL_CURRENT
+                        )
+                    )
+            }
         }
     }
 
