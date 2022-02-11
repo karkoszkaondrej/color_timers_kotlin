@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private val receiver: BroadcastReceiver = CTBroadcastReceiver()
     private var alarmSoundBlockSet = false
 
-    @Suppress("UselessCallOnNotNull")
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -53,14 +52,13 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             (getSystemService(Context.POWER_SERVICE) as PowerManager).run {
                 newWakeLock(
                     PowerManager.PARTIAL_WAKE_LOCK,
-                    R.string.app_waketag.toString().orEmpty()
+                    resources.getString(R.string.app_waketag)
                 ).apply {
-                    acquire(5000)
+                    acquire()
+                    release()
                 }
             }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        wakeLock.release()
-
     }
 
     public override fun onResume() {
@@ -84,8 +82,12 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     }
 
     private fun fireAlarm(pl: Int) {
-        Toast.makeText(this, String.format(resources.getString(R.string.alarm_off), (pl + 1)), Toast.LENGTH_LONG)
-                .show()
+        Toast.makeText(
+            this,
+            String.format(resources.getString(R.string.alarm_off), (pl + 1)),
+            Toast.LENGTH_LONG
+        )
+            .show()
         val intentSoundService = Intent(applicationContext, AlarmSoundService::class.java)
         intentSoundService.putExtra(ALARM_OFF_PLATE_NO, pl)
         intentSoundService.putExtra(AlarmSoundService.START_PLAY, true)
@@ -114,7 +116,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * shows notification after push to start button
      */
     private fun notification() {
-        val mBuilder = NotificationCompat.Builder(this, R.string.app_package.toString())
+        val mBuilder = NotificationCompat.Builder(this, resources.getString(R.string.app_package))
             .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
             .setContentTitle(resources.getString(R.string.running))
             .setAutoCancel(false)
@@ -159,7 +161,7 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
 
     private fun highlightAlarms(i: Int) {
         if (plates[i]!!.runs == Plate.STARTED && plates[i]!!.checkIfFired()) plateAIT[i]!!.text =
-                String.format(getString(R.string.alarming), plateAIT[i]!!.text)
+            String.format(resources.getString(R.string.alarming), plateAIT[i]!!.text)
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -241,7 +243,13 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             chronometer!!.base = plates[plate]!!.baseForChronometer
             //chronometer.format = "00:00:00"
             chronometer.start()
-            button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
+            button!!.setImageDrawable(
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.outline_stop_black_36,
+                    null
+                )
+            )
             notification()
         } else if (plates[plate]!!.isStarted) {
             stopAlarm(plate)
@@ -250,7 +258,13 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             }
         } else if (plates[plate]!!.isStopped) {
             chronometer!!.base = SystemClock.elapsedRealtime()
-            button!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_play_arrow_black_36, null))
+            button!!.setImageDrawable(
+                ResourcesCompat.getDrawable(
+                    resources,
+                    R.drawable.outline_play_arrow_black_36,
+                    null
+                )
+            )
             plates[plate]!!.reset()
             loader!!.savePlate(plate, plates[plate]!!.runs, "")
         }
@@ -261,7 +275,13 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
         cancelAlarm(plate)
         makeAlarmInfoText(plate)
         alarmSoundServiceStop()
-        startButtons[plate]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.baseline_replay_black_36, null))
+        startButtons[plate]!!.setImageDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.baseline_replay_black_36,
+                null
+            )
+        )
         plates[plate]!!.stop()
         if (isAlarm) notification() else cancelNotification()
         plates[plate]!!.last = chronos[plate]!!.text.toString()
@@ -279,62 +299,87 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
     private fun startIntentAndManager(plate: Int, time: Long) {
         val intent = Intent(this, CTBroadcastReceiver::class.java)
         intent.putExtra(ALARM_OFF_PLATE_NO, plate)
-        pIntents[plate] = PendingIntent.getBroadcast(this.applicationContext, ALARM_UNIQUE_PREFIX + plate, intent, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            pIntents[plate] = PendingIntent.getBroadcast(
+                this.applicationContext,
+                ALARM_UNIQUE_PREFIX + plate,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+            )
+        }
         (this.getSystemService(ALARM_SERVICE) as AlarmManager)
-                .setExact(AlarmManager.RTC_WAKEUP, time, pIntents[plate])
-        loader!!.savePlate(plate, plates[plate]!!.base, plates[plate]!!.setOff, plates[plate]!!.runs)
+            .setExact(AlarmManager.RTC_WAKEUP, time, pIntents[plate])
+        loader!!.savePlate(
+            plate,
+            plates[plate]!!.base,
+            plates[plate]!!.setOff,
+            plates[plate]!!.runs
+        )
     }
 
     private fun cancelAlarm(plate: Int) {
         if (pIntents[plate] != null) {
             (this.getSystemService(ALARM_SERVICE) as AlarmManager)
-                    .cancel(pIntents[plate])
+                .cancel(pIntents[plate])
             pIntents[plate] = null
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                (this.getSystemService(ALARM_SERVICE) as AlarmManager)
-                    .cancel(
-                        PendingIntent.getBroadcast(
-                            this.applicationContext,
-                            ALARM_UNIQUE_PREFIX + plate,
-                            Intent(this, CTBroadcastReceiver::class.java)
-                                .putExtra(ALARM_OFF_PLATE_NO, plate),
-                            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
-                        )
-                    )
-            } else {
-                (this.getSystemService(ALARM_SERVICE) as AlarmManager)
-                    .cancel(
-                        PendingIntent.getBroadcast(
-                            this.applicationContext,
-                            ALARM_UNIQUE_PREFIX + plate,
-                            Intent(this, CTBroadcastReceiver::class.java)
-                                .putExtra(ALARM_OFF_PLATE_NO, plate),
-                            PendingIntent.FLAG_CANCEL_CURRENT
-                        )
-                    )
-            }
+            cancelAlarmManager(plate)
         }
     }
 
+    private fun cancelAlarmManager(plate: Int) {
+        (this.getSystemService(ALARM_SERVICE) as AlarmManager)
+            .cancel(
+                PendingIntent.getBroadcast(
+                    this.applicationContext,
+                    ALARM_UNIQUE_PREFIX + plate,
+                    Intent(this, CTBroadcastReceiver::class.java)
+                        .putExtra(ALARM_OFF_PLATE_NO, plate),
+                    PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_CANCEL_CURRENT
+                )
+            )
+    }
+
     private fun onResumeChronometers(i: Int) {
-        if (plates[i]!!.runs == Plate.STARTED) plateIsStartedOnResume(i) else if (plates[i]!!.runs == Plate.STOPPED) plateIsStoppedOnResume(i) else if (plates[i]!!.runs == Plate.READY) plateIsReadyOnResume(i)
+        when (plates[i]!!.runs) {
+            Plate.STARTED -> plateIsStartedOnResume(i)
+            Plate.STOPPED -> plateIsStoppedOnResume(i)
+            Plate.READY -> plateIsReadyOnResume(i)
+        }
     }
 
     private fun plateIsReadyOnResume(i: Int) {
         chronos[i]!!.base = SystemClock.elapsedRealtime()
-        startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_play_arrow_black_36, null))
+        startButtons[i]!!.setImageDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.outline_play_arrow_black_36,
+                null
+            )
+        )
     }
 
     private fun plateIsStoppedOnResume(i: Int) {
         chronos[i]!!.text = plates[i]!!.last
-        startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.baseline_replay_black_36, null))
+        startButtons[i]!!.setImageDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.baseline_replay_black_36,
+                null
+            )
+        )
     }
 
     private fun plateIsStartedOnResume(i: Int) {
         chronos[i]!!.base = plates[i]!!.baseForChronometer
         chronos[i]!!.start()
-        startButtons[i]!!.setImageDrawable(ResourcesCompat.getDrawable(resources, R.drawable.outline_stop_black_36, null))
+        startButtons[i]!!.setImageDrawable(
+            ResourcesCompat.getDrawable(
+                resources,
+                R.drawable.outline_stop_black_36,
+                null
+            )
+        )
     }
 
     override fun onDestroy() {
@@ -412,12 +457,38 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * Obtains references of background frames
      */
     private fun initBackground() {
-        colorFrame[0] = ColorFrame(findViewById(R.id.chronometer1), findViewById(R.id.timeInfo1), findViewById(R.id.buttonLayout1) )
-        colorFrame[1] = ColorFrame(findViewById(R.id.chronometer2), findViewById(R.id.timeInfo2), findViewById(R.id.buttonLayout2) )
-        colorFrame[2] = ColorFrame(findViewById(R.id.chronometer3), findViewById(R.id.timeInfo3), findViewById(R.id.buttonLayout3) )
-        colorFrame[3] = ColorFrame(findViewById(R.id.chronometer4), findViewById(R.id.timeInfo4), findViewById(R.id.buttonLayout4) )
-        colorFrame[4] = ColorFrame(findViewById(R.id.chronometer5), findViewById(R.id.timeInfo5), findViewById(R.id.buttonLayout5), findViewById(R.id.spaceStart) )
-        colorFrame[5] = ColorFrame(findViewById(R.id.chronometer6), findViewById(R.id.timeInfo6), findViewById(R.id.buttonLayout6), findViewById(R.id.spaceEnd) )
+        colorFrame[0] = ColorFrame(
+            findViewById(R.id.chronometer1),
+            findViewById(R.id.timeInfo1),
+            findViewById(R.id.buttonLayout1)
+        )
+        colorFrame[1] = ColorFrame(
+            findViewById(R.id.chronometer2),
+            findViewById(R.id.timeInfo2),
+            findViewById(R.id.buttonLayout2)
+        )
+        colorFrame[2] = ColorFrame(
+            findViewById(R.id.chronometer3),
+            findViewById(R.id.timeInfo3),
+            findViewById(R.id.buttonLayout3)
+        )
+        colorFrame[3] = ColorFrame(
+            findViewById(R.id.chronometer4),
+            findViewById(R.id.timeInfo4),
+            findViewById(R.id.buttonLayout4)
+        )
+        colorFrame[4] = ColorFrame(
+            findViewById(R.id.chronometer5),
+            findViewById(R.id.timeInfo5),
+            findViewById(R.id.buttonLayout5),
+            findViewById(R.id.spaceStart)
+        )
+        colorFrame[5] = ColorFrame(
+            findViewById(R.id.chronometer6),
+            findViewById(R.id.timeInfo6),
+            findViewById(R.id.buttonLayout6),
+            findViewById(R.id.spaceEnd)
+        )
     }
 
     companion object {

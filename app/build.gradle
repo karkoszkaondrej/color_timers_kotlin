@@ -26,11 +26,11 @@ android {
     flavorDimensions "version"
     productFlavors {
         development {
-            minSdkVersion 21
+            minSdkVersion 23
             dimension "version"
         }
         production {
-            minSdkVersion 21
+            minSdkVersion 23
             dimension "version"
         }
     }

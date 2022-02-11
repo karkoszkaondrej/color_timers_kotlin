@@ -29,7 +29,6 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if (intent.getBooleanExtra(START_PLAY, false)) {
-            Log.d(ALARM_SOUND_SERVICE, "Started")
             uri = alarmUri
             plate = intent.getIntExtra(MainActivity.ALARM_OFF_PLATE_NO, 0)
             cancelNotification(applicationContext)
@@ -173,7 +172,7 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
     }
 
     /**
-     * obtains alarms or notications URI
+     * obtains alarms or notifications URI
      */
     private val alarmUri: Uri
         get() {
