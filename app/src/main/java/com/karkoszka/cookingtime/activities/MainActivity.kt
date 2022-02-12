@@ -1,6 +1,7 @@
 package com.karkoszka.cookingtime.activities
 
 import android.app.AlarmManager
+import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -116,6 +117,21 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
      * shows notification after push to start button
      */
     private fun notification() {
+        val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the NotificationChannel
+            val mChannel = NotificationChannel(
+                getString(R.string.channel_id),
+                getString(R.string.channel_name),
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
+            val descriptionText = getString(R.string.channel_description)
+            mChannel.description = descriptionText
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+//            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            mNotificationManager.createNotificationChannel(mChannel)
+        }
         val mBuilder = NotificationCompat.Builder(this, resources.getString(R.string.app_package))
             .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
             .setContentTitle(resources.getString(R.string.running))
@@ -133,7 +149,6 @@ class MainActivity : AppCompatActivity(), OnMainScreenFragmentInteractionListene
             PendingIntent.FLAG_CANCEL_CURRENT
         )
         mBuilder.setContentIntent(resultPendingIntent)
-        val mNotificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build())
     }
 

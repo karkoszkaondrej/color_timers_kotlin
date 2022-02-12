@@ -16,4 +16,7 @@
     <string name="alarming">"\\\\\\o  %1$s  o///"</string>
     <string name="set">Set</string>
     <string name="start">Start</string>
+    <string name="channel_name" translatable="false">Alarm info</string>
+    <string name="channel_description" translatable="false">Channel for notifying about  alarm</string>
+    <string name="channel_id" translatable="false">com.karkoszka.cookingtime</string>
 </resources>
