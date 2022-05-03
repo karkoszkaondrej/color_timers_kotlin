@@ -3,14 +3,12 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" >
 
-    <fragment 
+    <fragment
         android:name="com.karkoszka.cookingtime.fragments.MainScreen6Fragment"
         android:id="@+id/main_fragment"
-        android:tag="tataga"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        
-        tools:layout="@layout/fragment_main_screen6" />
-    <!-- class="com.karkoszka.cookingtime.fragments.MainScreen6Fragment"  -->
-	
+        tools:layout="@layout/fragment_main_screen6"
+        tools:ignore="FragmentTagUsage" />
+
 </FrameLayout>

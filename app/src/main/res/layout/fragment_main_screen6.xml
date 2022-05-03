@@ -1,474 +1,430 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainScreen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:keepScreenOn="true">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- first block -->
+    <View
+        android:id="@+id/strutChronometers0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true" />
 
-     <LinearLayout
-         android:id="@+id/splitLinear"
-         android:layout_width="fill_parent"
-         android:layout_height="fill_parent"
-         android:gravity="fill"
-         android:orientation="horizontal"
-         android:baselineAligned="false">
+    <Chronometer
+        android:id="@+id/chronometer1"
+        android:layout_width="50pt"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center_vertical|center|fill"
+        android:layout_toStartOf="@id/strutChronometers0"
+        android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
+        android:textAlignment="center"
+        android:textSize="@dimen/countdown_text_size"
+        android:visibility="visible" />
 
-        <FrameLayout
-            android:id="@+id/leftFrame"
+    <Chronometer
+        android:id="@+id/chronometer2"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_gravity="center_vertical|center|fill"
+        android:gravity="center"
+        android:text="@string/chronometer"
+        android:textAlignment="center"
+        android:textSize="@dimen/countdown_text_size"
+        android:visibility="visible"
+        android:layout_toEndOf="@id/strutChronometers0"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"/>
+
+    <View android:id="@+id/strutTexts0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutChronometers0"/>
+
+    <TextView
+        android:id="@+id/timeInfo1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:gravity="center"
+        android:layout_below="@id/chronometer1"
+        android:layout_toStartOf="@id/strutTexts0"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:id="@+id/timeInfo2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@id/chronometer2"
+        android:layout_toEndOf="@id/strutTexts0"
+        android:layout_alignParentEnd="true"/>
+
+    <View android:id="@+id/strutButtons0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutTexts0"/>
+
+
+    <LinearLayout
+        android:id="@+id/buttonLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInfo1"
+        android:layout_toStartOf="@id/strutButtons0"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding">
+
+        <ImageButton
+            android:id="@+id/button1start"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="startPlate1"
+            android:src="@drawable/outline_play_arrow_black_36"
+            android:contentDescription="@string/start" />
+
+        <ImageButton
+            android:id="@+id/button1set"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <LinearLayout
-                android:id="@+id/leftLinear"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
-
-<!-- fire1  -->
-
-                <FrameLayout
-                    android:id="@+id/frame1"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/fireMargin"
-                    android:paddingBottom="@dimen/fire_bottom_padding">
-
-                    <LinearLayout
-                        android:id="@+id/linear1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Chronometer
-                            android:id="@+id/chronometer1"
-                            android:layout_width="fill_parent"
-                            android:layout_height="0dp"
-                            android:layout_gravity="center_vertical|center|fill"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/countdown_text_size"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/timeInfo1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="@string/default_time"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageButton
-                                    android:id="@+id/button1start"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="startPlate1"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
-
-                                <ImageButton
-                                    android:id="@+id/button1set"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="setPlate1"
-                                    android:src="@drawable/outline_settings_black_36" />
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-<!-- fire3  -->
-
-                <FrameLayout
-                    android:id="@+id/frame3"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/fireMargin"
-                    android:paddingBottom="@dimen/fire_bottom_padding">
-
-                    <LinearLayout
-                        android:id="@+id/linear3"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Chronometer
-                            android:id="@+id/chronometer3"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_vertical|center|fill"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="@string/chronometer"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/countdown_text_size"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/timeInfo3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="@string/default_time"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageButton
-                                    android:id="@+id/button3start"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="startPlate3"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
-
-                                <ImageButton
-                                    android:id="@+id/button3set"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="setPlate3"
-                                    android:src="@drawable/outline_settings_black_36" />
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-<!-- fire5  -->
-
-                <FrameLayout
-                    android:id="@+id/frame5"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/fireMargin"
-                    android:paddingBottom="@dimen/fire_bottom_padding">
-
-                    <LinearLayout
-                        android:id="@+id/linear5"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Chronometer
-                            android:id="@+id/chronometer5"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_vertical|center|fill"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="@string/chronometer"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/countdown_text_size"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/timeInfo5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="@string/default_time"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageButton
-                                    android:id="@+id/button5start"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="startPlate5"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
-
-                                <ImageButton
-                                    android:id="@+id/button5set"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="setPlate5"
-                                    android:src="@drawable/outline_settings_black_36" />
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout><!-- fire5 end element -->
-                
-
-            </LinearLayout>
-
-        </FrameLayout>
-
-        <FrameLayout
-            android:id="@+id/rightFrame"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="1" >
-
-            <LinearLayout
-                android:id="@+id/rightLinear"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical" >
-
-<!-- fire2  -->
-
-                <FrameLayout
-                    android:id="@+id/frame2"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/fireMargin"
-                    android:paddingBottom="@dimen/fire_bottom_padding">
-
-                    <LinearLayout
-                        android:id="@+id/linear2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Chronometer
-                            android:id="@+id/chronometer2"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_vertical|center|fill"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="@string/chronometer"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/countdown_text_size"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/timeInfo2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="@string/default_time"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageButton
-                                    android:id="@+id/button2start"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="startPlate2"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
-
-                                <ImageButton
-                                    android:id="@+id/button2set"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="setPlate2"
-                                    android:src="@drawable/outline_settings_black_36" />
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-<!-- fire4  -->
-
-                <FrameLayout
-                    android:id="@+id/frame4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/fireMargin"
-                    android:paddingBottom="@dimen/fire_bottom_padding">
-
-                    <LinearLayout
-                        android:id="@+id/linear4"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Chronometer
-                            android:id="@+id/chronometer4"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_vertical|center|fill"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="@string/chronometer"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/countdown_text_size"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/timeInfo4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="@string/default_time"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageButton
-                                    android:id="@+id/button4start"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="startPlate4"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
-
-                                <ImageButton
-                                    android:id="@+id/button4set"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="setPlate4"
-                                    android:src="@drawable/outline_settings_black_36" />
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-<!-- fire6  -->
-
-                <FrameLayout
-                    android:id="@+id/frame6"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_weight="1"
-                    android:padding="@dimen/fireMargin"
-                    android:paddingBottom="@dimen/fire_bottom_padding">
-
-                    <LinearLayout
-                        android:id="@+id/linear6"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <Chronometer
-                            android:id="@+id/chronometer6"
-                            android:layout_width="fill_parent"
-                            android:layout_height="fill_parent"
-                            android:layout_gravity="center_vertical|center|fill"
-                            android:layout_weight="3"
-                            android:gravity="center"
-                            android:text="@string/chronometer"
-                            android:textAlignment="center"
-                            android:textSize="@dimen/countdown_text_size"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/timeInfo6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|center_horizontal"
-                            android:text="@string/default_time"
-                            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <ImageButton
-                                    android:id="@+id/button6start"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="startPlate6"
-                                    android:src="@drawable/outline_play_arrow_black_36" />
-
-                                <ImageButton
-                                    android:id="@+id/button6set"
-                                    android:layout_width="fill_parent"
-                                    android:layout_height="fill_parent"
-                                    android:layout_weight="1"
-                                    android:background="@android:color/transparent"
-                                    android:onClick="setPlate6"
-                                    android:src="@drawable/outline_settings_black_36" />
-
-                            </LinearLayout>
-
-                        </FrameLayout>
-
-                    </LinearLayout>
-
-                </FrameLayout>
-
-            </LinearLayout>
-
-        </FrameLayout>
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="setPlate1"
+            android:src="@drawable/outline_settings_black_36"
+            android:contentDescription="@string/set" />
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/buttonLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInfo2"
+        android:layout_toEndOf="@id/strutButtons0"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding">
 
-</FrameLayout>
+        <ImageButton
+            android:id="@+id/button2start"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="startPlate2"
+            android:src="@drawable/outline_play_arrow_black_36"
+            android:contentDescription="@string/start" />
+
+        <ImageButton
+            android:id="@+id/button2set"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="setPlate2"
+            android:src="@drawable/outline_settings_black_36"
+            android:contentDescription="@string/set" />
+
+    </LinearLayout>
+<!-- second block -->
+    <View android:id="@+id/strutChronometers1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutButtons0"/>
+
+    <Chronometer
+        android:id="@+id/chronometer3"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout1"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center_vertical|center|fill"
+        android:layout_toStartOf="@id/strutChronometers1"
+        android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
+        android:textAlignment="center"
+        android:textSize="@dimen/countdown_text_size"
+        android:visibility="visible" />
+
+    <Chronometer
+        android:id="@+id/chronometer4"
+        android:layout_width="50pt"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout2"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical|center|fill"
+        android:layout_toEndOf="@id/strutChronometers1"
+        android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
+        android:text="@string/chronometer"
+        android:textAlignment="center"
+        android:textSize="@dimen/countdown_text_size"
+        android:visibility="visible" />
+
+    <View android:id="@+id/strutTexts1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutChronometers1"/>
+
+    <TextView
+        android:id="@+id/timeInfo3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chronometer3"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/strutTexts1"
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/timeInfo4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@id/chronometer4"
+        android:layout_toEndOf="@id/strutTexts1"
+        android:layout_alignParentEnd="true"/>
+
+    <View android:id="@+id/strutButtons1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutTexts1"/>
+
+
+    <LinearLayout
+        android:id="@+id/buttonLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInfo3"
+        android:layout_toStartOf="@id/strutButtons1"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding">
+
+        <ImageButton
+            android:id="@+id/button3start"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/start"
+            android:onClick="startPlate3"
+            android:src="@drawable/outline_play_arrow_black_36" />
+
+        <ImageButton
+            android:id="@+id/button3set"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/set"
+            android:onClick="setPlate3"
+            android:src="@drawable/outline_settings_black_36" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInfo4"
+        android:layout_toEndOf="@id/strutButtons1"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding">
+
+        <ImageButton
+            android:id="@+id/button4start"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="startPlate4"
+            android:src="@drawable/outline_play_arrow_black_36"
+            android:contentDescription="@string/start" />
+
+        <ImageButton
+            android:id="@+id/button4set"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="setPlate4"
+            android:src="@drawable/outline_settings_black_36"
+            android:contentDescription="@string/set" />
+
+    </LinearLayout>
+<!-- third block -->
+    <View android:id="@+id/strutChronometers2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutButtons1"/>
+
+    <Chronometer
+        android:id="@+id/chronometer5"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout3"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center_vertical|center|fill"
+        android:layout_toStartOf="@id/strutChronometers2"
+        android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
+        android:textAlignment="center"
+        android:textSize="@dimen/countdown_text_size"
+        android:visibility="visible" />
+
+    <Chronometer
+        android:id="@+id/chronometer6"
+        android:layout_width="50pt"
+        android:layout_height="@dimen/chronometerHeight"
+        android:layout_below="@id/buttonLayout4"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center_vertical|center|fill"
+        android:layout_toEndOf="@id/strutChronometers2"
+        android:gravity="center"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding"
+        android:text="@string/chronometer"
+        android:textAlignment="center"
+        android:textSize="@dimen/countdown_text_size"
+        android:visibility="visible" />
+
+    <View android:id="@+id/strutTexts2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutChronometers2"/>
+
+    <TextView
+        android:id="@+id/timeInfo5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chronometer5"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@id/strutTexts2"
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/timeInfo6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/default_time"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@id/chronometer6"
+        android:layout_toEndOf="@id/strutTexts2"
+        android:layout_alignParentEnd="true"/>
+
+    <View android:id="@+id/strutButtons2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutTexts2" />
+
+    <LinearLayout
+        android:id="@+id/buttonLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInfo5"
+        android:layout_toStartOf="@id/strutButtons2"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding">
+
+        <ImageButton
+            android:id="@+id/button5start"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/start"
+            android:onClick="startPlate5"
+            android:src="@drawable/outline_play_arrow_black_36" />
+
+        <ImageButton
+            android:id="@+id/button5set"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/set"
+            android:onClick="setPlate5"
+            android:src="@drawable/outline_settings_black_36" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timeInfo6"
+        android:layout_toEndOf="@id/strutButtons2"
+        android:paddingTop="@dimen/buttonDrawablePadding"
+        android:paddingBottom="@dimen/buttonDrawablePadding">
+
+        <ImageButton
+            android:id="@+id/button6start"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="startPlate6"
+            android:src="@drawable/outline_play_arrow_black_36"
+            android:contentDescription="@string/start" />
+
+        <ImageButton
+            android:id="@+id/button6set"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/buttonHeight"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:onClick="setPlate6"
+            android:src="@drawable/outline_settings_black_36"
+            android:contentDescription="@string/set" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/strutSpace"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/strutButtons2" />
+
+    <View
+        android:id="@+id/spaceStart"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/buttonLayout5"
+        android:layout_centerHorizontal="true"
+        android:layout_toStartOf="@id/strutSpace" />
+
+    <View
+        android:id="@+id/spaceEnd"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/buttonLayout6"
+        android:layout_toEndOf="@id/strutSpace"/>
+
+</RelativeLayout>

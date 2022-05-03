@@ -1,0 +1,7 @@
+<resources>
+    <dimen name="countdown_text_size">44sp</dimen>
+    <dimen name="seekBarHeight">70dp</dimen>
+    <dimen name="buttonMarginTop">200dp</dimen>
+    <dimen name="buttonDrawablePadding">18dp</dimen>
+    <dimen name="chronometerHeight">120dp</dimen>
+</resources>

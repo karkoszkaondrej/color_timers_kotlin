@@ -1,7 +1,6 @@
 package com.karkoszka.cookingtime.common
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,7 @@ class ChooseColorAdapter(private val context2: Context, private val values: Arra
         val inflater = context2
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rowView = inflater.inflate(R.layout.listview_item_ct, parent, false)
-        val textView = rowView.findViewById<View>(R.id.textct1) as TextView
+        val textView = rowView.findViewById<View>(R.id.color) as TextView
         val layout = rowView.findViewById<View>(R.id.lay1) as RelativeLayout
         layout.setBackgroundColor(values[position]!!.color)
         textView.text = ""

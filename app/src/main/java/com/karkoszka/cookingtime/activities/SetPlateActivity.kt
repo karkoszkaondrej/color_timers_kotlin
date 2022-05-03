@@ -1,18 +1,19 @@
 package com.karkoszka.cookingtime.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.SeekBar
+import android.widget.*
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentContainerView
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.common.LoaderPreferences
+import com.karkoszka.cookingtime.common.OnSwipeTouchListener
 import com.karkoszka.cookingtime.common.Plate
 import com.karkoszka.cookingtime.fragments.SetTimeFragment.OnSetTimeFragmentInteractionListener
 
@@ -28,6 +29,8 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     private var dynTextHours: TextView? = null
     private var dynTextMinutes: TextView? = null
     private var dynTextSeconds: TextView? = null
+    private lateinit var layout: FragmentContainerView
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_set_time)
@@ -36,6 +39,45 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         loader = LoaderPreferences(settings)
         val actionBar = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
+        layout = findViewById(R.id.set_time_fragment)
+        initSwipeSettings()
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private fun initSwipeSettings() {
+        layout.setOnTouchListener(@SuppressLint("ClickableViewAccessibility")
+        object : OnSwipeTouchListener(this@SetPlateActivity) {
+            override fun onSwipeLeft() {
+                super.onSwipeLeft()
+                val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
+                intent.putExtra(PLATE, nextPlate(actualPlate!!.id))
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_right,
+                        R.anim.slide_out_left)
+            }
+            override fun onSwipeRight() {
+                super.onSwipeRight()
+                val intent = Intent(this@SetPlateActivity, SetPlateActivity::class.java)
+                intent.putExtra(PLATE,  previousPlate(actualPlate!!.id))
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                overridePendingTransition(R.anim.slide_in_left,
+                        R.anim.slide_out_right)
+            }
+        })
+    }
+
+    private fun previousPlate(id: Int): Int {
+        if (actualPlate!!.id == 0)
+            return 5
+        return id - 1
+    }
+
+    private fun nextPlate(id: Int): Int {
+        if (actualPlate!!.id == 5)
+            return 0
+        return id + 1
     }
 
     public override fun onResume() {
@@ -43,7 +85,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         val plateNumber = intent.getIntExtra(PLATE, 100)
         actualPlate = loader!!.loadPlate(plateNumber)
         if (intent.hasExtra(COLOR)) {
-            actualPlate!!.colour = intent.getIntExtra(COLOR, 100)
+            actualPlate!!.color = intent.getIntExtra(COLOR, 100)
         }
         if (intent.hasExtra(HOURS)) {
             actualPlate!!.hours = intent.getIntExtra(HOURS, 0)
@@ -55,7 +97,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     }
 
     private fun getPlateNumber(plateNumber: Int): String {
-        return Integer.toString(plateNumber + 1)
+        return (plateNumber + 1).toString()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -74,11 +116,9 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
     override fun onBackPressed() {
         save()
         finish()
-    }
-
-    @Suppress("UNUSED_PARAMETER")
-    fun setPlateNumber(view: View?) {
-        save()
+        val intent = Intent(this@SetPlateActivity, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     private fun save() {
@@ -95,7 +135,7 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
 
     @Suppress("UNUSED_PARAMETER")
     fun setColor(view: View?) {
-        val intent = Intent(this, ColorChoserActivity::class.java)
+        val intent = Intent(this, ColorChooserActivity::class.java)
         intent.putExtra(PLATE, actualPlate!!.id)
         intent.putExtra(HOURS, hoursNumber)
         intent.putExtra(MINUTES, minutesNumber)
@@ -123,47 +163,58 @@ class SetPlateActivity : AppCompatActivity(), OnSetTimeFragmentInteractionListen
         dynTextHours!!.text = getTimeLabel(actualPlate!!.hours)
         dynTextMinutes!!.text = getTimeLabel(actualPlate!!.minutes)
         dynTextSeconds!!.text = getTimeLabel(actualPlate!!.seconds)
-        val linearSplitSetTime = findViewById<View>(R.id.linearSplitSetTime) as LinearLayout
-        linearSplitSetTime.setBackgroundColor(actualPlate!!.colour)
+        layout.setBackgroundColor(actualPlate!!.color)
     }
 
     override fun onProgressChanged(seekBar: SeekBar, progress: Int,
                                    fromUser: Boolean) {
-        if (seekBar.id == hoursSeekBar!!.id) {
-            dynTextHours!!.text = getTimeLabel(progress)
-            hoursNumber = progress
-        } else if (seekBar.id == minutesSeekBar!!.id) {
-            dynTextMinutes!!.text = getTimeLabel(progress)
-            minutesNumber = progress
-        } else if (seekBar.id == secondsSeekBar!!.id) {
-            dynTextSeconds!!.text = getTimeLabel(progress)
-            secondsNumber = progress
+        when (seekBar.id) {
+            hoursSeekBar!!.id -> {
+                dynTextHours!!.text = getTimeLabel(progress)
+                hoursNumber = progress
+            }
+            minutesSeekBar!!.id -> {
+                dynTextMinutes!!.text = getTimeLabel(progress)
+                minutesNumber = progress
+            }
+            secondsSeekBar!!.id -> {
+                dynTextSeconds!!.text = getTimeLabel(progress)
+                secondsNumber = progress
+            }
         }
     }
 
     override fun onStartTrackingTouch(seekBar: SeekBar) {
-        if (seekBar.id == hoursSeekBar!!.id) {
-            minutesSeekBar!!.isEnabled = false
-            secondsSeekBar!!.isEnabled = false
-        } else if (seekBar.id == minutesSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = false
-            secondsSeekBar!!.isEnabled = false
-        } else if (seekBar.id == secondsSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = false
-            minutesSeekBar!!.isEnabled = false
+        when (seekBar.id) {
+            hoursSeekBar!!.id -> {
+                minutesSeekBar!!.isEnabled = false
+                secondsSeekBar!!.isEnabled = false
+            }
+            minutesSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = false
+                secondsSeekBar!!.isEnabled = false
+            }
+            secondsSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = false
+                minutesSeekBar!!.isEnabled = false
+            }
         }
     }
 
     override fun onStopTrackingTouch(seekBar: SeekBar) {
-        if (seekBar.id == hoursSeekBar!!.id) {
-            minutesSeekBar!!.isEnabled = true
-            secondsSeekBar!!.isEnabled = true
-        } else if (seekBar.id == minutesSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = true
-            secondsSeekBar!!.isEnabled = true
-        } else if (seekBar.id == secondsSeekBar!!.id) {
-            hoursSeekBar!!.isEnabled = true
-            minutesSeekBar!!.isEnabled = true
+        when (seekBar.id) {
+            hoursSeekBar!!.id -> {
+                minutesSeekBar!!.isEnabled = true
+                secondsSeekBar!!.isEnabled = true
+            }
+            minutesSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = true
+                secondsSeekBar!!.isEnabled = true
+            }
+            secondsSeekBar!!.id -> {
+                hoursSeekBar!!.isEnabled = true
+                minutesSeekBar!!.isEnabled = true
+            }
         }
     }
 

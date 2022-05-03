@@ -1,6 +1,6 @@
 package com.karkoszka.cookingtime.fragments
 
-import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,14 +16,8 @@ class MainScreen6Fragment : Fragment() {
         return inflater.inflate(R.layout.fragment_main_screen6, container, false)
     }
 
-    fun onButtonPressed(plate: Int) {
-        if (mListener != null) {
-            mListener!!.onStartPressed(plate)
-        }
-    }
-
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         mListener = try {
             activity as OnMainScreenFragmentInteractionListener
         } catch (e: ClassCastException) {
@@ -48,14 +42,5 @@ class MainScreen6Fragment : Fragment() {
     interface OnMainScreenFragmentInteractionListener {
         fun onStartPressed(plate: Int)
         fun onSetPressed(plate: Int)
-    }
-
-    companion object {
-        fun newInstance(): MainScreen6Fragment {
-            val fragment = MainScreen6Fragment()
-            val args = Bundle()
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

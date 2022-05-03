@@ -6,22 +6,20 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.media.AudioManager
+import android.media.*
 import android.media.AudioManager.OnAudioFocusChangeListener
-import android.media.MediaPlayer
-import android.media.RingtoneManager
 import android.net.Uri
-import android.os.IBinder
-import android.os.Vibrator
+import android.os.*
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.TaskStackBuilder
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.activities.MainActivity
 
+
 class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnErrorListener {
     private var plate = 0
-    protected lateinit var uri: Uri
+    private lateinit var uri: Uri
     private var mMediaPlayer: MediaPlayer? = null
     private var audioManager: AudioManager? = null
     private var isPlaying = false
@@ -31,7 +29,6 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         if (intent.getBooleanExtra(START_PLAY, false)) {
-            Log.d(ALARM_SOUND_SERVICE, "Started")
             uri = alarmUri
             plate = intent.getIntExtra(MainActivity.ALARM_OFF_PLATE_NO, 0)
             cancelNotification(applicationContext)
@@ -54,25 +51,39 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
 
     /**Initiates and plays sound.
      */
-    fun initMediaPlayer(context: Context, uri: Uri) {
+    private fun initMediaPlayer(context: Context, uri: Uri) {
         mMediaPlayer = MediaPlayer()
         mMediaPlayer!!.setOnErrorListener(this)
         try {
             mMediaPlayer!!.setDataSource(context, uri)
             audioManager = context.getSystemService(AUDIO_SERVICE) as AudioManager
-            val result = audioManager!!.requestAudioFocus(this, AudioManager.STREAM_ALARM,
-                    AudioManager.AUDIOFOCUS_GAIN)
-            if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+
+            if (requestAudioFocus() != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 // could not get audio focus.
-                Log.d(ALARM_SOUND_SERVICE, "Audiofocus not gained")
+                Log.d(ALARM_SOUND_SERVICE, "Audio focus not gained")
             }
             if (audioManager!!.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-                mMediaPlayer!!.setAudioStreamType(AudioManager.STREAM_ALARM)
+                mMediaPlayer!!.setAudioAttributes(
+                    AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()
+                )
                 mMediaPlayer!!.prepare()
             }
             play()
         } catch (e: Exception) {
             Log.d(ALARM_SOUND_SERVICE, message(e.message))
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun requestAudioFocus(): Int {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioManager!!.requestAudioFocus(AudioFocusRequest.Builder(AudioManager.STREAM_ALARM)
+                .setFocusGain(AudioManager.AUDIOFOCUS_GAIN)
+                .setOnAudioFocusChangeListener(this)
+                .build())
+        } else {
+            audioManager!!.requestAudioFocus(this, AudioManager.STREAM_ALARM,
+                AudioManager.AUDIOFOCUS_GAIN)
         }
     }
 
@@ -88,20 +99,30 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
             val notification = notificate(plate)
             mMediaPlayer!!.isLooping = true
             mMediaPlayer!!.start()
-            val v = getSystemService(VIBRATOR_SERVICE) as Vibrator
-            v.vibrate(500)
+            vibrate()
             startForeground(classID, notification)
         }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun vibrate() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager = getSystemService(VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            val v = vibratorManager.defaultVibrator
+            v.vibrate(VibrationEffect.createOneShot(500, 255))
+        } else {
+            val v = getSystemService(VIBRATOR_SERVICE) as Vibrator
+            v.vibrate(500)
+        }
+
     }
 
     /**
      * Shows notification that starts MainActivity after play()'s last line
      */
     private fun notificate(plate: Int): Notification {
-        val mBuilder = NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
-                .setContentTitle(String.format(resources.getString(R.string.timer_done), (plate + 1)))
-                .setAutoCancel(true)
+        buildNotification()
+        val mBuilder = this.buildNotification()
         val resultIntent = Intent(this, MainActivity::class.java)
         resultIntent.putExtra(MainActivity.ALARM_OFF_PLATE_NO, plate)
         resultIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or
@@ -117,6 +138,31 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
         return mBuilder.build()
     }
 
+    @Suppress("DEPRECATION")
+    private fun buildNotification() : NotificationCompat.Builder {
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+           return NotificationCompat.Builder(this, "com.karkoszka.cookingtime")
+               .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
+               .setContentTitle(
+                   String.format(
+                       resources.getString(R.string.timer_done),
+                       (plate + 1)
+                   )
+               )
+               .setAutoCancel(true)
+        } else {
+           return NotificationCompat.Builder(this)
+               .setSmallIcon(R.drawable.ic_stat_six_timers_bw2)
+               .setContentTitle(
+                   String.format(
+                       resources.getString(R.string.timer_done),
+                       (plate + 1)
+                   )
+               )
+               .setAutoCancel(true)
+       }
+    }
+
     /*
      * Cancels Running Notification
      */
@@ -126,10 +172,10 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
     }
 
     /**
-     * obtaines alarms or notications URI
+     * obtains alarms or notifications URI
      */
     private val alarmUri: Uri
-        private get() {
+        get() {
             var alert = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
             alert = if (alert != null) {
                 Uri.parse("android.resource://com.karkoszka.cookingtime/"
@@ -146,6 +192,7 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
         stop()
     }
 
+    @Suppress("DEPRECATION")
     private fun stop() {
         if (isPlaying) {
             isPlaying = false
@@ -153,7 +200,14 @@ class AlarmSoundService : Service(), OnAudioFocusChangeListener, MediaPlayer.OnE
                 mMediaPlayer!!.release()
                 mMediaPlayer = null
             }
-            audioManager!!.abandonAudioFocus(this)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                audioManager!!.abandonAudioFocusRequest(AudioFocusRequest.Builder(AudioManager.STREAM_ALARM)
+                    .setFocusGain(AudioManager.AUDIOFOCUS_GAIN)
+                    .setOnAudioFocusChangeListener(this)
+                    .build())
+            } else {
+                audioManager!!.abandonAudioFocus(this)
+            }
             stopForeground(true)
         }
     }

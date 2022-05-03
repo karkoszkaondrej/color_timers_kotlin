@@ -15,7 +15,7 @@ class XmlColorAdapter(context: Context) : ArrayAdapter<CTColor?>(context, R.layo
 
     //Getting the color resource id
     private val valuesFromXml: Array<CTColor?>
-        private get() {
+        get() {
             return CTColor.createArray(context.resources.getIntArray(R.array.colors))
         }
 
@@ -23,7 +23,7 @@ class XmlColorAdapter(context: Context) : ArrayAdapter<CTColor?>(context, R.layo
         val inflater = context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rowView = inflater.inflate(R.layout.listview_item_ct, parent, false)
-        val textView = rowView.findViewById<View>(R.id.textct1) as TextView
+        val textView = rowView.findViewById<View>(R.id.color) as TextView
         val layout = rowView.findViewById<View>(R.id.lay1) as RelativeLayout
         layout.setBackgroundColor(values[position]!!.color)
         textView.text = ""

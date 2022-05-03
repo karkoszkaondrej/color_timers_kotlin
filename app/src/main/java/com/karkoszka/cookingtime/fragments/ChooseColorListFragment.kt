@@ -1,28 +1,21 @@
 package com.karkoszka.cookingtime.fragments
 
-import android.app.Activity
+import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ListView
 import androidx.fragment.app.ListFragment
+import androidx.lifecycle.LifecycleObserver
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.common.CTColor
 import com.karkoszka.cookingtime.common.ChooseColorAdapter
 
-class ChooseColorListFragment : ListFragment() {
+class ChooseColorListFragment : ListFragment(), LifecycleObserver {
     private var mListener: OnChooseColorFragmentInteractionListener? = null
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_color, container,
-                false)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        val adapter = ChooseColorAdapter(activity!!, valuesFromXml)
+    override fun onViewCreated(v: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(v, savedInstanceState)
+        val adapter = ChooseColorAdapter(requireActivity(), valuesFromXml)
         listAdapter = adapter
     }
 
@@ -30,9 +23,8 @@ class ChooseColorListFragment : ListFragment() {
         mListener!!.onColorChosen(valuesFromXml[position]!!.color)
     }
 
-    @SuppressWarnings("deprecation")
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
         mListener = try {
             activity as OnChooseColorFragmentInteractionListener
         } catch (e: ClassCastException) {
@@ -48,7 +40,7 @@ class ChooseColorListFragment : ListFragment() {
 
     private val valuesFromXml: Array<CTColor?>
         get() {
-            return CTColor.createArray(activity!!.resources.getIntArray(R.array.colors))
+            return CTColor.createArray(requireActivity().resources.getIntArray(R.array.colors))
         }
 
     /**

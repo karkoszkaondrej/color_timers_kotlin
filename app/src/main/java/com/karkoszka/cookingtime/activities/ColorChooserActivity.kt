@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.karkoszka.cookingtime.R
 import com.karkoszka.cookingtime.fragments.ChooseColorListFragment.OnChooseColorFragmentInteractionListener
 
-class ColorChoserActivity : AppCompatActivity(), OnChooseColorFragmentInteractionListener {
+class ColorChooserActivity : AppCompatActivity(), OnChooseColorFragmentInteractionListener {
     private var plate = 0
     private var hoursN = 0
     private var minutesN = 0
@@ -26,7 +26,7 @@ class ColorChoserActivity : AppCompatActivity(), OnChooseColorFragmentInteractio
     }
 
     private fun getPlateNumber(plateNumber: Int): String {
-        return Integer.toString(plateNumber + 1)
+        return (plateNumber + 1).toString()
     }
 
     public override fun onPause() {
