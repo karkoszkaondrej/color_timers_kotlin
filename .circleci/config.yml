@@ -7,7 +7,6 @@ orbs:
 
 jobs:
   build:
-    name: android/android-machine
     docker:
       - image: circleci/android
     steps:
