@@ -2,13 +2,13 @@
 version: 2.1
 
 orbs:
-  android: circleci/android@2.0
+  android: circleci/android@1.0.3
   sonarcloud: sonarsource/sonarcloud@1.0.2
 
 jobs:
   build:
-    docker:
-      - image: circleci/android
+    executor: android/android
+
     steps:
       - checkout
       - sonarcloud/scan
