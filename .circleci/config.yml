@@ -7,8 +7,9 @@ orbs:
 
 jobs:
   build:
-    executor: android/android
-
+    name: android/android-machine
+    docker:
+      - image: circleci/android
     steps:
       - checkout
       - sonarcloud/scan
