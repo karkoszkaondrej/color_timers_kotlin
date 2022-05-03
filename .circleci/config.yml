@@ -1,53 +1,28 @@
-#old version
-#version: 2.1
-#
-#orbs:
-#  android: circleci/android@1.0.3
-#  sonarcloud: sonarsource/sonarcloud@1.0.2
-#
-#jobs:
-#  build:
-#    executor: android/android
-#
-#    steps:
-#      - checkout
-#      - sonarcloud/scan
-#      - run:
-#          command: ./gradlew build
-#workflows:
-#  my-workflow:
-#    jobs:
-#      - build:
-#          context: sonarcloud
-#  test:
-#    jobs:
-#      # This job uses the Android machine image by default
-#      - android/run-ui-tests:
-#          # Use pre-steps and post-steps if necessary
-#          # to execute custom steps before and afer any of the built-in steps
-#          system-image: system-images;android-29;default;x86
-#          disable-animations: true
+version: 2.1
+
+orbs:
+  android: circleci/android@1.0.3
+  sonarcloud: sonarsource/sonarcloud@1.0.2
+
 jobs:
   build:
-    docker:
-      - image: 'circleci/android:10.16.3'
+    executor: android/android
+
     steps:
       - checkout
-      - run: npm install
-      - run: npm test
-      - sonarcloud/scan-on-branch-commit:
-          cache-version: v0
-          github-project-slug: socialtables/my-project
-          project-key: socialtables_my-project
-orbs:
-  sonarcloud: socialtables/sonarcloud@x.y.z
-version: 2.1
+      - sonarcloud/scan
+      - run:
+          command: ./gradlew build
 workflows:
-  build-deploy:
+  my-workflow:
     jobs:
       - build:
-          context: st-global
-          filters:
-            tags:
-              only: /.*/
-  version: 2
+          context: sonarcloud
+  test:
+    jobs:
+      # This job uses the Android machine image by default
+      - android/run-ui-tests:
+          # Use pre-steps and post-steps if necessary
+          # to execute custom steps before and afer any of the built-in steps
+          system-image: system-images;android-29;default;x86
+          disable-animations: true
