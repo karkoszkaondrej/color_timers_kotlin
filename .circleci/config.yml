@@ -1,28 +1,37 @@
 #old version
+#version: 2.1
+#
+#orbs:
+#  android: circleci/android@1.0.3
+#  sonarcloud: sonarsource/sonarcloud@1.0.2
+#
+#jobs:
+#  build:
+#    executor: android/android
+#
+#    steps:
+#      - checkout
+#      - sonarcloud/scan
+#      - run:
+#          command: ./gradlew build
+#workflows:
+#  my-workflow:
+#    jobs:
+#      - build:
+#          context: sonarcloud
+#  test:
+#    jobs:
+#      # This job uses the Android machine image by default
+#      - android/run-ui-tests:
+#          # Use pre-steps and post-steps if necessary
+#          # to execute custom steps before and afer any of the built-in steps
+#          system-image: system-images;android-29;default;x86
+#          disable-animations: true
 version: '2.1'
 orbs:
   android: circleci/android@2.0
-jobs:
-  test:
-    executor:
-      name: android/android-machine
-      resource-class: large
-      tag: 2021.10.1
-    steps:
-      - checkout
-      - android/create-avd:
-          avd-name: myavd
-          install: true
-          system-image: system-images;android-29;default;x86
-      - android/start-emulator:
-          avd-name: myavd
-          no-window: true
-          restore-gradle-cache-prefix: v1a
-      - android/run-tests
-      - android/save-gradle-cache:
-          cache-prefix: v1a
 workflows:
   test:
     jobs:
-      - test
-
+      - android/run-ui-tests:
+          system-image: system-images;android-28;default;x86
