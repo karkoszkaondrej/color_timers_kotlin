@@ -20,15 +20,13 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
-import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@Ignore
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class SwipeMinutesWrongTest {
+class SwipeMinutesTest {
 
     @Rule
     @JvmField
@@ -56,8 +54,8 @@ class SwipeMinutesWrongTest {
 
         fun swipeRight(): ViewAction? {
             return GeneralSwipeAction(
-                Swipe.FAST, GeneralLocation.CENTER_LEFT,
-                GeneralLocation.CENTER_RIGHT, Press.FINGER
+                Swipe.SLOW, GeneralLocation.CENTER_LEFT,
+                GeneralLocation.CENTER_RIGHT, Press.THUMB
             )
         }
 
@@ -65,11 +63,11 @@ class SwipeMinutesWrongTest {
 
         val textView = onView(
             allOf(
-                withId(R.id.dynamicTextMinutes),
+                withId(R.id.dynamicTextMinutes), withText("59"),
                 withParent(
                     allOf(
                         withId(R.id.infoPanel),
-                        withParent(withId(R.id.set_time_fragment))
+                        withParent(withId(R.id.linearSplitSetTime))
                     )
                 ),
                 isDisplayed()
