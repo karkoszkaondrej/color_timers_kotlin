@@ -27,19 +27,27 @@
 #          # to execute custom steps before and afer any of the built-in steps
 #          system-image: system-images;android-29;default;x86
 #          disable-animations: true
-version: '2.1'
-orbs:
-  android: circleci/android@2.0
 jobs:
-  test:
-    executor:
-      name: android/android-machine
-      resource-class: large
+  build:
+    docker:
+      - image: 'circleci/android:10.16.3'
     steps:
       - checkout
-      - android/start-emulator-and-run-tests:
-          system-image: system-images;android-29;default;x86
+      - run: npm install
+      - run: npm test
+      - sonarcloud/scan-on-branch-commit:
+          cache-version: v0
+          github-project-slug: socialtables/my-project
+          project-key: socialtables_my-project
+orbs:
+  sonarcloud: socialtables/sonarcloud@x.y.z
+version: 2.1
 workflows:
-  test:
+  build-deploy:
     jobs:
-      - test
+      - build:
+          context: st-global
+          filters:
+            tags:
+              only: /.*/
+  version: 2
