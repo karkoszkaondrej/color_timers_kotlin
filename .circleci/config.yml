@@ -30,8 +30,16 @@
 version: '2.1'
 orbs:
   android: circleci/android@2.0
+jobs:
+  test:
+    executor:
+      name: android/android-machine
+      resource-class: large
+    steps:
+      - checkout
+      - android/start-emulator-and-run-tests:
+          system-image: system-images;android-29;default;x86
 workflows:
   test:
     jobs:
-      - android/run-ui-tests:
-          system-image: system-images;android-28;default;x86
+      - test
